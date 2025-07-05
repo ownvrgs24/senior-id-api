@@ -212,7 +212,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\USER\\senior-id-api\\src\\generated\\prisma",
+      "value": "D:\\Repositories\\senior-id-api\\src\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -226,7 +226,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "C:\\Users\\USER\\senior-id-api\\prisma\\schema.prisma",
+    "sourceFilePath": "D:\\Repositories\\senior-id-api\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
