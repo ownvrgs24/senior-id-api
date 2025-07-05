@@ -24,11 +24,6 @@ export type senior_citizen_details = $Result.DefaultSelection<Prisma.$senior_cit
  */
 export type client_credential_assets = $Result.DefaultSelection<Prisma.$client_credential_assetsPayload>
 /**
- * Model senior_identifier_registry
- * 
- */
-export type senior_identifier_registry = $Result.DefaultSelection<Prisma.$senior_identifier_registryPayload>
-/**
  * Model senior_citizen_incase_of_emergency
  * 
  */
@@ -212,16 +207,6 @@ export class PrismaClient<
     * ```
     */
   get client_credential_assets(): Prisma.client_credential_assetsDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.senior_identifier_registry`: Exposes CRUD operations for the **senior_identifier_registry** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Senior_identifier_registries
-    * const senior_identifier_registries = await prisma.senior_identifier_registry.findMany()
-    * ```
-    */
-  get senior_identifier_registry(): Prisma.senior_identifier_registryDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.senior_citizen_incase_of_emergency`: Exposes CRUD operations for the **senior_citizen_incase_of_emergency** model.
@@ -674,7 +659,6 @@ export namespace Prisma {
   export const ModelName: {
     senior_citizen_details: 'senior_citizen_details',
     client_credential_assets: 'client_credential_assets',
-    senior_identifier_registry: 'senior_identifier_registry',
     senior_citizen_incase_of_emergency: 'senior_citizen_incase_of_emergency'
   };
 
@@ -694,7 +678,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "senior_citizen_details" | "client_credential_assets" | "senior_identifier_registry" | "senior_citizen_incase_of_emergency"
+      modelProps: "senior_citizen_details" | "client_credential_assets" | "senior_citizen_incase_of_emergency"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -827,72 +811,6 @@ export namespace Prisma {
           count: {
             args: Prisma.client_credential_assetsCountArgs<ExtArgs>
             result: $Utils.Optional<Client_credential_assetsCountAggregateOutputType> | number
-          }
-        }
-      }
-      senior_identifier_registry: {
-        payload: Prisma.$senior_identifier_registryPayload<ExtArgs>
-        fields: Prisma.senior_identifier_registryFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.senior_identifier_registryFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$senior_identifier_registryPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.senior_identifier_registryFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$senior_identifier_registryPayload>
-          }
-          findFirst: {
-            args: Prisma.senior_identifier_registryFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$senior_identifier_registryPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.senior_identifier_registryFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$senior_identifier_registryPayload>
-          }
-          findMany: {
-            args: Prisma.senior_identifier_registryFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$senior_identifier_registryPayload>[]
-          }
-          create: {
-            args: Prisma.senior_identifier_registryCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$senior_identifier_registryPayload>
-          }
-          createMany: {
-            args: Prisma.senior_identifier_registryCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          delete: {
-            args: Prisma.senior_identifier_registryDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$senior_identifier_registryPayload>
-          }
-          update: {
-            args: Prisma.senior_identifier_registryUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$senior_identifier_registryPayload>
-          }
-          deleteMany: {
-            args: Prisma.senior_identifier_registryDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.senior_identifier_registryUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          upsert: {
-            args: Prisma.senior_identifier_registryUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$senior_identifier_registryPayload>
-          }
-          aggregate: {
-            args: Prisma.Senior_identifier_registryAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateSenior_identifier_registry>
-          }
-          groupBy: {
-            args: Prisma.senior_identifier_registryGroupByArgs<ExtArgs>
-            result: $Utils.Optional<Senior_identifier_registryGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.senior_identifier_registryCountArgs<ExtArgs>
-            result: $Utils.Optional<Senior_identifier_registryCountAggregateOutputType> | number
           }
         }
       }
@@ -1048,7 +966,6 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     senior_citizen_details?: senior_citizen_detailsOmit
     client_credential_assets?: client_credential_assetsOmit
-    senior_identifier_registry?: senior_identifier_registryOmit
     senior_citizen_incase_of_emergency?: senior_citizen_incase_of_emergencyOmit
   }
 
@@ -1199,6 +1116,7 @@ export namespace Prisma {
   export type Senior_citizen_detailsMinAggregateOutputType = {
     recno: number | null
     record_id: string | null
+    id_number: string | null
     first_name: string | null
     middle_name: string | null
     last_name: string | null
@@ -1213,11 +1131,13 @@ export namespace Prisma {
     email: string | null
     created_at: Date | null
     updated_at: Date | null
+    date_of_issuance: Date | null
   }
 
   export type Senior_citizen_detailsMaxAggregateOutputType = {
     recno: number | null
     record_id: string | null
+    id_number: string | null
     first_name: string | null
     middle_name: string | null
     last_name: string | null
@@ -1232,11 +1152,13 @@ export namespace Prisma {
     email: string | null
     created_at: Date | null
     updated_at: Date | null
+    date_of_issuance: Date | null
   }
 
   export type Senior_citizen_detailsCountAggregateOutputType = {
     recno: number
     record_id: number
+    id_number: number
     first_name: number
     middle_name: number
     last_name: number
@@ -1251,6 +1173,7 @@ export namespace Prisma {
     email: number
     created_at: number
     updated_at: number
+    date_of_issuance: number
     _all: number
   }
 
@@ -1268,6 +1191,7 @@ export namespace Prisma {
   export type Senior_citizen_detailsMinAggregateInputType = {
     recno?: true
     record_id?: true
+    id_number?: true
     first_name?: true
     middle_name?: true
     last_name?: true
@@ -1282,11 +1206,13 @@ export namespace Prisma {
     email?: true
     created_at?: true
     updated_at?: true
+    date_of_issuance?: true
   }
 
   export type Senior_citizen_detailsMaxAggregateInputType = {
     recno?: true
     record_id?: true
+    id_number?: true
     first_name?: true
     middle_name?: true
     last_name?: true
@@ -1301,11 +1227,13 @@ export namespace Prisma {
     email?: true
     created_at?: true
     updated_at?: true
+    date_of_issuance?: true
   }
 
   export type Senior_citizen_detailsCountAggregateInputType = {
     recno?: true
     record_id?: true
+    id_number?: true
     first_name?: true
     middle_name?: true
     last_name?: true
@@ -1320,6 +1248,7 @@ export namespace Prisma {
     email?: true
     created_at?: true
     updated_at?: true
+    date_of_issuance?: true
     _all?: true
   }
 
@@ -1412,20 +1341,22 @@ export namespace Prisma {
   export type Senior_citizen_detailsGroupByOutputType = {
     recno: number
     record_id: string
+    id_number: string
     first_name: string
     middle_name: string | null
     last_name: string
     suffix: string | null
     age_upon_release: number
     full_address: string
-    sex_at_birth: $Enums.SEX_AT_BIRTH_ENUM
+    sex_at_birth: $Enums.SEX_AT_BIRTH_ENUM | null
     date_of_birth: Date
     place_of_birth: string | null
-    civil_status: $Enums.CIVIL_STATUS_ENUM
+    civil_status: $Enums.CIVIL_STATUS_ENUM | null
     contact_number: string | null
     email: string | null
     created_at: Date
     updated_at: Date
+    date_of_issuance: Date
     _count: Senior_citizen_detailsCountAggregateOutputType | null
     _avg: Senior_citizen_detailsAvgAggregateOutputType | null
     _sum: Senior_citizen_detailsSumAggregateOutputType | null
@@ -1450,6 +1381,7 @@ export namespace Prisma {
   export type senior_citizen_detailsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     recno?: boolean
     record_id?: boolean
+    id_number?: boolean
     first_name?: boolean
     middle_name?: boolean
     last_name?: boolean
@@ -1464,8 +1396,8 @@ export namespace Prisma {
     email?: boolean
     created_at?: boolean
     updated_at?: boolean
+    date_of_issuance?: boolean
     client_credential_assets?: boolean | senior_citizen_details$client_credential_assetsArgs<ExtArgs>
-    senior_identifier_registry?: boolean | senior_citizen_details$senior_identifier_registryArgs<ExtArgs>
     senior_citizen_incase_of_emergency?: boolean | senior_citizen_details$senior_citizen_incase_of_emergencyArgs<ExtArgs>
     _count?: boolean | Senior_citizen_detailsCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["senior_citizen_details"]>
@@ -1475,6 +1407,7 @@ export namespace Prisma {
   export type senior_citizen_detailsSelectScalar = {
     recno?: boolean
     record_id?: boolean
+    id_number?: boolean
     first_name?: boolean
     middle_name?: boolean
     last_name?: boolean
@@ -1489,12 +1422,12 @@ export namespace Prisma {
     email?: boolean
     created_at?: boolean
     updated_at?: boolean
+    date_of_issuance?: boolean
   }
 
-  export type senior_citizen_detailsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"recno" | "record_id" | "first_name" | "middle_name" | "last_name" | "suffix" | "age_upon_release" | "full_address" | "sex_at_birth" | "date_of_birth" | "place_of_birth" | "civil_status" | "contact_number" | "email" | "created_at" | "updated_at", ExtArgs["result"]["senior_citizen_details"]>
+  export type senior_citizen_detailsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"recno" | "record_id" | "id_number" | "first_name" | "middle_name" | "last_name" | "suffix" | "age_upon_release" | "full_address" | "sex_at_birth" | "date_of_birth" | "place_of_birth" | "civil_status" | "contact_number" | "email" | "created_at" | "updated_at" | "date_of_issuance", ExtArgs["result"]["senior_citizen_details"]>
   export type senior_citizen_detailsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     client_credential_assets?: boolean | senior_citizen_details$client_credential_assetsArgs<ExtArgs>
-    senior_identifier_registry?: boolean | senior_citizen_details$senior_identifier_registryArgs<ExtArgs>
     senior_citizen_incase_of_emergency?: boolean | senior_citizen_details$senior_citizen_incase_of_emergencyArgs<ExtArgs>
     _count?: boolean | Senior_citizen_detailsCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -1503,26 +1436,27 @@ export namespace Prisma {
     name: "senior_citizen_details"
     objects: {
       client_credential_assets: Prisma.$client_credential_assetsPayload<ExtArgs> | null
-      senior_identifier_registry: Prisma.$senior_identifier_registryPayload<ExtArgs> | null
       senior_citizen_incase_of_emergency: Prisma.$senior_citizen_incase_of_emergencyPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       recno: number
       record_id: string
+      id_number: string
       first_name: string
       middle_name: string | null
       last_name: string
       suffix: string | null
       age_upon_release: number
       full_address: string
-      sex_at_birth: $Enums.SEX_AT_BIRTH_ENUM
+      sex_at_birth: $Enums.SEX_AT_BIRTH_ENUM | null
       date_of_birth: Date
       place_of_birth: string | null
-      civil_status: $Enums.CIVIL_STATUS_ENUM
+      civil_status: $Enums.CIVIL_STATUS_ENUM | null
       contact_number: string | null
       email: string | null
       created_at: Date
       updated_at: Date
+      date_of_issuance: Date
     }, ExtArgs["result"]["senior_citizen_details"]>
     composites: {}
   }
@@ -1864,7 +1798,6 @@ export namespace Prisma {
   export interface Prisma__senior_citizen_detailsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     client_credential_assets<T extends senior_citizen_details$client_credential_assetsArgs<ExtArgs> = {}>(args?: Subset<T, senior_citizen_details$client_credential_assetsArgs<ExtArgs>>): Prisma__client_credential_assetsClient<$Result.GetResult<Prisma.$client_credential_assetsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    senior_identifier_registry<T extends senior_citizen_details$senior_identifier_registryArgs<ExtArgs> = {}>(args?: Subset<T, senior_citizen_details$senior_identifier_registryArgs<ExtArgs>>): Prisma__senior_identifier_registryClient<$Result.GetResult<Prisma.$senior_identifier_registryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     senior_citizen_incase_of_emergency<T extends senior_citizen_details$senior_citizen_incase_of_emergencyArgs<ExtArgs> = {}>(args?: Subset<T, senior_citizen_details$senior_citizen_incase_of_emergencyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$senior_citizen_incase_of_emergencyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1897,6 +1830,7 @@ export namespace Prisma {
   interface senior_citizen_detailsFieldRefs {
     readonly recno: FieldRef<"senior_citizen_details", 'Int'>
     readonly record_id: FieldRef<"senior_citizen_details", 'String'>
+    readonly id_number: FieldRef<"senior_citizen_details", 'String'>
     readonly first_name: FieldRef<"senior_citizen_details", 'String'>
     readonly middle_name: FieldRef<"senior_citizen_details", 'String'>
     readonly last_name: FieldRef<"senior_citizen_details", 'String'>
@@ -1911,6 +1845,7 @@ export namespace Prisma {
     readonly email: FieldRef<"senior_citizen_details", 'String'>
     readonly created_at: FieldRef<"senior_citizen_details", 'DateTime'>
     readonly updated_at: FieldRef<"senior_citizen_details", 'DateTime'>
+    readonly date_of_issuance: FieldRef<"senior_citizen_details", 'DateTime'>
   }
     
 
@@ -2270,25 +2205,6 @@ export namespace Prisma {
      */
     include?: client_credential_assetsInclude<ExtArgs> | null
     where?: client_credential_assetsWhereInput
-  }
-
-  /**
-   * senior_citizen_details.senior_identifier_registry
-   */
-  export type senior_citizen_details$senior_identifier_registryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the senior_identifier_registry
-     */
-    select?: senior_identifier_registrySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the senior_identifier_registry
-     */
-    omit?: senior_identifier_registryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: senior_identifier_registryInclude<ExtArgs> | null
-    where?: senior_identifier_registryWhereInput
   }
 
   /**
@@ -3361,999 +3277,6 @@ export namespace Prisma {
 
 
   /**
-   * Model senior_identifier_registry
-   */
-
-  export type AggregateSenior_identifier_registry = {
-    _count: Senior_identifier_registryCountAggregateOutputType | null
-    _avg: Senior_identifier_registryAvgAggregateOutputType | null
-    _sum: Senior_identifier_registrySumAggregateOutputType | null
-    _min: Senior_identifier_registryMinAggregateOutputType | null
-    _max: Senior_identifier_registryMaxAggregateOutputType | null
-  }
-
-  export type Senior_identifier_registryAvgAggregateOutputType = {
-    recno: number | null
-  }
-
-  export type Senior_identifier_registrySumAggregateOutputType = {
-    recno: number | null
-  }
-
-  export type Senior_identifier_registryMinAggregateOutputType = {
-    recno: number | null
-    record_id: string | null
-    date_of_issuance: Date | null
-    reference_number: string | null
-    created_at: Date | null
-    updated_at: Date | null
-  }
-
-  export type Senior_identifier_registryMaxAggregateOutputType = {
-    recno: number | null
-    record_id: string | null
-    date_of_issuance: Date | null
-    reference_number: string | null
-    created_at: Date | null
-    updated_at: Date | null
-  }
-
-  export type Senior_identifier_registryCountAggregateOutputType = {
-    recno: number
-    record_id: number
-    date_of_issuance: number
-    reference_number: number
-    created_at: number
-    updated_at: number
-    _all: number
-  }
-
-
-  export type Senior_identifier_registryAvgAggregateInputType = {
-    recno?: true
-  }
-
-  export type Senior_identifier_registrySumAggregateInputType = {
-    recno?: true
-  }
-
-  export type Senior_identifier_registryMinAggregateInputType = {
-    recno?: true
-    record_id?: true
-    date_of_issuance?: true
-    reference_number?: true
-    created_at?: true
-    updated_at?: true
-  }
-
-  export type Senior_identifier_registryMaxAggregateInputType = {
-    recno?: true
-    record_id?: true
-    date_of_issuance?: true
-    reference_number?: true
-    created_at?: true
-    updated_at?: true
-  }
-
-  export type Senior_identifier_registryCountAggregateInputType = {
-    recno?: true
-    record_id?: true
-    date_of_issuance?: true
-    reference_number?: true
-    created_at?: true
-    updated_at?: true
-    _all?: true
-  }
-
-  export type Senior_identifier_registryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which senior_identifier_registry to aggregate.
-     */
-    where?: senior_identifier_registryWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of senior_identifier_registries to fetch.
-     */
-    orderBy?: senior_identifier_registryOrderByWithRelationInput | senior_identifier_registryOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: senior_identifier_registryWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` senior_identifier_registries from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` senior_identifier_registries.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned senior_identifier_registries
-    **/
-    _count?: true | Senior_identifier_registryCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: Senior_identifier_registryAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: Senior_identifier_registrySumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: Senior_identifier_registryMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: Senior_identifier_registryMaxAggregateInputType
-  }
-
-  export type GetSenior_identifier_registryAggregateType<T extends Senior_identifier_registryAggregateArgs> = {
-        [P in keyof T & keyof AggregateSenior_identifier_registry]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateSenior_identifier_registry[P]>
-      : GetScalarType<T[P], AggregateSenior_identifier_registry[P]>
-  }
-
-
-
-
-  export type senior_identifier_registryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: senior_identifier_registryWhereInput
-    orderBy?: senior_identifier_registryOrderByWithAggregationInput | senior_identifier_registryOrderByWithAggregationInput[]
-    by: Senior_identifier_registryScalarFieldEnum[] | Senior_identifier_registryScalarFieldEnum
-    having?: senior_identifier_registryScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: Senior_identifier_registryCountAggregateInputType | true
-    _avg?: Senior_identifier_registryAvgAggregateInputType
-    _sum?: Senior_identifier_registrySumAggregateInputType
-    _min?: Senior_identifier_registryMinAggregateInputType
-    _max?: Senior_identifier_registryMaxAggregateInputType
-  }
-
-  export type Senior_identifier_registryGroupByOutputType = {
-    recno: number
-    record_id: string
-    date_of_issuance: Date
-    reference_number: string | null
-    created_at: Date
-    updated_at: Date
-    _count: Senior_identifier_registryCountAggregateOutputType | null
-    _avg: Senior_identifier_registryAvgAggregateOutputType | null
-    _sum: Senior_identifier_registrySumAggregateOutputType | null
-    _min: Senior_identifier_registryMinAggregateOutputType | null
-    _max: Senior_identifier_registryMaxAggregateOutputType | null
-  }
-
-  type GetSenior_identifier_registryGroupByPayload<T extends senior_identifier_registryGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<Senior_identifier_registryGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof Senior_identifier_registryGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], Senior_identifier_registryGroupByOutputType[P]>
-            : GetScalarType<T[P], Senior_identifier_registryGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type senior_identifier_registrySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    recno?: boolean
-    record_id?: boolean
-    date_of_issuance?: boolean
-    reference_number?: boolean
-    created_at?: boolean
-    updated_at?: boolean
-    senior_citizen_details?: boolean | senior_identifier_registry$senior_citizen_detailsArgs<ExtArgs>
-  }, ExtArgs["result"]["senior_identifier_registry"]>
-
-
-
-  export type senior_identifier_registrySelectScalar = {
-    recno?: boolean
-    record_id?: boolean
-    date_of_issuance?: boolean
-    reference_number?: boolean
-    created_at?: boolean
-    updated_at?: boolean
-  }
-
-  export type senior_identifier_registryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"recno" | "record_id" | "date_of_issuance" | "reference_number" | "created_at" | "updated_at", ExtArgs["result"]["senior_identifier_registry"]>
-  export type senior_identifier_registryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    senior_citizen_details?: boolean | senior_identifier_registry$senior_citizen_detailsArgs<ExtArgs>
-  }
-
-  export type $senior_identifier_registryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "senior_identifier_registry"
-    objects: {
-      senior_citizen_details: Prisma.$senior_citizen_detailsPayload<ExtArgs> | null
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      recno: number
-      record_id: string
-      date_of_issuance: Date
-      reference_number: string | null
-      created_at: Date
-      updated_at: Date
-    }, ExtArgs["result"]["senior_identifier_registry"]>
-    composites: {}
-  }
-
-  type senior_identifier_registryGetPayload<S extends boolean | null | undefined | senior_identifier_registryDefaultArgs> = $Result.GetResult<Prisma.$senior_identifier_registryPayload, S>
-
-  type senior_identifier_registryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<senior_identifier_registryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: Senior_identifier_registryCountAggregateInputType | true
-    }
-
-  export interface senior_identifier_registryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['senior_identifier_registry'], meta: { name: 'senior_identifier_registry' } }
-    /**
-     * Find zero or one Senior_identifier_registry that matches the filter.
-     * @param {senior_identifier_registryFindUniqueArgs} args - Arguments to find a Senior_identifier_registry
-     * @example
-     * // Get one Senior_identifier_registry
-     * const senior_identifier_registry = await prisma.senior_identifier_registry.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends senior_identifier_registryFindUniqueArgs>(args: SelectSubset<T, senior_identifier_registryFindUniqueArgs<ExtArgs>>): Prisma__senior_identifier_registryClient<$Result.GetResult<Prisma.$senior_identifier_registryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one Senior_identifier_registry that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {senior_identifier_registryFindUniqueOrThrowArgs} args - Arguments to find a Senior_identifier_registry
-     * @example
-     * // Get one Senior_identifier_registry
-     * const senior_identifier_registry = await prisma.senior_identifier_registry.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends senior_identifier_registryFindUniqueOrThrowArgs>(args: SelectSubset<T, senior_identifier_registryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__senior_identifier_registryClient<$Result.GetResult<Prisma.$senior_identifier_registryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Senior_identifier_registry that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {senior_identifier_registryFindFirstArgs} args - Arguments to find a Senior_identifier_registry
-     * @example
-     * // Get one Senior_identifier_registry
-     * const senior_identifier_registry = await prisma.senior_identifier_registry.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends senior_identifier_registryFindFirstArgs>(args?: SelectSubset<T, senior_identifier_registryFindFirstArgs<ExtArgs>>): Prisma__senior_identifier_registryClient<$Result.GetResult<Prisma.$senior_identifier_registryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Senior_identifier_registry that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {senior_identifier_registryFindFirstOrThrowArgs} args - Arguments to find a Senior_identifier_registry
-     * @example
-     * // Get one Senior_identifier_registry
-     * const senior_identifier_registry = await prisma.senior_identifier_registry.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends senior_identifier_registryFindFirstOrThrowArgs>(args?: SelectSubset<T, senior_identifier_registryFindFirstOrThrowArgs<ExtArgs>>): Prisma__senior_identifier_registryClient<$Result.GetResult<Prisma.$senior_identifier_registryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more Senior_identifier_registries that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {senior_identifier_registryFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Senior_identifier_registries
-     * const senior_identifier_registries = await prisma.senior_identifier_registry.findMany()
-     * 
-     * // Get first 10 Senior_identifier_registries
-     * const senior_identifier_registries = await prisma.senior_identifier_registry.findMany({ take: 10 })
-     * 
-     * // Only select the `recno`
-     * const senior_identifier_registryWithRecnoOnly = await prisma.senior_identifier_registry.findMany({ select: { recno: true } })
-     * 
-     */
-    findMany<T extends senior_identifier_registryFindManyArgs>(args?: SelectSubset<T, senior_identifier_registryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$senior_identifier_registryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a Senior_identifier_registry.
-     * @param {senior_identifier_registryCreateArgs} args - Arguments to create a Senior_identifier_registry.
-     * @example
-     * // Create one Senior_identifier_registry
-     * const Senior_identifier_registry = await prisma.senior_identifier_registry.create({
-     *   data: {
-     *     // ... data to create a Senior_identifier_registry
-     *   }
-     * })
-     * 
-     */
-    create<T extends senior_identifier_registryCreateArgs>(args: SelectSubset<T, senior_identifier_registryCreateArgs<ExtArgs>>): Prisma__senior_identifier_registryClient<$Result.GetResult<Prisma.$senior_identifier_registryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many Senior_identifier_registries.
-     * @param {senior_identifier_registryCreateManyArgs} args - Arguments to create many Senior_identifier_registries.
-     * @example
-     * // Create many Senior_identifier_registries
-     * const senior_identifier_registry = await prisma.senior_identifier_registry.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends senior_identifier_registryCreateManyArgs>(args?: SelectSubset<T, senior_identifier_registryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a Senior_identifier_registry.
-     * @param {senior_identifier_registryDeleteArgs} args - Arguments to delete one Senior_identifier_registry.
-     * @example
-     * // Delete one Senior_identifier_registry
-     * const Senior_identifier_registry = await prisma.senior_identifier_registry.delete({
-     *   where: {
-     *     // ... filter to delete one Senior_identifier_registry
-     *   }
-     * })
-     * 
-     */
-    delete<T extends senior_identifier_registryDeleteArgs>(args: SelectSubset<T, senior_identifier_registryDeleteArgs<ExtArgs>>): Prisma__senior_identifier_registryClient<$Result.GetResult<Prisma.$senior_identifier_registryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one Senior_identifier_registry.
-     * @param {senior_identifier_registryUpdateArgs} args - Arguments to update one Senior_identifier_registry.
-     * @example
-     * // Update one Senior_identifier_registry
-     * const senior_identifier_registry = await prisma.senior_identifier_registry.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends senior_identifier_registryUpdateArgs>(args: SelectSubset<T, senior_identifier_registryUpdateArgs<ExtArgs>>): Prisma__senior_identifier_registryClient<$Result.GetResult<Prisma.$senior_identifier_registryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more Senior_identifier_registries.
-     * @param {senior_identifier_registryDeleteManyArgs} args - Arguments to filter Senior_identifier_registries to delete.
-     * @example
-     * // Delete a few Senior_identifier_registries
-     * const { count } = await prisma.senior_identifier_registry.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends senior_identifier_registryDeleteManyArgs>(args?: SelectSubset<T, senior_identifier_registryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Senior_identifier_registries.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {senior_identifier_registryUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Senior_identifier_registries
-     * const senior_identifier_registry = await prisma.senior_identifier_registry.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends senior_identifier_registryUpdateManyArgs>(args: SelectSubset<T, senior_identifier_registryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one Senior_identifier_registry.
-     * @param {senior_identifier_registryUpsertArgs} args - Arguments to update or create a Senior_identifier_registry.
-     * @example
-     * // Update or create a Senior_identifier_registry
-     * const senior_identifier_registry = await prisma.senior_identifier_registry.upsert({
-     *   create: {
-     *     // ... data to create a Senior_identifier_registry
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Senior_identifier_registry we want to update
-     *   }
-     * })
-     */
-    upsert<T extends senior_identifier_registryUpsertArgs>(args: SelectSubset<T, senior_identifier_registryUpsertArgs<ExtArgs>>): Prisma__senior_identifier_registryClient<$Result.GetResult<Prisma.$senior_identifier_registryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of Senior_identifier_registries.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {senior_identifier_registryCountArgs} args - Arguments to filter Senior_identifier_registries to count.
-     * @example
-     * // Count the number of Senior_identifier_registries
-     * const count = await prisma.senior_identifier_registry.count({
-     *   where: {
-     *     // ... the filter for the Senior_identifier_registries we want to count
-     *   }
-     * })
-    **/
-    count<T extends senior_identifier_registryCountArgs>(
-      args?: Subset<T, senior_identifier_registryCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], Senior_identifier_registryCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Senior_identifier_registry.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {Senior_identifier_registryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends Senior_identifier_registryAggregateArgs>(args: Subset<T, Senior_identifier_registryAggregateArgs>): Prisma.PrismaPromise<GetSenior_identifier_registryAggregateType<T>>
-
-    /**
-     * Group by Senior_identifier_registry.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {senior_identifier_registryGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends senior_identifier_registryGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: senior_identifier_registryGroupByArgs['orderBy'] }
-        : { orderBy?: senior_identifier_registryGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, senior_identifier_registryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSenior_identifier_registryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the senior_identifier_registry model
-   */
-  readonly fields: senior_identifier_registryFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for senior_identifier_registry.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__senior_identifier_registryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    senior_citizen_details<T extends senior_identifier_registry$senior_citizen_detailsArgs<ExtArgs> = {}>(args?: Subset<T, senior_identifier_registry$senior_citizen_detailsArgs<ExtArgs>>): Prisma__senior_citizen_detailsClient<$Result.GetResult<Prisma.$senior_citizen_detailsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the senior_identifier_registry model
-   */
-  interface senior_identifier_registryFieldRefs {
-    readonly recno: FieldRef<"senior_identifier_registry", 'Int'>
-    readonly record_id: FieldRef<"senior_identifier_registry", 'String'>
-    readonly date_of_issuance: FieldRef<"senior_identifier_registry", 'DateTime'>
-    readonly reference_number: FieldRef<"senior_identifier_registry", 'String'>
-    readonly created_at: FieldRef<"senior_identifier_registry", 'DateTime'>
-    readonly updated_at: FieldRef<"senior_identifier_registry", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * senior_identifier_registry findUnique
-   */
-  export type senior_identifier_registryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the senior_identifier_registry
-     */
-    select?: senior_identifier_registrySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the senior_identifier_registry
-     */
-    omit?: senior_identifier_registryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: senior_identifier_registryInclude<ExtArgs> | null
-    /**
-     * Filter, which senior_identifier_registry to fetch.
-     */
-    where: senior_identifier_registryWhereUniqueInput
-  }
-
-  /**
-   * senior_identifier_registry findUniqueOrThrow
-   */
-  export type senior_identifier_registryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the senior_identifier_registry
-     */
-    select?: senior_identifier_registrySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the senior_identifier_registry
-     */
-    omit?: senior_identifier_registryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: senior_identifier_registryInclude<ExtArgs> | null
-    /**
-     * Filter, which senior_identifier_registry to fetch.
-     */
-    where: senior_identifier_registryWhereUniqueInput
-  }
-
-  /**
-   * senior_identifier_registry findFirst
-   */
-  export type senior_identifier_registryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the senior_identifier_registry
-     */
-    select?: senior_identifier_registrySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the senior_identifier_registry
-     */
-    omit?: senior_identifier_registryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: senior_identifier_registryInclude<ExtArgs> | null
-    /**
-     * Filter, which senior_identifier_registry to fetch.
-     */
-    where?: senior_identifier_registryWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of senior_identifier_registries to fetch.
-     */
-    orderBy?: senior_identifier_registryOrderByWithRelationInput | senior_identifier_registryOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for senior_identifier_registries.
-     */
-    cursor?: senior_identifier_registryWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` senior_identifier_registries from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` senior_identifier_registries.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of senior_identifier_registries.
-     */
-    distinct?: Senior_identifier_registryScalarFieldEnum | Senior_identifier_registryScalarFieldEnum[]
-  }
-
-  /**
-   * senior_identifier_registry findFirstOrThrow
-   */
-  export type senior_identifier_registryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the senior_identifier_registry
-     */
-    select?: senior_identifier_registrySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the senior_identifier_registry
-     */
-    omit?: senior_identifier_registryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: senior_identifier_registryInclude<ExtArgs> | null
-    /**
-     * Filter, which senior_identifier_registry to fetch.
-     */
-    where?: senior_identifier_registryWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of senior_identifier_registries to fetch.
-     */
-    orderBy?: senior_identifier_registryOrderByWithRelationInput | senior_identifier_registryOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for senior_identifier_registries.
-     */
-    cursor?: senior_identifier_registryWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` senior_identifier_registries from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` senior_identifier_registries.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of senior_identifier_registries.
-     */
-    distinct?: Senior_identifier_registryScalarFieldEnum | Senior_identifier_registryScalarFieldEnum[]
-  }
-
-  /**
-   * senior_identifier_registry findMany
-   */
-  export type senior_identifier_registryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the senior_identifier_registry
-     */
-    select?: senior_identifier_registrySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the senior_identifier_registry
-     */
-    omit?: senior_identifier_registryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: senior_identifier_registryInclude<ExtArgs> | null
-    /**
-     * Filter, which senior_identifier_registries to fetch.
-     */
-    where?: senior_identifier_registryWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of senior_identifier_registries to fetch.
-     */
-    orderBy?: senior_identifier_registryOrderByWithRelationInput | senior_identifier_registryOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing senior_identifier_registries.
-     */
-    cursor?: senior_identifier_registryWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` senior_identifier_registries from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` senior_identifier_registries.
-     */
-    skip?: number
-    distinct?: Senior_identifier_registryScalarFieldEnum | Senior_identifier_registryScalarFieldEnum[]
-  }
-
-  /**
-   * senior_identifier_registry create
-   */
-  export type senior_identifier_registryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the senior_identifier_registry
-     */
-    select?: senior_identifier_registrySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the senior_identifier_registry
-     */
-    omit?: senior_identifier_registryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: senior_identifier_registryInclude<ExtArgs> | null
-    /**
-     * The data needed to create a senior_identifier_registry.
-     */
-    data: XOR<senior_identifier_registryCreateInput, senior_identifier_registryUncheckedCreateInput>
-  }
-
-  /**
-   * senior_identifier_registry createMany
-   */
-  export type senior_identifier_registryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many senior_identifier_registries.
-     */
-    data: senior_identifier_registryCreateManyInput | senior_identifier_registryCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * senior_identifier_registry update
-   */
-  export type senior_identifier_registryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the senior_identifier_registry
-     */
-    select?: senior_identifier_registrySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the senior_identifier_registry
-     */
-    omit?: senior_identifier_registryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: senior_identifier_registryInclude<ExtArgs> | null
-    /**
-     * The data needed to update a senior_identifier_registry.
-     */
-    data: XOR<senior_identifier_registryUpdateInput, senior_identifier_registryUncheckedUpdateInput>
-    /**
-     * Choose, which senior_identifier_registry to update.
-     */
-    where: senior_identifier_registryWhereUniqueInput
-  }
-
-  /**
-   * senior_identifier_registry updateMany
-   */
-  export type senior_identifier_registryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update senior_identifier_registries.
-     */
-    data: XOR<senior_identifier_registryUpdateManyMutationInput, senior_identifier_registryUncheckedUpdateManyInput>
-    /**
-     * Filter which senior_identifier_registries to update
-     */
-    where?: senior_identifier_registryWhereInput
-    /**
-     * Limit how many senior_identifier_registries to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * senior_identifier_registry upsert
-   */
-  export type senior_identifier_registryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the senior_identifier_registry
-     */
-    select?: senior_identifier_registrySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the senior_identifier_registry
-     */
-    omit?: senior_identifier_registryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: senior_identifier_registryInclude<ExtArgs> | null
-    /**
-     * The filter to search for the senior_identifier_registry to update in case it exists.
-     */
-    where: senior_identifier_registryWhereUniqueInput
-    /**
-     * In case the senior_identifier_registry found by the `where` argument doesn't exist, create a new senior_identifier_registry with this data.
-     */
-    create: XOR<senior_identifier_registryCreateInput, senior_identifier_registryUncheckedCreateInput>
-    /**
-     * In case the senior_identifier_registry was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<senior_identifier_registryUpdateInput, senior_identifier_registryUncheckedUpdateInput>
-  }
-
-  /**
-   * senior_identifier_registry delete
-   */
-  export type senior_identifier_registryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the senior_identifier_registry
-     */
-    select?: senior_identifier_registrySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the senior_identifier_registry
-     */
-    omit?: senior_identifier_registryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: senior_identifier_registryInclude<ExtArgs> | null
-    /**
-     * Filter which senior_identifier_registry to delete.
-     */
-    where: senior_identifier_registryWhereUniqueInput
-  }
-
-  /**
-   * senior_identifier_registry deleteMany
-   */
-  export type senior_identifier_registryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which senior_identifier_registries to delete
-     */
-    where?: senior_identifier_registryWhereInput
-    /**
-     * Limit how many senior_identifier_registries to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * senior_identifier_registry.senior_citizen_details
-   */
-  export type senior_identifier_registry$senior_citizen_detailsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the senior_citizen_details
-     */
-    select?: senior_citizen_detailsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the senior_citizen_details
-     */
-    omit?: senior_citizen_detailsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: senior_citizen_detailsInclude<ExtArgs> | null
-    where?: senior_citizen_detailsWhereInput
-  }
-
-  /**
-   * senior_identifier_registry without action
-   */
-  export type senior_identifier_registryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the senior_identifier_registry
-     */
-    select?: senior_identifier_registrySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the senior_identifier_registry
-     */
-    omit?: senior_identifier_registryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: senior_identifier_registryInclude<ExtArgs> | null
-  }
-
-
-  /**
    * Model senior_citizen_incase_of_emergency
    */
 
@@ -5418,6 +4341,7 @@ export namespace Prisma {
   export const Senior_citizen_detailsScalarFieldEnum: {
     recno: 'recno',
     record_id: 'record_id',
+    id_number: 'id_number',
     first_name: 'first_name',
     middle_name: 'middle_name',
     last_name: 'last_name',
@@ -5431,7 +4355,8 @@ export namespace Prisma {
     contact_number: 'contact_number',
     email: 'email',
     created_at: 'created_at',
-    updated_at: 'updated_at'
+    updated_at: 'updated_at',
+    date_of_issuance: 'date_of_issuance'
   };
 
   export type Senior_citizen_detailsScalarFieldEnum = (typeof Senior_citizen_detailsScalarFieldEnum)[keyof typeof Senior_citizen_detailsScalarFieldEnum]
@@ -5450,18 +4375,6 @@ export namespace Prisma {
   };
 
   export type Client_credential_assetsScalarFieldEnum = (typeof Client_credential_assetsScalarFieldEnum)[keyof typeof Client_credential_assetsScalarFieldEnum]
-
-
-  export const Senior_identifier_registryScalarFieldEnum: {
-    recno: 'recno',
-    record_id: 'record_id',
-    date_of_issuance: 'date_of_issuance',
-    reference_number: 'reference_number',
-    created_at: 'created_at',
-    updated_at: 'updated_at'
-  };
-
-  export type Senior_identifier_registryScalarFieldEnum = (typeof Senior_identifier_registryScalarFieldEnum)[keyof typeof Senior_identifier_registryScalarFieldEnum]
 
 
   export const Senior_citizen_incase_of_emergencyScalarFieldEnum: {
@@ -5499,6 +4412,7 @@ export namespace Prisma {
 
   export const senior_citizen_detailsOrderByRelevanceFieldEnum: {
     record_id: 'record_id',
+    id_number: 'id_number',
     first_name: 'first_name',
     middle_name: 'middle_name',
     last_name: 'last_name',
@@ -5522,14 +4436,6 @@ export namespace Prisma {
   };
 
   export type client_credential_assetsOrderByRelevanceFieldEnum = (typeof client_credential_assetsOrderByRelevanceFieldEnum)[keyof typeof client_credential_assetsOrderByRelevanceFieldEnum]
-
-
-  export const senior_identifier_registryOrderByRelevanceFieldEnum: {
-    record_id: 'record_id',
-    reference_number: 'reference_number'
-  };
-
-  export type senior_identifier_registryOrderByRelevanceFieldEnum = (typeof senior_identifier_registryOrderByRelevanceFieldEnum)[keyof typeof senior_identifier_registryOrderByRelevanceFieldEnum]
 
 
   export const senior_citizen_incase_of_emergencyOrderByRelevanceFieldEnum: {
@@ -5602,44 +4508,46 @@ export namespace Prisma {
     NOT?: senior_citizen_detailsWhereInput | senior_citizen_detailsWhereInput[]
     recno?: IntFilter<"senior_citizen_details"> | number
     record_id?: StringFilter<"senior_citizen_details"> | string
+    id_number?: StringFilter<"senior_citizen_details"> | string
     first_name?: StringFilter<"senior_citizen_details"> | string
     middle_name?: StringNullableFilter<"senior_citizen_details"> | string | null
     last_name?: StringFilter<"senior_citizen_details"> | string
     suffix?: StringNullableFilter<"senior_citizen_details"> | string | null
     age_upon_release?: IntFilter<"senior_citizen_details"> | number
     full_address?: StringFilter<"senior_citizen_details"> | string
-    sex_at_birth?: EnumSEX_AT_BIRTH_ENUMFilter<"senior_citizen_details"> | $Enums.SEX_AT_BIRTH_ENUM
+    sex_at_birth?: EnumSEX_AT_BIRTH_ENUMNullableFilter<"senior_citizen_details"> | $Enums.SEX_AT_BIRTH_ENUM | null
     date_of_birth?: DateTimeFilter<"senior_citizen_details"> | Date | string
     place_of_birth?: StringNullableFilter<"senior_citizen_details"> | string | null
-    civil_status?: EnumCIVIL_STATUS_ENUMFilter<"senior_citizen_details"> | $Enums.CIVIL_STATUS_ENUM
+    civil_status?: EnumCIVIL_STATUS_ENUMNullableFilter<"senior_citizen_details"> | $Enums.CIVIL_STATUS_ENUM | null
     contact_number?: StringNullableFilter<"senior_citizen_details"> | string | null
     email?: StringNullableFilter<"senior_citizen_details"> | string | null
     created_at?: DateTimeFilter<"senior_citizen_details"> | Date | string
     updated_at?: DateTimeFilter<"senior_citizen_details"> | Date | string
+    date_of_issuance?: DateTimeFilter<"senior_citizen_details"> | Date | string
     client_credential_assets?: XOR<Client_credential_assetsNullableScalarRelationFilter, client_credential_assetsWhereInput> | null
-    senior_identifier_registry?: XOR<Senior_identifier_registryNullableScalarRelationFilter, senior_identifier_registryWhereInput> | null
     senior_citizen_incase_of_emergency?: Senior_citizen_incase_of_emergencyListRelationFilter
   }
 
   export type senior_citizen_detailsOrderByWithRelationInput = {
     recno?: SortOrder
     record_id?: SortOrder
+    id_number?: SortOrder
     first_name?: SortOrder
     middle_name?: SortOrderInput | SortOrder
     last_name?: SortOrder
     suffix?: SortOrderInput | SortOrder
     age_upon_release?: SortOrder
     full_address?: SortOrder
-    sex_at_birth?: SortOrder
+    sex_at_birth?: SortOrderInput | SortOrder
     date_of_birth?: SortOrder
     place_of_birth?: SortOrderInput | SortOrder
-    civil_status?: SortOrder
+    civil_status?: SortOrderInput | SortOrder
     contact_number?: SortOrderInput | SortOrder
     email?: SortOrderInput | SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+    date_of_issuance?: SortOrder
     client_credential_assets?: client_credential_assetsOrderByWithRelationInput
-    senior_identifier_registry?: senior_identifier_registryOrderByWithRelationInput
     senior_citizen_incase_of_emergency?: senior_citizen_incase_of_emergencyOrderByRelationAggregateInput
     _relevance?: senior_citizen_detailsOrderByRelevanceInput
   }
@@ -5647,6 +4555,7 @@ export namespace Prisma {
   export type senior_citizen_detailsWhereUniqueInput = Prisma.AtLeast<{
     recno?: number
     record_id?: string
+    id_number?: string
     AND?: senior_citizen_detailsWhereInput | senior_citizen_detailsWhereInput[]
     OR?: senior_citizen_detailsWhereInput[]
     NOT?: senior_citizen_detailsWhereInput | senior_citizen_detailsWhereInput[]
@@ -5656,36 +4565,38 @@ export namespace Prisma {
     suffix?: StringNullableFilter<"senior_citizen_details"> | string | null
     age_upon_release?: IntFilter<"senior_citizen_details"> | number
     full_address?: StringFilter<"senior_citizen_details"> | string
-    sex_at_birth?: EnumSEX_AT_BIRTH_ENUMFilter<"senior_citizen_details"> | $Enums.SEX_AT_BIRTH_ENUM
+    sex_at_birth?: EnumSEX_AT_BIRTH_ENUMNullableFilter<"senior_citizen_details"> | $Enums.SEX_AT_BIRTH_ENUM | null
     date_of_birth?: DateTimeFilter<"senior_citizen_details"> | Date | string
     place_of_birth?: StringNullableFilter<"senior_citizen_details"> | string | null
-    civil_status?: EnumCIVIL_STATUS_ENUMFilter<"senior_citizen_details"> | $Enums.CIVIL_STATUS_ENUM
+    civil_status?: EnumCIVIL_STATUS_ENUMNullableFilter<"senior_citizen_details"> | $Enums.CIVIL_STATUS_ENUM | null
     contact_number?: StringNullableFilter<"senior_citizen_details"> | string | null
     email?: StringNullableFilter<"senior_citizen_details"> | string | null
     created_at?: DateTimeFilter<"senior_citizen_details"> | Date | string
     updated_at?: DateTimeFilter<"senior_citizen_details"> | Date | string
+    date_of_issuance?: DateTimeFilter<"senior_citizen_details"> | Date | string
     client_credential_assets?: XOR<Client_credential_assetsNullableScalarRelationFilter, client_credential_assetsWhereInput> | null
-    senior_identifier_registry?: XOR<Senior_identifier_registryNullableScalarRelationFilter, senior_identifier_registryWhereInput> | null
     senior_citizen_incase_of_emergency?: Senior_citizen_incase_of_emergencyListRelationFilter
-  }, "recno" | "record_id">
+  }, "recno" | "record_id" | "id_number">
 
   export type senior_citizen_detailsOrderByWithAggregationInput = {
     recno?: SortOrder
     record_id?: SortOrder
+    id_number?: SortOrder
     first_name?: SortOrder
     middle_name?: SortOrderInput | SortOrder
     last_name?: SortOrder
     suffix?: SortOrderInput | SortOrder
     age_upon_release?: SortOrder
     full_address?: SortOrder
-    sex_at_birth?: SortOrder
+    sex_at_birth?: SortOrderInput | SortOrder
     date_of_birth?: SortOrder
     place_of_birth?: SortOrderInput | SortOrder
-    civil_status?: SortOrder
+    civil_status?: SortOrderInput | SortOrder
     contact_number?: SortOrderInput | SortOrder
     email?: SortOrderInput | SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+    date_of_issuance?: SortOrder
     _count?: senior_citizen_detailsCountOrderByAggregateInput
     _avg?: senior_citizen_detailsAvgOrderByAggregateInput
     _max?: senior_citizen_detailsMaxOrderByAggregateInput
@@ -5699,20 +4610,22 @@ export namespace Prisma {
     NOT?: senior_citizen_detailsScalarWhereWithAggregatesInput | senior_citizen_detailsScalarWhereWithAggregatesInput[]
     recno?: IntWithAggregatesFilter<"senior_citizen_details"> | number
     record_id?: StringWithAggregatesFilter<"senior_citizen_details"> | string
+    id_number?: StringWithAggregatesFilter<"senior_citizen_details"> | string
     first_name?: StringWithAggregatesFilter<"senior_citizen_details"> | string
     middle_name?: StringNullableWithAggregatesFilter<"senior_citizen_details"> | string | null
     last_name?: StringWithAggregatesFilter<"senior_citizen_details"> | string
     suffix?: StringNullableWithAggregatesFilter<"senior_citizen_details"> | string | null
     age_upon_release?: IntWithAggregatesFilter<"senior_citizen_details"> | number
     full_address?: StringWithAggregatesFilter<"senior_citizen_details"> | string
-    sex_at_birth?: EnumSEX_AT_BIRTH_ENUMWithAggregatesFilter<"senior_citizen_details"> | $Enums.SEX_AT_BIRTH_ENUM
+    sex_at_birth?: EnumSEX_AT_BIRTH_ENUMNullableWithAggregatesFilter<"senior_citizen_details"> | $Enums.SEX_AT_BIRTH_ENUM | null
     date_of_birth?: DateTimeWithAggregatesFilter<"senior_citizen_details"> | Date | string
     place_of_birth?: StringNullableWithAggregatesFilter<"senior_citizen_details"> | string | null
-    civil_status?: EnumCIVIL_STATUS_ENUMWithAggregatesFilter<"senior_citizen_details"> | $Enums.CIVIL_STATUS_ENUM
+    civil_status?: EnumCIVIL_STATUS_ENUMNullableWithAggregatesFilter<"senior_citizen_details"> | $Enums.CIVIL_STATUS_ENUM | null
     contact_number?: StringNullableWithAggregatesFilter<"senior_citizen_details"> | string | null
     email?: StringNullableWithAggregatesFilter<"senior_citizen_details"> | string | null
     created_at?: DateTimeWithAggregatesFilter<"senior_citizen_details"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"senior_citizen_details"> | Date | string
+    date_of_issuance?: DateTimeWithAggregatesFilter<"senior_citizen_details"> | Date | string
   }
 
   export type client_credential_assetsWhereInput = {
@@ -5791,69 +4704,6 @@ export namespace Prisma {
     remarks?: StringNullableWithAggregatesFilter<"client_credential_assets"> | string | null
     created_at?: DateTimeWithAggregatesFilter<"client_credential_assets"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"client_credential_assets"> | Date | string
-  }
-
-  export type senior_identifier_registryWhereInput = {
-    AND?: senior_identifier_registryWhereInput | senior_identifier_registryWhereInput[]
-    OR?: senior_identifier_registryWhereInput[]
-    NOT?: senior_identifier_registryWhereInput | senior_identifier_registryWhereInput[]
-    recno?: IntFilter<"senior_identifier_registry"> | number
-    record_id?: StringFilter<"senior_identifier_registry"> | string
-    date_of_issuance?: DateTimeFilter<"senior_identifier_registry"> | Date | string
-    reference_number?: StringNullableFilter<"senior_identifier_registry"> | string | null
-    created_at?: DateTimeFilter<"senior_identifier_registry"> | Date | string
-    updated_at?: DateTimeFilter<"senior_identifier_registry"> | Date | string
-    senior_citizen_details?: XOR<Senior_citizen_detailsNullableScalarRelationFilter, senior_citizen_detailsWhereInput> | null
-  }
-
-  export type senior_identifier_registryOrderByWithRelationInput = {
-    recno?: SortOrder
-    record_id?: SortOrder
-    date_of_issuance?: SortOrder
-    reference_number?: SortOrderInput | SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-    senior_citizen_details?: senior_citizen_detailsOrderByWithRelationInput
-    _relevance?: senior_identifier_registryOrderByRelevanceInput
-  }
-
-  export type senior_identifier_registryWhereUniqueInput = Prisma.AtLeast<{
-    recno?: number
-    record_id?: string
-    AND?: senior_identifier_registryWhereInput | senior_identifier_registryWhereInput[]
-    OR?: senior_identifier_registryWhereInput[]
-    NOT?: senior_identifier_registryWhereInput | senior_identifier_registryWhereInput[]
-    date_of_issuance?: DateTimeFilter<"senior_identifier_registry"> | Date | string
-    reference_number?: StringNullableFilter<"senior_identifier_registry"> | string | null
-    created_at?: DateTimeFilter<"senior_identifier_registry"> | Date | string
-    updated_at?: DateTimeFilter<"senior_identifier_registry"> | Date | string
-    senior_citizen_details?: XOR<Senior_citizen_detailsNullableScalarRelationFilter, senior_citizen_detailsWhereInput> | null
-  }, "recno" | "record_id">
-
-  export type senior_identifier_registryOrderByWithAggregationInput = {
-    recno?: SortOrder
-    record_id?: SortOrder
-    date_of_issuance?: SortOrder
-    reference_number?: SortOrderInput | SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-    _count?: senior_identifier_registryCountOrderByAggregateInput
-    _avg?: senior_identifier_registryAvgOrderByAggregateInput
-    _max?: senior_identifier_registryMaxOrderByAggregateInput
-    _min?: senior_identifier_registryMinOrderByAggregateInput
-    _sum?: senior_identifier_registrySumOrderByAggregateInput
-  }
-
-  export type senior_identifier_registryScalarWhereWithAggregatesInput = {
-    AND?: senior_identifier_registryScalarWhereWithAggregatesInput | senior_identifier_registryScalarWhereWithAggregatesInput[]
-    OR?: senior_identifier_registryScalarWhereWithAggregatesInput[]
-    NOT?: senior_identifier_registryScalarWhereWithAggregatesInput | senior_identifier_registryScalarWhereWithAggregatesInput[]
-    recno?: IntWithAggregatesFilter<"senior_identifier_registry"> | number
-    record_id?: StringWithAggregatesFilter<"senior_identifier_registry"> | string
-    date_of_issuance?: DateTimeWithAggregatesFilter<"senior_identifier_registry"> | Date | string
-    reference_number?: StringNullableWithAggregatesFilter<"senior_identifier_registry"> | string | null
-    created_at?: DateTimeWithAggregatesFilter<"senior_identifier_registry"> | Date | string
-    updated_at?: DateTimeWithAggregatesFilter<"senior_identifier_registry"> | Date | string
   }
 
   export type senior_citizen_incase_of_emergencyWhereInput = {
@@ -5946,144 +4796,154 @@ export namespace Prisma {
 
   export type senior_citizen_detailsCreateInput = {
     record_id?: string
+    id_number: string
     first_name: string
     middle_name?: string | null
     last_name: string
     suffix?: string | null
     age_upon_release: number
     full_address: string
-    sex_at_birth: $Enums.SEX_AT_BIRTH_ENUM
+    sex_at_birth?: $Enums.SEX_AT_BIRTH_ENUM | null
     date_of_birth: Date | string
     place_of_birth?: string | null
-    civil_status: $Enums.CIVIL_STATUS_ENUM
+    civil_status?: $Enums.CIVIL_STATUS_ENUM | null
     contact_number?: string | null
     email?: string | null
     created_at?: Date | string
     updated_at?: Date | string
+    date_of_issuance: Date | string
     client_credential_assets?: client_credential_assetsCreateNestedOneWithoutSenior_citizen_detailsInput
-    senior_identifier_registry?: senior_identifier_registryCreateNestedOneWithoutSenior_citizen_detailsInput
     senior_citizen_incase_of_emergency?: senior_citizen_incase_of_emergencyCreateNestedManyWithoutSenior_citizen_detailsInput
   }
 
   export type senior_citizen_detailsUncheckedCreateInput = {
     recno?: number
     record_id?: string
+    id_number: string
     first_name: string
     middle_name?: string | null
     last_name: string
     suffix?: string | null
     age_upon_release: number
     full_address: string
-    sex_at_birth: $Enums.SEX_AT_BIRTH_ENUM
+    sex_at_birth?: $Enums.SEX_AT_BIRTH_ENUM | null
     date_of_birth: Date | string
     place_of_birth?: string | null
-    civil_status: $Enums.CIVIL_STATUS_ENUM
+    civil_status?: $Enums.CIVIL_STATUS_ENUM | null
     contact_number?: string | null
     email?: string | null
     created_at?: Date | string
     updated_at?: Date | string
+    date_of_issuance: Date | string
     client_credential_assets?: client_credential_assetsUncheckedCreateNestedOneWithoutSenior_citizen_detailsInput
-    senior_identifier_registry?: senior_identifier_registryUncheckedCreateNestedOneWithoutSenior_citizen_detailsInput
     senior_citizen_incase_of_emergency?: senior_citizen_incase_of_emergencyUncheckedCreateNestedManyWithoutSenior_citizen_detailsInput
   }
 
   export type senior_citizen_detailsUpdateInput = {
     record_id?: StringFieldUpdateOperationsInput | string
+    id_number?: StringFieldUpdateOperationsInput | string
     first_name?: StringFieldUpdateOperationsInput | string
     middle_name?: NullableStringFieldUpdateOperationsInput | string | null
     last_name?: StringFieldUpdateOperationsInput | string
     suffix?: NullableStringFieldUpdateOperationsInput | string | null
     age_upon_release?: IntFieldUpdateOperationsInput | number
     full_address?: StringFieldUpdateOperationsInput | string
-    sex_at_birth?: EnumSEX_AT_BIRTH_ENUMFieldUpdateOperationsInput | $Enums.SEX_AT_BIRTH_ENUM
+    sex_at_birth?: NullableEnumSEX_AT_BIRTH_ENUMFieldUpdateOperationsInput | $Enums.SEX_AT_BIRTH_ENUM | null
     date_of_birth?: DateTimeFieldUpdateOperationsInput | Date | string
     place_of_birth?: NullableStringFieldUpdateOperationsInput | string | null
-    civil_status?: EnumCIVIL_STATUS_ENUMFieldUpdateOperationsInput | $Enums.CIVIL_STATUS_ENUM
+    civil_status?: NullableEnumCIVIL_STATUS_ENUMFieldUpdateOperationsInput | $Enums.CIVIL_STATUS_ENUM | null
     contact_number?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    date_of_issuance?: DateTimeFieldUpdateOperationsInput | Date | string
     client_credential_assets?: client_credential_assetsUpdateOneWithoutSenior_citizen_detailsNestedInput
-    senior_identifier_registry?: senior_identifier_registryUpdateOneWithoutSenior_citizen_detailsNestedInput
     senior_citizen_incase_of_emergency?: senior_citizen_incase_of_emergencyUpdateManyWithoutSenior_citizen_detailsNestedInput
   }
 
   export type senior_citizen_detailsUncheckedUpdateInput = {
     recno?: IntFieldUpdateOperationsInput | number
     record_id?: StringFieldUpdateOperationsInput | string
+    id_number?: StringFieldUpdateOperationsInput | string
     first_name?: StringFieldUpdateOperationsInput | string
     middle_name?: NullableStringFieldUpdateOperationsInput | string | null
     last_name?: StringFieldUpdateOperationsInput | string
     suffix?: NullableStringFieldUpdateOperationsInput | string | null
     age_upon_release?: IntFieldUpdateOperationsInput | number
     full_address?: StringFieldUpdateOperationsInput | string
-    sex_at_birth?: EnumSEX_AT_BIRTH_ENUMFieldUpdateOperationsInput | $Enums.SEX_AT_BIRTH_ENUM
+    sex_at_birth?: NullableEnumSEX_AT_BIRTH_ENUMFieldUpdateOperationsInput | $Enums.SEX_AT_BIRTH_ENUM | null
     date_of_birth?: DateTimeFieldUpdateOperationsInput | Date | string
     place_of_birth?: NullableStringFieldUpdateOperationsInput | string | null
-    civil_status?: EnumCIVIL_STATUS_ENUMFieldUpdateOperationsInput | $Enums.CIVIL_STATUS_ENUM
+    civil_status?: NullableEnumCIVIL_STATUS_ENUMFieldUpdateOperationsInput | $Enums.CIVIL_STATUS_ENUM | null
     contact_number?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    date_of_issuance?: DateTimeFieldUpdateOperationsInput | Date | string
     client_credential_assets?: client_credential_assetsUncheckedUpdateOneWithoutSenior_citizen_detailsNestedInput
-    senior_identifier_registry?: senior_identifier_registryUncheckedUpdateOneWithoutSenior_citizen_detailsNestedInput
     senior_citizen_incase_of_emergency?: senior_citizen_incase_of_emergencyUncheckedUpdateManyWithoutSenior_citizen_detailsNestedInput
   }
 
   export type senior_citizen_detailsCreateManyInput = {
     recno?: number
     record_id?: string
+    id_number: string
     first_name: string
     middle_name?: string | null
     last_name: string
     suffix?: string | null
     age_upon_release: number
     full_address: string
-    sex_at_birth: $Enums.SEX_AT_BIRTH_ENUM
+    sex_at_birth?: $Enums.SEX_AT_BIRTH_ENUM | null
     date_of_birth: Date | string
     place_of_birth?: string | null
-    civil_status: $Enums.CIVIL_STATUS_ENUM
+    civil_status?: $Enums.CIVIL_STATUS_ENUM | null
     contact_number?: string | null
     email?: string | null
     created_at?: Date | string
     updated_at?: Date | string
+    date_of_issuance: Date | string
   }
 
   export type senior_citizen_detailsUpdateManyMutationInput = {
     record_id?: StringFieldUpdateOperationsInput | string
+    id_number?: StringFieldUpdateOperationsInput | string
     first_name?: StringFieldUpdateOperationsInput | string
     middle_name?: NullableStringFieldUpdateOperationsInput | string | null
     last_name?: StringFieldUpdateOperationsInput | string
     suffix?: NullableStringFieldUpdateOperationsInput | string | null
     age_upon_release?: IntFieldUpdateOperationsInput | number
     full_address?: StringFieldUpdateOperationsInput | string
-    sex_at_birth?: EnumSEX_AT_BIRTH_ENUMFieldUpdateOperationsInput | $Enums.SEX_AT_BIRTH_ENUM
+    sex_at_birth?: NullableEnumSEX_AT_BIRTH_ENUMFieldUpdateOperationsInput | $Enums.SEX_AT_BIRTH_ENUM | null
     date_of_birth?: DateTimeFieldUpdateOperationsInput | Date | string
     place_of_birth?: NullableStringFieldUpdateOperationsInput | string | null
-    civil_status?: EnumCIVIL_STATUS_ENUMFieldUpdateOperationsInput | $Enums.CIVIL_STATUS_ENUM
+    civil_status?: NullableEnumCIVIL_STATUS_ENUMFieldUpdateOperationsInput | $Enums.CIVIL_STATUS_ENUM | null
     contact_number?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    date_of_issuance?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type senior_citizen_detailsUncheckedUpdateManyInput = {
     recno?: IntFieldUpdateOperationsInput | number
     record_id?: StringFieldUpdateOperationsInput | string
+    id_number?: StringFieldUpdateOperationsInput | string
     first_name?: StringFieldUpdateOperationsInput | string
     middle_name?: NullableStringFieldUpdateOperationsInput | string | null
     last_name?: StringFieldUpdateOperationsInput | string
     suffix?: NullableStringFieldUpdateOperationsInput | string | null
     age_upon_release?: IntFieldUpdateOperationsInput | number
     full_address?: StringFieldUpdateOperationsInput | string
-    sex_at_birth?: EnumSEX_AT_BIRTH_ENUMFieldUpdateOperationsInput | $Enums.SEX_AT_BIRTH_ENUM
+    sex_at_birth?: NullableEnumSEX_AT_BIRTH_ENUMFieldUpdateOperationsInput | $Enums.SEX_AT_BIRTH_ENUM | null
     date_of_birth?: DateTimeFieldUpdateOperationsInput | Date | string
     place_of_birth?: NullableStringFieldUpdateOperationsInput | string | null
-    civil_status?: EnumCIVIL_STATUS_ENUMFieldUpdateOperationsInput | $Enums.CIVIL_STATUS_ENUM
+    civil_status?: NullableEnumCIVIL_STATUS_ENUMFieldUpdateOperationsInput | $Enums.CIVIL_STATUS_ENUM | null
     contact_number?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    date_of_issuance?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type client_credential_assetsCreateInput = {
@@ -6162,65 +5022,6 @@ export namespace Prisma {
     left_thumbprint?: NullableStringFieldUpdateOperationsInput | string | null
     right_thumbprint?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type senior_identifier_registryCreateInput = {
-    date_of_issuance: Date | string
-    reference_number?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
-    senior_citizen_details?: senior_citizen_detailsCreateNestedOneWithoutSenior_identifier_registryInput
-  }
-
-  export type senior_identifier_registryUncheckedCreateInput = {
-    recno?: number
-    record_id?: string
-    date_of_issuance: Date | string
-    reference_number?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
-  }
-
-  export type senior_identifier_registryUpdateInput = {
-    date_of_issuance?: DateTimeFieldUpdateOperationsInput | Date | string
-    reference_number?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    senior_citizen_details?: senior_citizen_detailsUpdateOneWithoutSenior_identifier_registryNestedInput
-  }
-
-  export type senior_identifier_registryUncheckedUpdateInput = {
-    recno?: IntFieldUpdateOperationsInput | number
-    record_id?: StringFieldUpdateOperationsInput | string
-    date_of_issuance?: DateTimeFieldUpdateOperationsInput | Date | string
-    reference_number?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type senior_identifier_registryCreateManyInput = {
-    recno?: number
-    record_id?: string
-    date_of_issuance: Date | string
-    reference_number?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
-  }
-
-  export type senior_identifier_registryUpdateManyMutationInput = {
-    date_of_issuance?: DateTimeFieldUpdateOperationsInput | Date | string
-    reference_number?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type senior_identifier_registryUncheckedUpdateManyInput = {
-    recno?: IntFieldUpdateOperationsInput | number
-    record_id?: StringFieldUpdateOperationsInput | string
-    date_of_issuance?: DateTimeFieldUpdateOperationsInput | Date | string
-    reference_number?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -6360,11 +5161,11 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type EnumSEX_AT_BIRTH_ENUMFilter<$PrismaModel = never> = {
-    equals?: $Enums.SEX_AT_BIRTH_ENUM | EnumSEX_AT_BIRTH_ENUMFieldRefInput<$PrismaModel>
-    in?: $Enums.SEX_AT_BIRTH_ENUM[]
-    notIn?: $Enums.SEX_AT_BIRTH_ENUM[]
-    not?: NestedEnumSEX_AT_BIRTH_ENUMFilter<$PrismaModel> | $Enums.SEX_AT_BIRTH_ENUM
+  export type EnumSEX_AT_BIRTH_ENUMNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.SEX_AT_BIRTH_ENUM | EnumSEX_AT_BIRTH_ENUMFieldRefInput<$PrismaModel> | null
+    in?: $Enums.SEX_AT_BIRTH_ENUM[] | null
+    notIn?: $Enums.SEX_AT_BIRTH_ENUM[] | null
+    not?: NestedEnumSEX_AT_BIRTH_ENUMNullableFilter<$PrismaModel> | $Enums.SEX_AT_BIRTH_ENUM | null
   }
 
   export type DateTimeFilter<$PrismaModel = never> = {
@@ -6378,21 +5179,16 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type EnumCIVIL_STATUS_ENUMFilter<$PrismaModel = never> = {
-    equals?: $Enums.CIVIL_STATUS_ENUM | EnumCIVIL_STATUS_ENUMFieldRefInput<$PrismaModel>
-    in?: $Enums.CIVIL_STATUS_ENUM[]
-    notIn?: $Enums.CIVIL_STATUS_ENUM[]
-    not?: NestedEnumCIVIL_STATUS_ENUMFilter<$PrismaModel> | $Enums.CIVIL_STATUS_ENUM
+  export type EnumCIVIL_STATUS_ENUMNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.CIVIL_STATUS_ENUM | EnumCIVIL_STATUS_ENUMFieldRefInput<$PrismaModel> | null
+    in?: $Enums.CIVIL_STATUS_ENUM[] | null
+    notIn?: $Enums.CIVIL_STATUS_ENUM[] | null
+    not?: NestedEnumCIVIL_STATUS_ENUMNullableFilter<$PrismaModel> | $Enums.CIVIL_STATUS_ENUM | null
   }
 
   export type Client_credential_assetsNullableScalarRelationFilter = {
     is?: client_credential_assetsWhereInput | null
     isNot?: client_credential_assetsWhereInput | null
-  }
-
-  export type Senior_identifier_registryNullableScalarRelationFilter = {
-    is?: senior_identifier_registryWhereInput | null
-    isNot?: senior_identifier_registryWhereInput | null
   }
 
   export type Senior_citizen_incase_of_emergencyListRelationFilter = {
@@ -6419,6 +5215,7 @@ export namespace Prisma {
   export type senior_citizen_detailsCountOrderByAggregateInput = {
     recno?: SortOrder
     record_id?: SortOrder
+    id_number?: SortOrder
     first_name?: SortOrder
     middle_name?: SortOrder
     last_name?: SortOrder
@@ -6433,6 +5230,7 @@ export namespace Prisma {
     email?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+    date_of_issuance?: SortOrder
   }
 
   export type senior_citizen_detailsAvgOrderByAggregateInput = {
@@ -6443,6 +5241,7 @@ export namespace Prisma {
   export type senior_citizen_detailsMaxOrderByAggregateInput = {
     recno?: SortOrder
     record_id?: SortOrder
+    id_number?: SortOrder
     first_name?: SortOrder
     middle_name?: SortOrder
     last_name?: SortOrder
@@ -6457,11 +5256,13 @@ export namespace Prisma {
     email?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+    date_of_issuance?: SortOrder
   }
 
   export type senior_citizen_detailsMinOrderByAggregateInput = {
     recno?: SortOrder
     record_id?: SortOrder
+    id_number?: SortOrder
     first_name?: SortOrder
     middle_name?: SortOrder
     last_name?: SortOrder
@@ -6476,6 +5277,7 @@ export namespace Prisma {
     email?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+    date_of_issuance?: SortOrder
   }
 
   export type senior_citizen_detailsSumOrderByAggregateInput = {
@@ -6535,14 +5337,14 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type EnumSEX_AT_BIRTH_ENUMWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.SEX_AT_BIRTH_ENUM | EnumSEX_AT_BIRTH_ENUMFieldRefInput<$PrismaModel>
-    in?: $Enums.SEX_AT_BIRTH_ENUM[]
-    notIn?: $Enums.SEX_AT_BIRTH_ENUM[]
-    not?: NestedEnumSEX_AT_BIRTH_ENUMWithAggregatesFilter<$PrismaModel> | $Enums.SEX_AT_BIRTH_ENUM
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumSEX_AT_BIRTH_ENUMFilter<$PrismaModel>
-    _max?: NestedEnumSEX_AT_BIRTH_ENUMFilter<$PrismaModel>
+  export type EnumSEX_AT_BIRTH_ENUMNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SEX_AT_BIRTH_ENUM | EnumSEX_AT_BIRTH_ENUMFieldRefInput<$PrismaModel> | null
+    in?: $Enums.SEX_AT_BIRTH_ENUM[] | null
+    notIn?: $Enums.SEX_AT_BIRTH_ENUM[] | null
+    not?: NestedEnumSEX_AT_BIRTH_ENUMNullableWithAggregatesFilter<$PrismaModel> | $Enums.SEX_AT_BIRTH_ENUM | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumSEX_AT_BIRTH_ENUMNullableFilter<$PrismaModel>
+    _max?: NestedEnumSEX_AT_BIRTH_ENUMNullableFilter<$PrismaModel>
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -6559,14 +5361,14 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type EnumCIVIL_STATUS_ENUMWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.CIVIL_STATUS_ENUM | EnumCIVIL_STATUS_ENUMFieldRefInput<$PrismaModel>
-    in?: $Enums.CIVIL_STATUS_ENUM[]
-    notIn?: $Enums.CIVIL_STATUS_ENUM[]
-    not?: NestedEnumCIVIL_STATUS_ENUMWithAggregatesFilter<$PrismaModel> | $Enums.CIVIL_STATUS_ENUM
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumCIVIL_STATUS_ENUMFilter<$PrismaModel>
-    _max?: NestedEnumCIVIL_STATUS_ENUMFilter<$PrismaModel>
+  export type EnumCIVIL_STATUS_ENUMNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.CIVIL_STATUS_ENUM | EnumCIVIL_STATUS_ENUMFieldRefInput<$PrismaModel> | null
+    in?: $Enums.CIVIL_STATUS_ENUM[] | null
+    notIn?: $Enums.CIVIL_STATUS_ENUM[] | null
+    not?: NestedEnumCIVIL_STATUS_ENUMNullableWithAggregatesFilter<$PrismaModel> | $Enums.CIVIL_STATUS_ENUM | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumCIVIL_STATUS_ENUMNullableFilter<$PrismaModel>
+    _max?: NestedEnumCIVIL_STATUS_ENUMNullableFilter<$PrismaModel>
   }
 
   export type Senior_citizen_detailsNullableScalarRelationFilter = {
@@ -6621,47 +5423,6 @@ export namespace Prisma {
   }
 
   export type client_credential_assetsSumOrderByAggregateInput = {
-    recno?: SortOrder
-  }
-
-  export type senior_identifier_registryOrderByRelevanceInput = {
-    fields: senior_identifier_registryOrderByRelevanceFieldEnum | senior_identifier_registryOrderByRelevanceFieldEnum[]
-    sort: SortOrder
-    search: string
-  }
-
-  export type senior_identifier_registryCountOrderByAggregateInput = {
-    recno?: SortOrder
-    record_id?: SortOrder
-    date_of_issuance?: SortOrder
-    reference_number?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-  }
-
-  export type senior_identifier_registryAvgOrderByAggregateInput = {
-    recno?: SortOrder
-  }
-
-  export type senior_identifier_registryMaxOrderByAggregateInput = {
-    recno?: SortOrder
-    record_id?: SortOrder
-    date_of_issuance?: SortOrder
-    reference_number?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-  }
-
-  export type senior_identifier_registryMinOrderByAggregateInput = {
-    recno?: SortOrder
-    record_id?: SortOrder
-    date_of_issuance?: SortOrder
-    reference_number?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-  }
-
-  export type senior_identifier_registrySumOrderByAggregateInput = {
     recno?: SortOrder
   }
 
@@ -6727,12 +5488,6 @@ export namespace Prisma {
     connect?: client_credential_assetsWhereUniqueInput
   }
 
-  export type senior_identifier_registryCreateNestedOneWithoutSenior_citizen_detailsInput = {
-    create?: XOR<senior_identifier_registryCreateWithoutSenior_citizen_detailsInput, senior_identifier_registryUncheckedCreateWithoutSenior_citizen_detailsInput>
-    connectOrCreate?: senior_identifier_registryCreateOrConnectWithoutSenior_citizen_detailsInput
-    connect?: senior_identifier_registryWhereUniqueInput
-  }
-
   export type senior_citizen_incase_of_emergencyCreateNestedManyWithoutSenior_citizen_detailsInput = {
     create?: XOR<senior_citizen_incase_of_emergencyCreateWithoutSenior_citizen_detailsInput, senior_citizen_incase_of_emergencyUncheckedCreateWithoutSenior_citizen_detailsInput> | senior_citizen_incase_of_emergencyCreateWithoutSenior_citizen_detailsInput[] | senior_citizen_incase_of_emergencyUncheckedCreateWithoutSenior_citizen_detailsInput[]
     connectOrCreate?: senior_citizen_incase_of_emergencyCreateOrConnectWithoutSenior_citizen_detailsInput | senior_citizen_incase_of_emergencyCreateOrConnectWithoutSenior_citizen_detailsInput[]
@@ -6744,12 +5499,6 @@ export namespace Prisma {
     create?: XOR<client_credential_assetsCreateWithoutSenior_citizen_detailsInput, client_credential_assetsUncheckedCreateWithoutSenior_citizen_detailsInput>
     connectOrCreate?: client_credential_assetsCreateOrConnectWithoutSenior_citizen_detailsInput
     connect?: client_credential_assetsWhereUniqueInput
-  }
-
-  export type senior_identifier_registryUncheckedCreateNestedOneWithoutSenior_citizen_detailsInput = {
-    create?: XOR<senior_identifier_registryCreateWithoutSenior_citizen_detailsInput, senior_identifier_registryUncheckedCreateWithoutSenior_citizen_detailsInput>
-    connectOrCreate?: senior_identifier_registryCreateOrConnectWithoutSenior_citizen_detailsInput
-    connect?: senior_identifier_registryWhereUniqueInput
   }
 
   export type senior_citizen_incase_of_emergencyUncheckedCreateNestedManyWithoutSenior_citizen_detailsInput = {
@@ -6775,16 +5524,16 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type EnumSEX_AT_BIRTH_ENUMFieldUpdateOperationsInput = {
-    set?: $Enums.SEX_AT_BIRTH_ENUM
+  export type NullableEnumSEX_AT_BIRTH_ENUMFieldUpdateOperationsInput = {
+    set?: $Enums.SEX_AT_BIRTH_ENUM | null
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
   }
 
-  export type EnumCIVIL_STATUS_ENUMFieldUpdateOperationsInput = {
-    set?: $Enums.CIVIL_STATUS_ENUM
+  export type NullableEnumCIVIL_STATUS_ENUMFieldUpdateOperationsInput = {
+    set?: $Enums.CIVIL_STATUS_ENUM | null
   }
 
   export type client_credential_assetsUpdateOneWithoutSenior_citizen_detailsNestedInput = {
@@ -6795,16 +5544,6 @@ export namespace Prisma {
     delete?: client_credential_assetsWhereInput | boolean
     connect?: client_credential_assetsWhereUniqueInput
     update?: XOR<XOR<client_credential_assetsUpdateToOneWithWhereWithoutSenior_citizen_detailsInput, client_credential_assetsUpdateWithoutSenior_citizen_detailsInput>, client_credential_assetsUncheckedUpdateWithoutSenior_citizen_detailsInput>
-  }
-
-  export type senior_identifier_registryUpdateOneWithoutSenior_citizen_detailsNestedInput = {
-    create?: XOR<senior_identifier_registryCreateWithoutSenior_citizen_detailsInput, senior_identifier_registryUncheckedCreateWithoutSenior_citizen_detailsInput>
-    connectOrCreate?: senior_identifier_registryCreateOrConnectWithoutSenior_citizen_detailsInput
-    upsert?: senior_identifier_registryUpsertWithoutSenior_citizen_detailsInput
-    disconnect?: senior_identifier_registryWhereInput | boolean
-    delete?: senior_identifier_registryWhereInput | boolean
-    connect?: senior_identifier_registryWhereUniqueInput
-    update?: XOR<XOR<senior_identifier_registryUpdateToOneWithWhereWithoutSenior_citizen_detailsInput, senior_identifier_registryUpdateWithoutSenior_citizen_detailsInput>, senior_identifier_registryUncheckedUpdateWithoutSenior_citizen_detailsInput>
   }
 
   export type senior_citizen_incase_of_emergencyUpdateManyWithoutSenior_citizen_detailsNestedInput = {
@@ -6829,16 +5568,6 @@ export namespace Prisma {
     delete?: client_credential_assetsWhereInput | boolean
     connect?: client_credential_assetsWhereUniqueInput
     update?: XOR<XOR<client_credential_assetsUpdateToOneWithWhereWithoutSenior_citizen_detailsInput, client_credential_assetsUpdateWithoutSenior_citizen_detailsInput>, client_credential_assetsUncheckedUpdateWithoutSenior_citizen_detailsInput>
-  }
-
-  export type senior_identifier_registryUncheckedUpdateOneWithoutSenior_citizen_detailsNestedInput = {
-    create?: XOR<senior_identifier_registryCreateWithoutSenior_citizen_detailsInput, senior_identifier_registryUncheckedCreateWithoutSenior_citizen_detailsInput>
-    connectOrCreate?: senior_identifier_registryCreateOrConnectWithoutSenior_citizen_detailsInput
-    upsert?: senior_identifier_registryUpsertWithoutSenior_citizen_detailsInput
-    disconnect?: senior_identifier_registryWhereInput | boolean
-    delete?: senior_identifier_registryWhereInput | boolean
-    connect?: senior_identifier_registryWhereUniqueInput
-    update?: XOR<XOR<senior_identifier_registryUpdateToOneWithWhereWithoutSenior_citizen_detailsInput, senior_identifier_registryUpdateWithoutSenior_citizen_detailsInput>, senior_identifier_registryUncheckedUpdateWithoutSenior_citizen_detailsInput>
   }
 
   export type senior_citizen_incase_of_emergencyUncheckedUpdateManyWithoutSenior_citizen_detailsNestedInput = {
@@ -6869,22 +5598,6 @@ export namespace Prisma {
     delete?: senior_citizen_detailsWhereInput | boolean
     connect?: senior_citizen_detailsWhereUniqueInput
     update?: XOR<XOR<senior_citizen_detailsUpdateToOneWithWhereWithoutClient_credential_assetsInput, senior_citizen_detailsUpdateWithoutClient_credential_assetsInput>, senior_citizen_detailsUncheckedUpdateWithoutClient_credential_assetsInput>
-  }
-
-  export type senior_citizen_detailsCreateNestedOneWithoutSenior_identifier_registryInput = {
-    create?: XOR<senior_citizen_detailsCreateWithoutSenior_identifier_registryInput, senior_citizen_detailsUncheckedCreateWithoutSenior_identifier_registryInput>
-    connectOrCreate?: senior_citizen_detailsCreateOrConnectWithoutSenior_identifier_registryInput
-    connect?: senior_citizen_detailsWhereUniqueInput
-  }
-
-  export type senior_citizen_detailsUpdateOneWithoutSenior_identifier_registryNestedInput = {
-    create?: XOR<senior_citizen_detailsCreateWithoutSenior_identifier_registryInput, senior_citizen_detailsUncheckedCreateWithoutSenior_identifier_registryInput>
-    connectOrCreate?: senior_citizen_detailsCreateOrConnectWithoutSenior_identifier_registryInput
-    upsert?: senior_citizen_detailsUpsertWithoutSenior_identifier_registryInput
-    disconnect?: senior_citizen_detailsWhereInput | boolean
-    delete?: senior_citizen_detailsWhereInput | boolean
-    connect?: senior_citizen_detailsWhereUniqueInput
-    update?: XOR<XOR<senior_citizen_detailsUpdateToOneWithWhereWithoutSenior_identifier_registryInput, senior_citizen_detailsUpdateWithoutSenior_identifier_registryInput>, senior_citizen_detailsUncheckedUpdateWithoutSenior_identifier_registryInput>
   }
 
   export type senior_citizen_detailsCreateNestedOneWithoutSenior_citizen_incase_of_emergencyInput = {
@@ -6944,11 +5657,11 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type NestedEnumSEX_AT_BIRTH_ENUMFilter<$PrismaModel = never> = {
-    equals?: $Enums.SEX_AT_BIRTH_ENUM | EnumSEX_AT_BIRTH_ENUMFieldRefInput<$PrismaModel>
-    in?: $Enums.SEX_AT_BIRTH_ENUM[]
-    notIn?: $Enums.SEX_AT_BIRTH_ENUM[]
-    not?: NestedEnumSEX_AT_BIRTH_ENUMFilter<$PrismaModel> | $Enums.SEX_AT_BIRTH_ENUM
+  export type NestedEnumSEX_AT_BIRTH_ENUMNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.SEX_AT_BIRTH_ENUM | EnumSEX_AT_BIRTH_ENUMFieldRefInput<$PrismaModel> | null
+    in?: $Enums.SEX_AT_BIRTH_ENUM[] | null
+    notIn?: $Enums.SEX_AT_BIRTH_ENUM[] | null
+    not?: NestedEnumSEX_AT_BIRTH_ENUMNullableFilter<$PrismaModel> | $Enums.SEX_AT_BIRTH_ENUM | null
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -6962,11 +5675,11 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
-  export type NestedEnumCIVIL_STATUS_ENUMFilter<$PrismaModel = never> = {
-    equals?: $Enums.CIVIL_STATUS_ENUM | EnumCIVIL_STATUS_ENUMFieldRefInput<$PrismaModel>
-    in?: $Enums.CIVIL_STATUS_ENUM[]
-    notIn?: $Enums.CIVIL_STATUS_ENUM[]
-    not?: NestedEnumCIVIL_STATUS_ENUMFilter<$PrismaModel> | $Enums.CIVIL_STATUS_ENUM
+  export type NestedEnumCIVIL_STATUS_ENUMNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.CIVIL_STATUS_ENUM | EnumCIVIL_STATUS_ENUMFieldRefInput<$PrismaModel> | null
+    in?: $Enums.CIVIL_STATUS_ENUM[] | null
+    notIn?: $Enums.CIVIL_STATUS_ENUM[] | null
+    not?: NestedEnumCIVIL_STATUS_ENUMNullableFilter<$PrismaModel> | $Enums.CIVIL_STATUS_ENUM | null
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -7043,14 +5756,14 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
-  export type NestedEnumSEX_AT_BIRTH_ENUMWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.SEX_AT_BIRTH_ENUM | EnumSEX_AT_BIRTH_ENUMFieldRefInput<$PrismaModel>
-    in?: $Enums.SEX_AT_BIRTH_ENUM[]
-    notIn?: $Enums.SEX_AT_BIRTH_ENUM[]
-    not?: NestedEnumSEX_AT_BIRTH_ENUMWithAggregatesFilter<$PrismaModel> | $Enums.SEX_AT_BIRTH_ENUM
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumSEX_AT_BIRTH_ENUMFilter<$PrismaModel>
-    _max?: NestedEnumSEX_AT_BIRTH_ENUMFilter<$PrismaModel>
+  export type NestedEnumSEX_AT_BIRTH_ENUMNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SEX_AT_BIRTH_ENUM | EnumSEX_AT_BIRTH_ENUMFieldRefInput<$PrismaModel> | null
+    in?: $Enums.SEX_AT_BIRTH_ENUM[] | null
+    notIn?: $Enums.SEX_AT_BIRTH_ENUM[] | null
+    not?: NestedEnumSEX_AT_BIRTH_ENUMNullableWithAggregatesFilter<$PrismaModel> | $Enums.SEX_AT_BIRTH_ENUM | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumSEX_AT_BIRTH_ENUMNullableFilter<$PrismaModel>
+    _max?: NestedEnumSEX_AT_BIRTH_ENUMNullableFilter<$PrismaModel>
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -7067,14 +5780,14 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type NestedEnumCIVIL_STATUS_ENUMWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.CIVIL_STATUS_ENUM | EnumCIVIL_STATUS_ENUMFieldRefInput<$PrismaModel>
-    in?: $Enums.CIVIL_STATUS_ENUM[]
-    notIn?: $Enums.CIVIL_STATUS_ENUM[]
-    not?: NestedEnumCIVIL_STATUS_ENUMWithAggregatesFilter<$PrismaModel> | $Enums.CIVIL_STATUS_ENUM
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumCIVIL_STATUS_ENUMFilter<$PrismaModel>
-    _max?: NestedEnumCIVIL_STATUS_ENUMFilter<$PrismaModel>
+  export type NestedEnumCIVIL_STATUS_ENUMNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.CIVIL_STATUS_ENUM | EnumCIVIL_STATUS_ENUMFieldRefInput<$PrismaModel> | null
+    in?: $Enums.CIVIL_STATUS_ENUM[] | null
+    notIn?: $Enums.CIVIL_STATUS_ENUM[] | null
+    not?: NestedEnumCIVIL_STATUS_ENUMNullableWithAggregatesFilter<$PrismaModel> | $Enums.CIVIL_STATUS_ENUM | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumCIVIL_STATUS_ENUMNullableFilter<$PrismaModel>
+    _max?: NestedEnumCIVIL_STATUS_ENUMNullableFilter<$PrismaModel>
   }
 
   export type client_credential_assetsCreateWithoutSenior_citizen_detailsInput = {
@@ -7101,26 +5814,6 @@ export namespace Prisma {
   export type client_credential_assetsCreateOrConnectWithoutSenior_citizen_detailsInput = {
     where: client_credential_assetsWhereUniqueInput
     create: XOR<client_credential_assetsCreateWithoutSenior_citizen_detailsInput, client_credential_assetsUncheckedCreateWithoutSenior_citizen_detailsInput>
-  }
-
-  export type senior_identifier_registryCreateWithoutSenior_citizen_detailsInput = {
-    date_of_issuance: Date | string
-    reference_number?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
-  }
-
-  export type senior_identifier_registryUncheckedCreateWithoutSenior_citizen_detailsInput = {
-    recno?: number
-    date_of_issuance: Date | string
-    reference_number?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
-  }
-
-  export type senior_identifier_registryCreateOrConnectWithoutSenior_citizen_detailsInput = {
-    where: senior_identifier_registryWhereUniqueInput
-    create: XOR<senior_identifier_registryCreateWithoutSenior_citizen_detailsInput, senior_identifier_registryUncheckedCreateWithoutSenior_citizen_detailsInput>
   }
 
   export type senior_citizen_incase_of_emergencyCreateWithoutSenior_citizen_detailsInput = {
@@ -7190,32 +5883,6 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type senior_identifier_registryUpsertWithoutSenior_citizen_detailsInput = {
-    update: XOR<senior_identifier_registryUpdateWithoutSenior_citizen_detailsInput, senior_identifier_registryUncheckedUpdateWithoutSenior_citizen_detailsInput>
-    create: XOR<senior_identifier_registryCreateWithoutSenior_citizen_detailsInput, senior_identifier_registryUncheckedCreateWithoutSenior_citizen_detailsInput>
-    where?: senior_identifier_registryWhereInput
-  }
-
-  export type senior_identifier_registryUpdateToOneWithWhereWithoutSenior_citizen_detailsInput = {
-    where?: senior_identifier_registryWhereInput
-    data: XOR<senior_identifier_registryUpdateWithoutSenior_citizen_detailsInput, senior_identifier_registryUncheckedUpdateWithoutSenior_citizen_detailsInput>
-  }
-
-  export type senior_identifier_registryUpdateWithoutSenior_citizen_detailsInput = {
-    date_of_issuance?: DateTimeFieldUpdateOperationsInput | Date | string
-    reference_number?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type senior_identifier_registryUncheckedUpdateWithoutSenior_citizen_detailsInput = {
-    recno?: IntFieldUpdateOperationsInput | number
-    date_of_issuance?: DateTimeFieldUpdateOperationsInput | Date | string
-    reference_number?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
   export type senior_citizen_incase_of_emergencyUpsertWithWhereUniqueWithoutSenior_citizen_detailsInput = {
     where: senior_citizen_incase_of_emergencyWhereUniqueInput
     update: XOR<senior_citizen_incase_of_emergencyUpdateWithoutSenior_citizen_detailsInput, senior_citizen_incase_of_emergencyUncheckedUpdateWithoutSenior_citizen_detailsInput>
@@ -7251,42 +5918,44 @@ export namespace Prisma {
 
   export type senior_citizen_detailsCreateWithoutClient_credential_assetsInput = {
     record_id?: string
+    id_number: string
     first_name: string
     middle_name?: string | null
     last_name: string
     suffix?: string | null
     age_upon_release: number
     full_address: string
-    sex_at_birth: $Enums.SEX_AT_BIRTH_ENUM
+    sex_at_birth?: $Enums.SEX_AT_BIRTH_ENUM | null
     date_of_birth: Date | string
     place_of_birth?: string | null
-    civil_status: $Enums.CIVIL_STATUS_ENUM
+    civil_status?: $Enums.CIVIL_STATUS_ENUM | null
     contact_number?: string | null
     email?: string | null
     created_at?: Date | string
     updated_at?: Date | string
-    senior_identifier_registry?: senior_identifier_registryCreateNestedOneWithoutSenior_citizen_detailsInput
+    date_of_issuance: Date | string
     senior_citizen_incase_of_emergency?: senior_citizen_incase_of_emergencyCreateNestedManyWithoutSenior_citizen_detailsInput
   }
 
   export type senior_citizen_detailsUncheckedCreateWithoutClient_credential_assetsInput = {
     recno?: number
     record_id?: string
+    id_number: string
     first_name: string
     middle_name?: string | null
     last_name: string
     suffix?: string | null
     age_upon_release: number
     full_address: string
-    sex_at_birth: $Enums.SEX_AT_BIRTH_ENUM
+    sex_at_birth?: $Enums.SEX_AT_BIRTH_ENUM | null
     date_of_birth: Date | string
     place_of_birth?: string | null
-    civil_status: $Enums.CIVIL_STATUS_ENUM
+    civil_status?: $Enums.CIVIL_STATUS_ENUM | null
     contact_number?: string | null
     email?: string | null
     created_at?: Date | string
     updated_at?: Date | string
-    senior_identifier_registry?: senior_identifier_registryUncheckedCreateNestedOneWithoutSenior_citizen_detailsInput
+    date_of_issuance: Date | string
     senior_citizen_incase_of_emergency?: senior_citizen_incase_of_emergencyUncheckedCreateNestedManyWithoutSenior_citizen_detailsInput
   }
 
@@ -7308,182 +5977,88 @@ export namespace Prisma {
 
   export type senior_citizen_detailsUpdateWithoutClient_credential_assetsInput = {
     record_id?: StringFieldUpdateOperationsInput | string
+    id_number?: StringFieldUpdateOperationsInput | string
     first_name?: StringFieldUpdateOperationsInput | string
     middle_name?: NullableStringFieldUpdateOperationsInput | string | null
     last_name?: StringFieldUpdateOperationsInput | string
     suffix?: NullableStringFieldUpdateOperationsInput | string | null
     age_upon_release?: IntFieldUpdateOperationsInput | number
     full_address?: StringFieldUpdateOperationsInput | string
-    sex_at_birth?: EnumSEX_AT_BIRTH_ENUMFieldUpdateOperationsInput | $Enums.SEX_AT_BIRTH_ENUM
+    sex_at_birth?: NullableEnumSEX_AT_BIRTH_ENUMFieldUpdateOperationsInput | $Enums.SEX_AT_BIRTH_ENUM | null
     date_of_birth?: DateTimeFieldUpdateOperationsInput | Date | string
     place_of_birth?: NullableStringFieldUpdateOperationsInput | string | null
-    civil_status?: EnumCIVIL_STATUS_ENUMFieldUpdateOperationsInput | $Enums.CIVIL_STATUS_ENUM
+    civil_status?: NullableEnumCIVIL_STATUS_ENUMFieldUpdateOperationsInput | $Enums.CIVIL_STATUS_ENUM | null
     contact_number?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    senior_identifier_registry?: senior_identifier_registryUpdateOneWithoutSenior_citizen_detailsNestedInput
+    date_of_issuance?: DateTimeFieldUpdateOperationsInput | Date | string
     senior_citizen_incase_of_emergency?: senior_citizen_incase_of_emergencyUpdateManyWithoutSenior_citizen_detailsNestedInput
   }
 
   export type senior_citizen_detailsUncheckedUpdateWithoutClient_credential_assetsInput = {
     recno?: IntFieldUpdateOperationsInput | number
     record_id?: StringFieldUpdateOperationsInput | string
+    id_number?: StringFieldUpdateOperationsInput | string
     first_name?: StringFieldUpdateOperationsInput | string
     middle_name?: NullableStringFieldUpdateOperationsInput | string | null
     last_name?: StringFieldUpdateOperationsInput | string
     suffix?: NullableStringFieldUpdateOperationsInput | string | null
     age_upon_release?: IntFieldUpdateOperationsInput | number
     full_address?: StringFieldUpdateOperationsInput | string
-    sex_at_birth?: EnumSEX_AT_BIRTH_ENUMFieldUpdateOperationsInput | $Enums.SEX_AT_BIRTH_ENUM
+    sex_at_birth?: NullableEnumSEX_AT_BIRTH_ENUMFieldUpdateOperationsInput | $Enums.SEX_AT_BIRTH_ENUM | null
     date_of_birth?: DateTimeFieldUpdateOperationsInput | Date | string
     place_of_birth?: NullableStringFieldUpdateOperationsInput | string | null
-    civil_status?: EnumCIVIL_STATUS_ENUMFieldUpdateOperationsInput | $Enums.CIVIL_STATUS_ENUM
+    civil_status?: NullableEnumCIVIL_STATUS_ENUMFieldUpdateOperationsInput | $Enums.CIVIL_STATUS_ENUM | null
     contact_number?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    senior_identifier_registry?: senior_identifier_registryUncheckedUpdateOneWithoutSenior_citizen_detailsNestedInput
-    senior_citizen_incase_of_emergency?: senior_citizen_incase_of_emergencyUncheckedUpdateManyWithoutSenior_citizen_detailsNestedInput
-  }
-
-  export type senior_citizen_detailsCreateWithoutSenior_identifier_registryInput = {
-    record_id?: string
-    first_name: string
-    middle_name?: string | null
-    last_name: string
-    suffix?: string | null
-    age_upon_release: number
-    full_address: string
-    sex_at_birth: $Enums.SEX_AT_BIRTH_ENUM
-    date_of_birth: Date | string
-    place_of_birth?: string | null
-    civil_status: $Enums.CIVIL_STATUS_ENUM
-    contact_number?: string | null
-    email?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
-    client_credential_assets?: client_credential_assetsCreateNestedOneWithoutSenior_citizen_detailsInput
-    senior_citizen_incase_of_emergency?: senior_citizen_incase_of_emergencyCreateNestedManyWithoutSenior_citizen_detailsInput
-  }
-
-  export type senior_citizen_detailsUncheckedCreateWithoutSenior_identifier_registryInput = {
-    recno?: number
-    record_id?: string
-    first_name: string
-    middle_name?: string | null
-    last_name: string
-    suffix?: string | null
-    age_upon_release: number
-    full_address: string
-    sex_at_birth: $Enums.SEX_AT_BIRTH_ENUM
-    date_of_birth: Date | string
-    place_of_birth?: string | null
-    civil_status: $Enums.CIVIL_STATUS_ENUM
-    contact_number?: string | null
-    email?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
-    client_credential_assets?: client_credential_assetsUncheckedCreateNestedOneWithoutSenior_citizen_detailsInput
-    senior_citizen_incase_of_emergency?: senior_citizen_incase_of_emergencyUncheckedCreateNestedManyWithoutSenior_citizen_detailsInput
-  }
-
-  export type senior_citizen_detailsCreateOrConnectWithoutSenior_identifier_registryInput = {
-    where: senior_citizen_detailsWhereUniqueInput
-    create: XOR<senior_citizen_detailsCreateWithoutSenior_identifier_registryInput, senior_citizen_detailsUncheckedCreateWithoutSenior_identifier_registryInput>
-  }
-
-  export type senior_citizen_detailsUpsertWithoutSenior_identifier_registryInput = {
-    update: XOR<senior_citizen_detailsUpdateWithoutSenior_identifier_registryInput, senior_citizen_detailsUncheckedUpdateWithoutSenior_identifier_registryInput>
-    create: XOR<senior_citizen_detailsCreateWithoutSenior_identifier_registryInput, senior_citizen_detailsUncheckedCreateWithoutSenior_identifier_registryInput>
-    where?: senior_citizen_detailsWhereInput
-  }
-
-  export type senior_citizen_detailsUpdateToOneWithWhereWithoutSenior_identifier_registryInput = {
-    where?: senior_citizen_detailsWhereInput
-    data: XOR<senior_citizen_detailsUpdateWithoutSenior_identifier_registryInput, senior_citizen_detailsUncheckedUpdateWithoutSenior_identifier_registryInput>
-  }
-
-  export type senior_citizen_detailsUpdateWithoutSenior_identifier_registryInput = {
-    record_id?: StringFieldUpdateOperationsInput | string
-    first_name?: StringFieldUpdateOperationsInput | string
-    middle_name?: NullableStringFieldUpdateOperationsInput | string | null
-    last_name?: StringFieldUpdateOperationsInput | string
-    suffix?: NullableStringFieldUpdateOperationsInput | string | null
-    age_upon_release?: IntFieldUpdateOperationsInput | number
-    full_address?: StringFieldUpdateOperationsInput | string
-    sex_at_birth?: EnumSEX_AT_BIRTH_ENUMFieldUpdateOperationsInput | $Enums.SEX_AT_BIRTH_ENUM
-    date_of_birth?: DateTimeFieldUpdateOperationsInput | Date | string
-    place_of_birth?: NullableStringFieldUpdateOperationsInput | string | null
-    civil_status?: EnumCIVIL_STATUS_ENUMFieldUpdateOperationsInput | $Enums.CIVIL_STATUS_ENUM
-    contact_number?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    client_credential_assets?: client_credential_assetsUpdateOneWithoutSenior_citizen_detailsNestedInput
-    senior_citizen_incase_of_emergency?: senior_citizen_incase_of_emergencyUpdateManyWithoutSenior_citizen_detailsNestedInput
-  }
-
-  export type senior_citizen_detailsUncheckedUpdateWithoutSenior_identifier_registryInput = {
-    recno?: IntFieldUpdateOperationsInput | number
-    record_id?: StringFieldUpdateOperationsInput | string
-    first_name?: StringFieldUpdateOperationsInput | string
-    middle_name?: NullableStringFieldUpdateOperationsInput | string | null
-    last_name?: StringFieldUpdateOperationsInput | string
-    suffix?: NullableStringFieldUpdateOperationsInput | string | null
-    age_upon_release?: IntFieldUpdateOperationsInput | number
-    full_address?: StringFieldUpdateOperationsInput | string
-    sex_at_birth?: EnumSEX_AT_BIRTH_ENUMFieldUpdateOperationsInput | $Enums.SEX_AT_BIRTH_ENUM
-    date_of_birth?: DateTimeFieldUpdateOperationsInput | Date | string
-    place_of_birth?: NullableStringFieldUpdateOperationsInput | string | null
-    civil_status?: EnumCIVIL_STATUS_ENUMFieldUpdateOperationsInput | $Enums.CIVIL_STATUS_ENUM
-    contact_number?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    client_credential_assets?: client_credential_assetsUncheckedUpdateOneWithoutSenior_citizen_detailsNestedInput
+    date_of_issuance?: DateTimeFieldUpdateOperationsInput | Date | string
     senior_citizen_incase_of_emergency?: senior_citizen_incase_of_emergencyUncheckedUpdateManyWithoutSenior_citizen_detailsNestedInput
   }
 
   export type senior_citizen_detailsCreateWithoutSenior_citizen_incase_of_emergencyInput = {
     record_id?: string
+    id_number: string
     first_name: string
     middle_name?: string | null
     last_name: string
     suffix?: string | null
     age_upon_release: number
     full_address: string
-    sex_at_birth: $Enums.SEX_AT_BIRTH_ENUM
+    sex_at_birth?: $Enums.SEX_AT_BIRTH_ENUM | null
     date_of_birth: Date | string
     place_of_birth?: string | null
-    civil_status: $Enums.CIVIL_STATUS_ENUM
+    civil_status?: $Enums.CIVIL_STATUS_ENUM | null
     contact_number?: string | null
     email?: string | null
     created_at?: Date | string
     updated_at?: Date | string
+    date_of_issuance: Date | string
     client_credential_assets?: client_credential_assetsCreateNestedOneWithoutSenior_citizen_detailsInput
-    senior_identifier_registry?: senior_identifier_registryCreateNestedOneWithoutSenior_citizen_detailsInput
   }
 
   export type senior_citizen_detailsUncheckedCreateWithoutSenior_citizen_incase_of_emergencyInput = {
     recno?: number
     record_id?: string
+    id_number: string
     first_name: string
     middle_name?: string | null
     last_name: string
     suffix?: string | null
     age_upon_release: number
     full_address: string
-    sex_at_birth: $Enums.SEX_AT_BIRTH_ENUM
+    sex_at_birth?: $Enums.SEX_AT_BIRTH_ENUM | null
     date_of_birth: Date | string
     place_of_birth?: string | null
-    civil_status: $Enums.CIVIL_STATUS_ENUM
+    civil_status?: $Enums.CIVIL_STATUS_ENUM | null
     contact_number?: string | null
     email?: string | null
     created_at?: Date | string
     updated_at?: Date | string
+    date_of_issuance: Date | string
     client_credential_assets?: client_credential_assetsUncheckedCreateNestedOneWithoutSenior_citizen_detailsInput
-    senior_identifier_registry?: senior_identifier_registryUncheckedCreateNestedOneWithoutSenior_citizen_detailsInput
   }
 
   export type senior_citizen_detailsCreateOrConnectWithoutSenior_citizen_incase_of_emergencyInput = {
@@ -7504,43 +6079,45 @@ export namespace Prisma {
 
   export type senior_citizen_detailsUpdateWithoutSenior_citizen_incase_of_emergencyInput = {
     record_id?: StringFieldUpdateOperationsInput | string
+    id_number?: StringFieldUpdateOperationsInput | string
     first_name?: StringFieldUpdateOperationsInput | string
     middle_name?: NullableStringFieldUpdateOperationsInput | string | null
     last_name?: StringFieldUpdateOperationsInput | string
     suffix?: NullableStringFieldUpdateOperationsInput | string | null
     age_upon_release?: IntFieldUpdateOperationsInput | number
     full_address?: StringFieldUpdateOperationsInput | string
-    sex_at_birth?: EnumSEX_AT_BIRTH_ENUMFieldUpdateOperationsInput | $Enums.SEX_AT_BIRTH_ENUM
+    sex_at_birth?: NullableEnumSEX_AT_BIRTH_ENUMFieldUpdateOperationsInput | $Enums.SEX_AT_BIRTH_ENUM | null
     date_of_birth?: DateTimeFieldUpdateOperationsInput | Date | string
     place_of_birth?: NullableStringFieldUpdateOperationsInput | string | null
-    civil_status?: EnumCIVIL_STATUS_ENUMFieldUpdateOperationsInput | $Enums.CIVIL_STATUS_ENUM
+    civil_status?: NullableEnumCIVIL_STATUS_ENUMFieldUpdateOperationsInput | $Enums.CIVIL_STATUS_ENUM | null
     contact_number?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    date_of_issuance?: DateTimeFieldUpdateOperationsInput | Date | string
     client_credential_assets?: client_credential_assetsUpdateOneWithoutSenior_citizen_detailsNestedInput
-    senior_identifier_registry?: senior_identifier_registryUpdateOneWithoutSenior_citizen_detailsNestedInput
   }
 
   export type senior_citizen_detailsUncheckedUpdateWithoutSenior_citizen_incase_of_emergencyInput = {
     recno?: IntFieldUpdateOperationsInput | number
     record_id?: StringFieldUpdateOperationsInput | string
+    id_number?: StringFieldUpdateOperationsInput | string
     first_name?: StringFieldUpdateOperationsInput | string
     middle_name?: NullableStringFieldUpdateOperationsInput | string | null
     last_name?: StringFieldUpdateOperationsInput | string
     suffix?: NullableStringFieldUpdateOperationsInput | string | null
     age_upon_release?: IntFieldUpdateOperationsInput | number
     full_address?: StringFieldUpdateOperationsInput | string
-    sex_at_birth?: EnumSEX_AT_BIRTH_ENUMFieldUpdateOperationsInput | $Enums.SEX_AT_BIRTH_ENUM
+    sex_at_birth?: NullableEnumSEX_AT_BIRTH_ENUMFieldUpdateOperationsInput | $Enums.SEX_AT_BIRTH_ENUM | null
     date_of_birth?: DateTimeFieldUpdateOperationsInput | Date | string
     place_of_birth?: NullableStringFieldUpdateOperationsInput | string | null
-    civil_status?: EnumCIVIL_STATUS_ENUMFieldUpdateOperationsInput | $Enums.CIVIL_STATUS_ENUM
+    civil_status?: NullableEnumCIVIL_STATUS_ENUMFieldUpdateOperationsInput | $Enums.CIVIL_STATUS_ENUM | null
     contact_number?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    date_of_issuance?: DateTimeFieldUpdateOperationsInput | Date | string
     client_credential_assets?: client_credential_assetsUncheckedUpdateOneWithoutSenior_citizen_detailsNestedInput
-    senior_identifier_registry?: senior_identifier_registryUncheckedUpdateOneWithoutSenior_citizen_detailsNestedInput
   }
 
   export type senior_citizen_incase_of_emergencyCreateManySenior_citizen_detailsInput = {

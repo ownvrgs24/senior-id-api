@@ -18,6 +18,8 @@ export class SeniorCitizenModel {
                 email: data.email || null, // Handle optional email
                 age_upon_release: parseInt(data.age_upon_release, 10), // Ensure age is an integer
                 sex_at_birth: data.sex_at_birth,
+                id_number: data.id_number, // Ensure id_number is provided
+                date_of_issuance: new Date(data.date_of_issuance), // Ensure date is in Date format
                 client_credential_assets: {
                     create: {
                         profile_picture: data.profile_picture,
@@ -25,12 +27,6 @@ export class SeniorCitizenModel {
                         left_thumbprint: data.left_thumbprint || null, // Handle optional left thumbprint
                         right_thumbprint: data.right_thumbprint || null, // Handle optional right thumbprint
                         remarks: data.remarks || null, // Handle optional remarks
-                    },
-                },
-                senior_identifier_registry: {
-                    create: {
-                        date_of_issuance: new Date(data.date_of_issuance), // Ensure date is in Date format
-                        reference_number: data.reference_number || null, // Handle optional reference number
                     },
                 },
             },
@@ -58,7 +54,6 @@ export class SeniorCitizenModel {
         return await prismaDatabase.senior_citizen_details.findMany({
             include: {
                 client_credential_assets: true,
-                senior_identifier_registry: true,
                 senior_citizen_incase_of_emergency: true, // Include emergency contacts
             },
         });
@@ -72,7 +67,6 @@ export class SeniorCitizenModel {
             },
             include: {
                 client_credential_assets: true,
-                senior_identifier_registry: true,
                 senior_citizen_incase_of_emergency: true, // Include emergency contacts
             },
         });

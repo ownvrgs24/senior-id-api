@@ -17,22 +17,23 @@ datasource db {
 model senior_citizen_details {
   recno                              Int                                  @id @default(autoincrement())
   record_id                          String                               @unique @default(uuid())
+  id_number                          String                               @unique
   first_name                         String
   middle_name                        String?
   last_name                          String
   suffix                             String?
   age_upon_release                   Int
   full_address                       String
-  sex_at_birth                       SEX_AT_BIRTH_ENUM
+  sex_at_birth                       SEX_AT_BIRTH_ENUM?
   date_of_birth                      DateTime                             @db.Date
   place_of_birth                     String?
-  civil_status                       CIVIL_STATUS_ENUM
+  civil_status                       CIVIL_STATUS_ENUM?
   contact_number                     String?
   email                              String?
   created_at                         DateTime                             @default(now())
-  updated_at                         DateTime                             @updatedAt
+  updated_at                         DateTime                             @default(now()) @updatedAt @db.Timestamp(6)
   client_credential_assets           client_credential_assets?
-  senior_identifier_registry         senior_identifier_registry?
+  date_of_issuance                   DateTime                             @db.Date
   senior_citizen_incase_of_emergency senior_citizen_incase_of_emergency[]
 }
 
@@ -44,16 +45,6 @@ model client_credential_assets {
   left_thumbprint        String?
   right_thumbprint       String?
   remarks                String?
-  created_at             DateTime                @default(now())
-  updated_at             DateTime                @updatedAt
-  senior_citizen_details senior_citizen_details? @relation(fields: [record_id], references: [record_id], onDelete: Cascade)
-}
-
-model senior_identifier_registry {
-  recno                  Int                     @id @default(autoincrement())
-  record_id              String                  @unique @default(uuid())
-  date_of_issuance       DateTime                @db.Date
-  reference_number       String?
   created_at             DateTime                @default(now())
   updated_at             DateTime                @updatedAt
   senior_citizen_details senior_citizen_details? @relation(fields: [record_id], references: [record_id], onDelete: Cascade)

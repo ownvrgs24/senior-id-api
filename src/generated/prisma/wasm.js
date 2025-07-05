@@ -123,6 +123,7 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 exports.Prisma.Senior_citizen_detailsScalarFieldEnum = {
   recno: 'recno',
   record_id: 'record_id',
+  id_number: 'id_number',
   first_name: 'first_name',
   middle_name: 'middle_name',
   last_name: 'last_name',
@@ -136,7 +137,8 @@ exports.Prisma.Senior_citizen_detailsScalarFieldEnum = {
   contact_number: 'contact_number',
   email: 'email',
   created_at: 'created_at',
-  updated_at: 'updated_at'
+  updated_at: 'updated_at',
+  date_of_issuance: 'date_of_issuance'
 };
 
 exports.Prisma.Client_credential_assetsScalarFieldEnum = {
@@ -147,15 +149,6 @@ exports.Prisma.Client_credential_assetsScalarFieldEnum = {
   left_thumbprint: 'left_thumbprint',
   right_thumbprint: 'right_thumbprint',
   remarks: 'remarks',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-};
-
-exports.Prisma.Senior_identifier_registryScalarFieldEnum = {
-  recno: 'recno',
-  record_id: 'record_id',
-  date_of_issuance: 'date_of_issuance',
-  reference_number: 'reference_number',
   created_at: 'created_at',
   updated_at: 'updated_at'
 };
@@ -186,6 +179,7 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.senior_citizen_detailsOrderByRelevanceFieldEnum = {
   record_id: 'record_id',
+  id_number: 'id_number',
   first_name: 'first_name',
   middle_name: 'middle_name',
   last_name: 'last_name',
@@ -203,11 +197,6 @@ exports.Prisma.client_credential_assetsOrderByRelevanceFieldEnum = {
   left_thumbprint: 'left_thumbprint',
   right_thumbprint: 'right_thumbprint',
   remarks: 'remarks'
-};
-
-exports.Prisma.senior_identifier_registryOrderByRelevanceFieldEnum = {
-  record_id: 'record_id',
-  reference_number: 'reference_number'
 };
 
 exports.Prisma.senior_citizen_incase_of_emergencyOrderByRelevanceFieldEnum = {
@@ -238,7 +227,6 @@ exports.CIVIL_STATUS_ENUM = exports.$Enums.CIVIL_STATUS_ENUM = {
 exports.Prisma.ModelName = {
   senior_citizen_details: 'senior_citizen_details',
   client_credential_assets: 'client_credential_assets',
-  senior_identifier_registry: 'senior_identifier_registry',
   senior_citizen_incase_of_emergency: 'senior_citizen_incase_of_emergency'
 };
 
