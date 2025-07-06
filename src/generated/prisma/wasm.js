@@ -135,6 +135,9 @@ exports.Prisma.Senior_citizen_detailsScalarFieldEnum = {
   place_of_birth: 'place_of_birth',
   civil_status: 'civil_status',
   contact_number: 'contact_number',
+  emergency_contact_name: 'emergency_contact_name',
+  emergency_contact_number: 'emergency_contact_number',
+  emergency_relationship: 'emergency_relationship',
   email: 'email',
   created_at: 'created_at',
   updated_at: 'updated_at',
@@ -146,23 +149,8 @@ exports.Prisma.Client_credential_assetsScalarFieldEnum = {
   record_id: 'record_id',
   profile_picture: 'profile_picture',
   electronic_signature: 'electronic_signature',
-  left_thumbprint: 'left_thumbprint',
-  right_thumbprint: 'right_thumbprint',
+  thumbprint: 'thumbprint',
   remarks: 'remarks',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
-};
-
-exports.Prisma.Senior_citizen_incase_of_emergencyScalarFieldEnum = {
-  recno: 'recno',
-  record_id: 'record_id',
-  first_name: 'first_name',
-  middle_name: 'middle_name',
-  last_name: 'last_name',
-  suffix: 'suffix',
-  contact_number: 'contact_number',
-  email: 'email',
-  relationship_to_senior: 'relationship_to_senior',
   created_at: 'created_at',
   updated_at: 'updated_at'
 };
@@ -187,6 +175,9 @@ exports.Prisma.senior_citizen_detailsOrderByRelevanceFieldEnum = {
   full_address: 'full_address',
   place_of_birth: 'place_of_birth',
   contact_number: 'contact_number',
+  emergency_contact_name: 'emergency_contact_name',
+  emergency_contact_number: 'emergency_contact_number',
+  emergency_relationship: 'emergency_relationship',
   email: 'email'
 };
 
@@ -194,20 +185,8 @@ exports.Prisma.client_credential_assetsOrderByRelevanceFieldEnum = {
   record_id: 'record_id',
   profile_picture: 'profile_picture',
   electronic_signature: 'electronic_signature',
-  left_thumbprint: 'left_thumbprint',
-  right_thumbprint: 'right_thumbprint',
+  thumbprint: 'thumbprint',
   remarks: 'remarks'
-};
-
-exports.Prisma.senior_citizen_incase_of_emergencyOrderByRelevanceFieldEnum = {
-  record_id: 'record_id',
-  first_name: 'first_name',
-  middle_name: 'middle_name',
-  last_name: 'last_name',
-  suffix: 'suffix',
-  contact_number: 'contact_number',
-  email: 'email',
-  relationship_to_senior: 'relationship_to_senior'
 };
 exports.SEX_AT_BIRTH_ENUM = exports.$Enums.SEX_AT_BIRTH_ENUM = {
   FEMALE: 'FEMALE',
@@ -226,8 +205,7 @@ exports.CIVIL_STATUS_ENUM = exports.$Enums.CIVIL_STATUS_ENUM = {
 
 exports.Prisma.ModelName = {
   senior_citizen_details: 'senior_citizen_details',
-  client_credential_assets: 'client_credential_assets',
-  senior_citizen_incase_of_emergency: 'senior_citizen_incase_of_emergency'
+  client_credential_assets: 'client_credential_assets'
 };
 
 /**

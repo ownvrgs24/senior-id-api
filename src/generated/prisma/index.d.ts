@@ -23,11 +23,6 @@ export type senior_citizen_details = $Result.DefaultSelection<Prisma.$senior_cit
  * 
  */
 export type client_credential_assets = $Result.DefaultSelection<Prisma.$client_credential_assetsPayload>
-/**
- * Model senior_citizen_incase_of_emergency
- * 
- */
-export type senior_citizen_incase_of_emergency = $Result.DefaultSelection<Prisma.$senior_citizen_incase_of_emergencyPayload>
 
 /**
  * Enums
@@ -207,16 +202,6 @@ export class PrismaClient<
     * ```
     */
   get client_credential_assets(): Prisma.client_credential_assetsDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.senior_citizen_incase_of_emergency`: Exposes CRUD operations for the **senior_citizen_incase_of_emergency** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Senior_citizen_incase_of_emergencies
-    * const senior_citizen_incase_of_emergencies = await prisma.senior_citizen_incase_of_emergency.findMany()
-    * ```
-    */
-  get senior_citizen_incase_of_emergency(): Prisma.senior_citizen_incase_of_emergencyDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -658,8 +643,7 @@ export namespace Prisma {
 
   export const ModelName: {
     senior_citizen_details: 'senior_citizen_details',
-    client_credential_assets: 'client_credential_assets',
-    senior_citizen_incase_of_emergency: 'senior_citizen_incase_of_emergency'
+    client_credential_assets: 'client_credential_assets'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -678,7 +662,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "senior_citizen_details" | "client_credential_assets" | "senior_citizen_incase_of_emergency"
+      modelProps: "senior_citizen_details" | "client_credential_assets"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -814,72 +798,6 @@ export namespace Prisma {
           }
         }
       }
-      senior_citizen_incase_of_emergency: {
-        payload: Prisma.$senior_citizen_incase_of_emergencyPayload<ExtArgs>
-        fields: Prisma.senior_citizen_incase_of_emergencyFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.senior_citizen_incase_of_emergencyFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$senior_citizen_incase_of_emergencyPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.senior_citizen_incase_of_emergencyFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$senior_citizen_incase_of_emergencyPayload>
-          }
-          findFirst: {
-            args: Prisma.senior_citizen_incase_of_emergencyFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$senior_citizen_incase_of_emergencyPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.senior_citizen_incase_of_emergencyFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$senior_citizen_incase_of_emergencyPayload>
-          }
-          findMany: {
-            args: Prisma.senior_citizen_incase_of_emergencyFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$senior_citizen_incase_of_emergencyPayload>[]
-          }
-          create: {
-            args: Prisma.senior_citizen_incase_of_emergencyCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$senior_citizen_incase_of_emergencyPayload>
-          }
-          createMany: {
-            args: Prisma.senior_citizen_incase_of_emergencyCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          delete: {
-            args: Prisma.senior_citizen_incase_of_emergencyDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$senior_citizen_incase_of_emergencyPayload>
-          }
-          update: {
-            args: Prisma.senior_citizen_incase_of_emergencyUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$senior_citizen_incase_of_emergencyPayload>
-          }
-          deleteMany: {
-            args: Prisma.senior_citizen_incase_of_emergencyDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.senior_citizen_incase_of_emergencyUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          upsert: {
-            args: Prisma.senior_citizen_incase_of_emergencyUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$senior_citizen_incase_of_emergencyPayload>
-          }
-          aggregate: {
-            args: Prisma.Senior_citizen_incase_of_emergencyAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateSenior_citizen_incase_of_emergency>
-          }
-          groupBy: {
-            args: Prisma.senior_citizen_incase_of_emergencyGroupByArgs<ExtArgs>
-            result: $Utils.Optional<Senior_citizen_incase_of_emergencyGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.senior_citizen_incase_of_emergencyCountArgs<ExtArgs>
-            result: $Utils.Optional<Senior_citizen_incase_of_emergencyCountAggregateOutputType> | number
-          }
-        }
-      }
     }
   } & {
     other: {
@@ -966,7 +884,6 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     senior_citizen_details?: senior_citizen_detailsOmit
     client_credential_assets?: client_credential_assetsOmit
-    senior_citizen_incase_of_emergency?: senior_citizen_incase_of_emergencyOmit
   }
 
   /* Types for Logging */
@@ -1056,36 +973,6 @@ export namespace Prisma {
    */
 
 
-  /**
-   * Count Type Senior_citizen_detailsCountOutputType
-   */
-
-  export type Senior_citizen_detailsCountOutputType = {
-    senior_citizen_incase_of_emergency: number
-  }
-
-  export type Senior_citizen_detailsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    senior_citizen_incase_of_emergency?: boolean | Senior_citizen_detailsCountOutputTypeCountSenior_citizen_incase_of_emergencyArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * Senior_citizen_detailsCountOutputType without action
-   */
-  export type Senior_citizen_detailsCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Senior_citizen_detailsCountOutputType
-     */
-    select?: Senior_citizen_detailsCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * Senior_citizen_detailsCountOutputType without action
-   */
-  export type Senior_citizen_detailsCountOutputTypeCountSenior_citizen_incase_of_emergencyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: senior_citizen_incase_of_emergencyWhereInput
-  }
-
 
   /**
    * Models
@@ -1128,6 +1015,9 @@ export namespace Prisma {
     place_of_birth: string | null
     civil_status: $Enums.CIVIL_STATUS_ENUM | null
     contact_number: string | null
+    emergency_contact_name: string | null
+    emergency_contact_number: string | null
+    emergency_relationship: string | null
     email: string | null
     created_at: Date | null
     updated_at: Date | null
@@ -1149,6 +1039,9 @@ export namespace Prisma {
     place_of_birth: string | null
     civil_status: $Enums.CIVIL_STATUS_ENUM | null
     contact_number: string | null
+    emergency_contact_name: string | null
+    emergency_contact_number: string | null
+    emergency_relationship: string | null
     email: string | null
     created_at: Date | null
     updated_at: Date | null
@@ -1170,6 +1063,9 @@ export namespace Prisma {
     place_of_birth: number
     civil_status: number
     contact_number: number
+    emergency_contact_name: number
+    emergency_contact_number: number
+    emergency_relationship: number
     email: number
     created_at: number
     updated_at: number
@@ -1203,6 +1099,9 @@ export namespace Prisma {
     place_of_birth?: true
     civil_status?: true
     contact_number?: true
+    emergency_contact_name?: true
+    emergency_contact_number?: true
+    emergency_relationship?: true
     email?: true
     created_at?: true
     updated_at?: true
@@ -1224,6 +1123,9 @@ export namespace Prisma {
     place_of_birth?: true
     civil_status?: true
     contact_number?: true
+    emergency_contact_name?: true
+    emergency_contact_number?: true
+    emergency_relationship?: true
     email?: true
     created_at?: true
     updated_at?: true
@@ -1245,6 +1147,9 @@ export namespace Prisma {
     place_of_birth?: true
     civil_status?: true
     contact_number?: true
+    emergency_contact_name?: true
+    emergency_contact_number?: true
+    emergency_relationship?: true
     email?: true
     created_at?: true
     updated_at?: true
@@ -1353,6 +1258,9 @@ export namespace Prisma {
     place_of_birth: string | null
     civil_status: $Enums.CIVIL_STATUS_ENUM | null
     contact_number: string | null
+    emergency_contact_name: string | null
+    emergency_contact_number: string | null
+    emergency_relationship: string | null
     email: string | null
     created_at: Date
     updated_at: Date
@@ -1393,13 +1301,14 @@ export namespace Prisma {
     place_of_birth?: boolean
     civil_status?: boolean
     contact_number?: boolean
+    emergency_contact_name?: boolean
+    emergency_contact_number?: boolean
+    emergency_relationship?: boolean
     email?: boolean
     created_at?: boolean
     updated_at?: boolean
     date_of_issuance?: boolean
     client_credential_assets?: boolean | senior_citizen_details$client_credential_assetsArgs<ExtArgs>
-    senior_citizen_incase_of_emergency?: boolean | senior_citizen_details$senior_citizen_incase_of_emergencyArgs<ExtArgs>
-    _count?: boolean | Senior_citizen_detailsCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["senior_citizen_details"]>
 
 
@@ -1419,24 +1328,24 @@ export namespace Prisma {
     place_of_birth?: boolean
     civil_status?: boolean
     contact_number?: boolean
+    emergency_contact_name?: boolean
+    emergency_contact_number?: boolean
+    emergency_relationship?: boolean
     email?: boolean
     created_at?: boolean
     updated_at?: boolean
     date_of_issuance?: boolean
   }
 
-  export type senior_citizen_detailsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"recno" | "record_id" | "id_number" | "first_name" | "middle_name" | "last_name" | "suffix" | "age_upon_release" | "full_address" | "sex_at_birth" | "date_of_birth" | "place_of_birth" | "civil_status" | "contact_number" | "email" | "created_at" | "updated_at" | "date_of_issuance", ExtArgs["result"]["senior_citizen_details"]>
+  export type senior_citizen_detailsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"recno" | "record_id" | "id_number" | "first_name" | "middle_name" | "last_name" | "suffix" | "age_upon_release" | "full_address" | "sex_at_birth" | "date_of_birth" | "place_of_birth" | "civil_status" | "contact_number" | "emergency_contact_name" | "emergency_contact_number" | "emergency_relationship" | "email" | "created_at" | "updated_at" | "date_of_issuance", ExtArgs["result"]["senior_citizen_details"]>
   export type senior_citizen_detailsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     client_credential_assets?: boolean | senior_citizen_details$client_credential_assetsArgs<ExtArgs>
-    senior_citizen_incase_of_emergency?: boolean | senior_citizen_details$senior_citizen_incase_of_emergencyArgs<ExtArgs>
-    _count?: boolean | Senior_citizen_detailsCountOutputTypeDefaultArgs<ExtArgs>
   }
 
   export type $senior_citizen_detailsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "senior_citizen_details"
     objects: {
       client_credential_assets: Prisma.$client_credential_assetsPayload<ExtArgs> | null
-      senior_citizen_incase_of_emergency: Prisma.$senior_citizen_incase_of_emergencyPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       recno: number
@@ -1453,6 +1362,9 @@ export namespace Prisma {
       place_of_birth: string | null
       civil_status: $Enums.CIVIL_STATUS_ENUM | null
       contact_number: string | null
+      emergency_contact_name: string | null
+      emergency_contact_number: string | null
+      emergency_relationship: string | null
       email: string | null
       created_at: Date
       updated_at: Date
@@ -1798,7 +1710,6 @@ export namespace Prisma {
   export interface Prisma__senior_citizen_detailsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     client_credential_assets<T extends senior_citizen_details$client_credential_assetsArgs<ExtArgs> = {}>(args?: Subset<T, senior_citizen_details$client_credential_assetsArgs<ExtArgs>>): Prisma__client_credential_assetsClient<$Result.GetResult<Prisma.$client_credential_assetsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    senior_citizen_incase_of_emergency<T extends senior_citizen_details$senior_citizen_incase_of_emergencyArgs<ExtArgs> = {}>(args?: Subset<T, senior_citizen_details$senior_citizen_incase_of_emergencyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$senior_citizen_incase_of_emergencyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1842,6 +1753,9 @@ export namespace Prisma {
     readonly place_of_birth: FieldRef<"senior_citizen_details", 'String'>
     readonly civil_status: FieldRef<"senior_citizen_details", 'CIVIL_STATUS_ENUM'>
     readonly contact_number: FieldRef<"senior_citizen_details", 'String'>
+    readonly emergency_contact_name: FieldRef<"senior_citizen_details", 'String'>
+    readonly emergency_contact_number: FieldRef<"senior_citizen_details", 'String'>
+    readonly emergency_relationship: FieldRef<"senior_citizen_details", 'String'>
     readonly email: FieldRef<"senior_citizen_details", 'String'>
     readonly created_at: FieldRef<"senior_citizen_details", 'DateTime'>
     readonly updated_at: FieldRef<"senior_citizen_details", 'DateTime'>
@@ -2208,30 +2122,6 @@ export namespace Prisma {
   }
 
   /**
-   * senior_citizen_details.senior_citizen_incase_of_emergency
-   */
-  export type senior_citizen_details$senior_citizen_incase_of_emergencyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the senior_citizen_incase_of_emergency
-     */
-    select?: senior_citizen_incase_of_emergencySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the senior_citizen_incase_of_emergency
-     */
-    omit?: senior_citizen_incase_of_emergencyOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: senior_citizen_incase_of_emergencyInclude<ExtArgs> | null
-    where?: senior_citizen_incase_of_emergencyWhereInput
-    orderBy?: senior_citizen_incase_of_emergencyOrderByWithRelationInput | senior_citizen_incase_of_emergencyOrderByWithRelationInput[]
-    cursor?: senior_citizen_incase_of_emergencyWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: Senior_citizen_incase_of_emergencyScalarFieldEnum | Senior_citizen_incase_of_emergencyScalarFieldEnum[]
-  }
-
-  /**
    * senior_citizen_details without action
    */
   export type senior_citizen_detailsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2275,8 +2165,7 @@ export namespace Prisma {
     record_id: string | null
     profile_picture: string | null
     electronic_signature: string | null
-    left_thumbprint: string | null
-    right_thumbprint: string | null
+    thumbprint: string | null
     remarks: string | null
     created_at: Date | null
     updated_at: Date | null
@@ -2287,8 +2176,7 @@ export namespace Prisma {
     record_id: string | null
     profile_picture: string | null
     electronic_signature: string | null
-    left_thumbprint: string | null
-    right_thumbprint: string | null
+    thumbprint: string | null
     remarks: string | null
     created_at: Date | null
     updated_at: Date | null
@@ -2299,8 +2187,7 @@ export namespace Prisma {
     record_id: number
     profile_picture: number
     electronic_signature: number
-    left_thumbprint: number
-    right_thumbprint: number
+    thumbprint: number
     remarks: number
     created_at: number
     updated_at: number
@@ -2321,8 +2208,7 @@ export namespace Prisma {
     record_id?: true
     profile_picture?: true
     electronic_signature?: true
-    left_thumbprint?: true
-    right_thumbprint?: true
+    thumbprint?: true
     remarks?: true
     created_at?: true
     updated_at?: true
@@ -2333,8 +2219,7 @@ export namespace Prisma {
     record_id?: true
     profile_picture?: true
     electronic_signature?: true
-    left_thumbprint?: true
-    right_thumbprint?: true
+    thumbprint?: true
     remarks?: true
     created_at?: true
     updated_at?: true
@@ -2345,8 +2230,7 @@ export namespace Prisma {
     record_id?: true
     profile_picture?: true
     electronic_signature?: true
-    left_thumbprint?: true
-    right_thumbprint?: true
+    thumbprint?: true
     remarks?: true
     created_at?: true
     updated_at?: true
@@ -2443,9 +2327,8 @@ export namespace Prisma {
     recno: number
     record_id: string
     profile_picture: string
-    electronic_signature: string
-    left_thumbprint: string | null
-    right_thumbprint: string | null
+    electronic_signature: string | null
+    thumbprint: string | null
     remarks: string | null
     created_at: Date
     updated_at: Date
@@ -2475,8 +2358,7 @@ export namespace Prisma {
     record_id?: boolean
     profile_picture?: boolean
     electronic_signature?: boolean
-    left_thumbprint?: boolean
-    right_thumbprint?: boolean
+    thumbprint?: boolean
     remarks?: boolean
     created_at?: boolean
     updated_at?: boolean
@@ -2490,14 +2372,13 @@ export namespace Prisma {
     record_id?: boolean
     profile_picture?: boolean
     electronic_signature?: boolean
-    left_thumbprint?: boolean
-    right_thumbprint?: boolean
+    thumbprint?: boolean
     remarks?: boolean
     created_at?: boolean
     updated_at?: boolean
   }
 
-  export type client_credential_assetsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"recno" | "record_id" | "profile_picture" | "electronic_signature" | "left_thumbprint" | "right_thumbprint" | "remarks" | "created_at" | "updated_at", ExtArgs["result"]["client_credential_assets"]>
+  export type client_credential_assetsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"recno" | "record_id" | "profile_picture" | "electronic_signature" | "thumbprint" | "remarks" | "created_at" | "updated_at", ExtArgs["result"]["client_credential_assets"]>
   export type client_credential_assetsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     senior_citizen_details?: boolean | client_credential_assets$senior_citizen_detailsArgs<ExtArgs>
   }
@@ -2511,9 +2392,8 @@ export namespace Prisma {
       recno: number
       record_id: string
       profile_picture: string
-      electronic_signature: string
-      left_thumbprint: string | null
-      right_thumbprint: string | null
+      electronic_signature: string | null
+      thumbprint: string | null
       remarks: string | null
       created_at: Date
       updated_at: Date
@@ -2891,8 +2771,7 @@ export namespace Prisma {
     readonly record_id: FieldRef<"client_credential_assets", 'String'>
     readonly profile_picture: FieldRef<"client_credential_assets", 'String'>
     readonly electronic_signature: FieldRef<"client_credential_assets", 'String'>
-    readonly left_thumbprint: FieldRef<"client_credential_assets", 'String'>
-    readonly right_thumbprint: FieldRef<"client_credential_assets", 'String'>
+    readonly thumbprint: FieldRef<"client_credential_assets", 'String'>
     readonly remarks: FieldRef<"client_credential_assets", 'String'>
     readonly created_at: FieldRef<"client_credential_assets", 'DateTime'>
     readonly updated_at: FieldRef<"client_credential_assets", 'DateTime'>
@@ -3277,1054 +3156,6 @@ export namespace Prisma {
 
 
   /**
-   * Model senior_citizen_incase_of_emergency
-   */
-
-  export type AggregateSenior_citizen_incase_of_emergency = {
-    _count: Senior_citizen_incase_of_emergencyCountAggregateOutputType | null
-    _avg: Senior_citizen_incase_of_emergencyAvgAggregateOutputType | null
-    _sum: Senior_citizen_incase_of_emergencySumAggregateOutputType | null
-    _min: Senior_citizen_incase_of_emergencyMinAggregateOutputType | null
-    _max: Senior_citizen_incase_of_emergencyMaxAggregateOutputType | null
-  }
-
-  export type Senior_citizen_incase_of_emergencyAvgAggregateOutputType = {
-    recno: number | null
-  }
-
-  export type Senior_citizen_incase_of_emergencySumAggregateOutputType = {
-    recno: number | null
-  }
-
-  export type Senior_citizen_incase_of_emergencyMinAggregateOutputType = {
-    recno: number | null
-    record_id: string | null
-    first_name: string | null
-    middle_name: string | null
-    last_name: string | null
-    suffix: string | null
-    contact_number: string | null
-    email: string | null
-    relationship_to_senior: string | null
-    created_at: Date | null
-    updated_at: Date | null
-  }
-
-  export type Senior_citizen_incase_of_emergencyMaxAggregateOutputType = {
-    recno: number | null
-    record_id: string | null
-    first_name: string | null
-    middle_name: string | null
-    last_name: string | null
-    suffix: string | null
-    contact_number: string | null
-    email: string | null
-    relationship_to_senior: string | null
-    created_at: Date | null
-    updated_at: Date | null
-  }
-
-  export type Senior_citizen_incase_of_emergencyCountAggregateOutputType = {
-    recno: number
-    record_id: number
-    first_name: number
-    middle_name: number
-    last_name: number
-    suffix: number
-    contact_number: number
-    email: number
-    relationship_to_senior: number
-    created_at: number
-    updated_at: number
-    _all: number
-  }
-
-
-  export type Senior_citizen_incase_of_emergencyAvgAggregateInputType = {
-    recno?: true
-  }
-
-  export type Senior_citizen_incase_of_emergencySumAggregateInputType = {
-    recno?: true
-  }
-
-  export type Senior_citizen_incase_of_emergencyMinAggregateInputType = {
-    recno?: true
-    record_id?: true
-    first_name?: true
-    middle_name?: true
-    last_name?: true
-    suffix?: true
-    contact_number?: true
-    email?: true
-    relationship_to_senior?: true
-    created_at?: true
-    updated_at?: true
-  }
-
-  export type Senior_citizen_incase_of_emergencyMaxAggregateInputType = {
-    recno?: true
-    record_id?: true
-    first_name?: true
-    middle_name?: true
-    last_name?: true
-    suffix?: true
-    contact_number?: true
-    email?: true
-    relationship_to_senior?: true
-    created_at?: true
-    updated_at?: true
-  }
-
-  export type Senior_citizen_incase_of_emergencyCountAggregateInputType = {
-    recno?: true
-    record_id?: true
-    first_name?: true
-    middle_name?: true
-    last_name?: true
-    suffix?: true
-    contact_number?: true
-    email?: true
-    relationship_to_senior?: true
-    created_at?: true
-    updated_at?: true
-    _all?: true
-  }
-
-  export type Senior_citizen_incase_of_emergencyAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which senior_citizen_incase_of_emergency to aggregate.
-     */
-    where?: senior_citizen_incase_of_emergencyWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of senior_citizen_incase_of_emergencies to fetch.
-     */
-    orderBy?: senior_citizen_incase_of_emergencyOrderByWithRelationInput | senior_citizen_incase_of_emergencyOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: senior_citizen_incase_of_emergencyWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` senior_citizen_incase_of_emergencies from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` senior_citizen_incase_of_emergencies.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned senior_citizen_incase_of_emergencies
-    **/
-    _count?: true | Senior_citizen_incase_of_emergencyCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: Senior_citizen_incase_of_emergencyAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: Senior_citizen_incase_of_emergencySumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: Senior_citizen_incase_of_emergencyMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: Senior_citizen_incase_of_emergencyMaxAggregateInputType
-  }
-
-  export type GetSenior_citizen_incase_of_emergencyAggregateType<T extends Senior_citizen_incase_of_emergencyAggregateArgs> = {
-        [P in keyof T & keyof AggregateSenior_citizen_incase_of_emergency]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateSenior_citizen_incase_of_emergency[P]>
-      : GetScalarType<T[P], AggregateSenior_citizen_incase_of_emergency[P]>
-  }
-
-
-
-
-  export type senior_citizen_incase_of_emergencyGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: senior_citizen_incase_of_emergencyWhereInput
-    orderBy?: senior_citizen_incase_of_emergencyOrderByWithAggregationInput | senior_citizen_incase_of_emergencyOrderByWithAggregationInput[]
-    by: Senior_citizen_incase_of_emergencyScalarFieldEnum[] | Senior_citizen_incase_of_emergencyScalarFieldEnum
-    having?: senior_citizen_incase_of_emergencyScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: Senior_citizen_incase_of_emergencyCountAggregateInputType | true
-    _avg?: Senior_citizen_incase_of_emergencyAvgAggregateInputType
-    _sum?: Senior_citizen_incase_of_emergencySumAggregateInputType
-    _min?: Senior_citizen_incase_of_emergencyMinAggregateInputType
-    _max?: Senior_citizen_incase_of_emergencyMaxAggregateInputType
-  }
-
-  export type Senior_citizen_incase_of_emergencyGroupByOutputType = {
-    recno: number
-    record_id: string
-    first_name: string
-    middle_name: string | null
-    last_name: string
-    suffix: string | null
-    contact_number: string | null
-    email: string | null
-    relationship_to_senior: string | null
-    created_at: Date
-    updated_at: Date
-    _count: Senior_citizen_incase_of_emergencyCountAggregateOutputType | null
-    _avg: Senior_citizen_incase_of_emergencyAvgAggregateOutputType | null
-    _sum: Senior_citizen_incase_of_emergencySumAggregateOutputType | null
-    _min: Senior_citizen_incase_of_emergencyMinAggregateOutputType | null
-    _max: Senior_citizen_incase_of_emergencyMaxAggregateOutputType | null
-  }
-
-  type GetSenior_citizen_incase_of_emergencyGroupByPayload<T extends senior_citizen_incase_of_emergencyGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<Senior_citizen_incase_of_emergencyGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof Senior_citizen_incase_of_emergencyGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], Senior_citizen_incase_of_emergencyGroupByOutputType[P]>
-            : GetScalarType<T[P], Senior_citizen_incase_of_emergencyGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type senior_citizen_incase_of_emergencySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    recno?: boolean
-    record_id?: boolean
-    first_name?: boolean
-    middle_name?: boolean
-    last_name?: boolean
-    suffix?: boolean
-    contact_number?: boolean
-    email?: boolean
-    relationship_to_senior?: boolean
-    created_at?: boolean
-    updated_at?: boolean
-    senior_citizen_details?: boolean | senior_citizen_incase_of_emergency$senior_citizen_detailsArgs<ExtArgs>
-  }, ExtArgs["result"]["senior_citizen_incase_of_emergency"]>
-
-
-
-  export type senior_citizen_incase_of_emergencySelectScalar = {
-    recno?: boolean
-    record_id?: boolean
-    first_name?: boolean
-    middle_name?: boolean
-    last_name?: boolean
-    suffix?: boolean
-    contact_number?: boolean
-    email?: boolean
-    relationship_to_senior?: boolean
-    created_at?: boolean
-    updated_at?: boolean
-  }
-
-  export type senior_citizen_incase_of_emergencyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"recno" | "record_id" | "first_name" | "middle_name" | "last_name" | "suffix" | "contact_number" | "email" | "relationship_to_senior" | "created_at" | "updated_at", ExtArgs["result"]["senior_citizen_incase_of_emergency"]>
-  export type senior_citizen_incase_of_emergencyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    senior_citizen_details?: boolean | senior_citizen_incase_of_emergency$senior_citizen_detailsArgs<ExtArgs>
-  }
-
-  export type $senior_citizen_incase_of_emergencyPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "senior_citizen_incase_of_emergency"
-    objects: {
-      senior_citizen_details: Prisma.$senior_citizen_detailsPayload<ExtArgs> | null
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      recno: number
-      record_id: string
-      first_name: string
-      middle_name: string | null
-      last_name: string
-      suffix: string | null
-      contact_number: string | null
-      email: string | null
-      relationship_to_senior: string | null
-      created_at: Date
-      updated_at: Date
-    }, ExtArgs["result"]["senior_citizen_incase_of_emergency"]>
-    composites: {}
-  }
-
-  type senior_citizen_incase_of_emergencyGetPayload<S extends boolean | null | undefined | senior_citizen_incase_of_emergencyDefaultArgs> = $Result.GetResult<Prisma.$senior_citizen_incase_of_emergencyPayload, S>
-
-  type senior_citizen_incase_of_emergencyCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<senior_citizen_incase_of_emergencyFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: Senior_citizen_incase_of_emergencyCountAggregateInputType | true
-    }
-
-  export interface senior_citizen_incase_of_emergencyDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['senior_citizen_incase_of_emergency'], meta: { name: 'senior_citizen_incase_of_emergency' } }
-    /**
-     * Find zero or one Senior_citizen_incase_of_emergency that matches the filter.
-     * @param {senior_citizen_incase_of_emergencyFindUniqueArgs} args - Arguments to find a Senior_citizen_incase_of_emergency
-     * @example
-     * // Get one Senior_citizen_incase_of_emergency
-     * const senior_citizen_incase_of_emergency = await prisma.senior_citizen_incase_of_emergency.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends senior_citizen_incase_of_emergencyFindUniqueArgs>(args: SelectSubset<T, senior_citizen_incase_of_emergencyFindUniqueArgs<ExtArgs>>): Prisma__senior_citizen_incase_of_emergencyClient<$Result.GetResult<Prisma.$senior_citizen_incase_of_emergencyPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one Senior_citizen_incase_of_emergency that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {senior_citizen_incase_of_emergencyFindUniqueOrThrowArgs} args - Arguments to find a Senior_citizen_incase_of_emergency
-     * @example
-     * // Get one Senior_citizen_incase_of_emergency
-     * const senior_citizen_incase_of_emergency = await prisma.senior_citizen_incase_of_emergency.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends senior_citizen_incase_of_emergencyFindUniqueOrThrowArgs>(args: SelectSubset<T, senior_citizen_incase_of_emergencyFindUniqueOrThrowArgs<ExtArgs>>): Prisma__senior_citizen_incase_of_emergencyClient<$Result.GetResult<Prisma.$senior_citizen_incase_of_emergencyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Senior_citizen_incase_of_emergency that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {senior_citizen_incase_of_emergencyFindFirstArgs} args - Arguments to find a Senior_citizen_incase_of_emergency
-     * @example
-     * // Get one Senior_citizen_incase_of_emergency
-     * const senior_citizen_incase_of_emergency = await prisma.senior_citizen_incase_of_emergency.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends senior_citizen_incase_of_emergencyFindFirstArgs>(args?: SelectSubset<T, senior_citizen_incase_of_emergencyFindFirstArgs<ExtArgs>>): Prisma__senior_citizen_incase_of_emergencyClient<$Result.GetResult<Prisma.$senior_citizen_incase_of_emergencyPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Senior_citizen_incase_of_emergency that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {senior_citizen_incase_of_emergencyFindFirstOrThrowArgs} args - Arguments to find a Senior_citizen_incase_of_emergency
-     * @example
-     * // Get one Senior_citizen_incase_of_emergency
-     * const senior_citizen_incase_of_emergency = await prisma.senior_citizen_incase_of_emergency.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends senior_citizen_incase_of_emergencyFindFirstOrThrowArgs>(args?: SelectSubset<T, senior_citizen_incase_of_emergencyFindFirstOrThrowArgs<ExtArgs>>): Prisma__senior_citizen_incase_of_emergencyClient<$Result.GetResult<Prisma.$senior_citizen_incase_of_emergencyPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more Senior_citizen_incase_of_emergencies that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {senior_citizen_incase_of_emergencyFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Senior_citizen_incase_of_emergencies
-     * const senior_citizen_incase_of_emergencies = await prisma.senior_citizen_incase_of_emergency.findMany()
-     * 
-     * // Get first 10 Senior_citizen_incase_of_emergencies
-     * const senior_citizen_incase_of_emergencies = await prisma.senior_citizen_incase_of_emergency.findMany({ take: 10 })
-     * 
-     * // Only select the `recno`
-     * const senior_citizen_incase_of_emergencyWithRecnoOnly = await prisma.senior_citizen_incase_of_emergency.findMany({ select: { recno: true } })
-     * 
-     */
-    findMany<T extends senior_citizen_incase_of_emergencyFindManyArgs>(args?: SelectSubset<T, senior_citizen_incase_of_emergencyFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$senior_citizen_incase_of_emergencyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a Senior_citizen_incase_of_emergency.
-     * @param {senior_citizen_incase_of_emergencyCreateArgs} args - Arguments to create a Senior_citizen_incase_of_emergency.
-     * @example
-     * // Create one Senior_citizen_incase_of_emergency
-     * const Senior_citizen_incase_of_emergency = await prisma.senior_citizen_incase_of_emergency.create({
-     *   data: {
-     *     // ... data to create a Senior_citizen_incase_of_emergency
-     *   }
-     * })
-     * 
-     */
-    create<T extends senior_citizen_incase_of_emergencyCreateArgs>(args: SelectSubset<T, senior_citizen_incase_of_emergencyCreateArgs<ExtArgs>>): Prisma__senior_citizen_incase_of_emergencyClient<$Result.GetResult<Prisma.$senior_citizen_incase_of_emergencyPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many Senior_citizen_incase_of_emergencies.
-     * @param {senior_citizen_incase_of_emergencyCreateManyArgs} args - Arguments to create many Senior_citizen_incase_of_emergencies.
-     * @example
-     * // Create many Senior_citizen_incase_of_emergencies
-     * const senior_citizen_incase_of_emergency = await prisma.senior_citizen_incase_of_emergency.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends senior_citizen_incase_of_emergencyCreateManyArgs>(args?: SelectSubset<T, senior_citizen_incase_of_emergencyCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a Senior_citizen_incase_of_emergency.
-     * @param {senior_citizen_incase_of_emergencyDeleteArgs} args - Arguments to delete one Senior_citizen_incase_of_emergency.
-     * @example
-     * // Delete one Senior_citizen_incase_of_emergency
-     * const Senior_citizen_incase_of_emergency = await prisma.senior_citizen_incase_of_emergency.delete({
-     *   where: {
-     *     // ... filter to delete one Senior_citizen_incase_of_emergency
-     *   }
-     * })
-     * 
-     */
-    delete<T extends senior_citizen_incase_of_emergencyDeleteArgs>(args: SelectSubset<T, senior_citizen_incase_of_emergencyDeleteArgs<ExtArgs>>): Prisma__senior_citizen_incase_of_emergencyClient<$Result.GetResult<Prisma.$senior_citizen_incase_of_emergencyPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one Senior_citizen_incase_of_emergency.
-     * @param {senior_citizen_incase_of_emergencyUpdateArgs} args - Arguments to update one Senior_citizen_incase_of_emergency.
-     * @example
-     * // Update one Senior_citizen_incase_of_emergency
-     * const senior_citizen_incase_of_emergency = await prisma.senior_citizen_incase_of_emergency.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends senior_citizen_incase_of_emergencyUpdateArgs>(args: SelectSubset<T, senior_citizen_incase_of_emergencyUpdateArgs<ExtArgs>>): Prisma__senior_citizen_incase_of_emergencyClient<$Result.GetResult<Prisma.$senior_citizen_incase_of_emergencyPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more Senior_citizen_incase_of_emergencies.
-     * @param {senior_citizen_incase_of_emergencyDeleteManyArgs} args - Arguments to filter Senior_citizen_incase_of_emergencies to delete.
-     * @example
-     * // Delete a few Senior_citizen_incase_of_emergencies
-     * const { count } = await prisma.senior_citizen_incase_of_emergency.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends senior_citizen_incase_of_emergencyDeleteManyArgs>(args?: SelectSubset<T, senior_citizen_incase_of_emergencyDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Senior_citizen_incase_of_emergencies.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {senior_citizen_incase_of_emergencyUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Senior_citizen_incase_of_emergencies
-     * const senior_citizen_incase_of_emergency = await prisma.senior_citizen_incase_of_emergency.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends senior_citizen_incase_of_emergencyUpdateManyArgs>(args: SelectSubset<T, senior_citizen_incase_of_emergencyUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one Senior_citizen_incase_of_emergency.
-     * @param {senior_citizen_incase_of_emergencyUpsertArgs} args - Arguments to update or create a Senior_citizen_incase_of_emergency.
-     * @example
-     * // Update or create a Senior_citizen_incase_of_emergency
-     * const senior_citizen_incase_of_emergency = await prisma.senior_citizen_incase_of_emergency.upsert({
-     *   create: {
-     *     // ... data to create a Senior_citizen_incase_of_emergency
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Senior_citizen_incase_of_emergency we want to update
-     *   }
-     * })
-     */
-    upsert<T extends senior_citizen_incase_of_emergencyUpsertArgs>(args: SelectSubset<T, senior_citizen_incase_of_emergencyUpsertArgs<ExtArgs>>): Prisma__senior_citizen_incase_of_emergencyClient<$Result.GetResult<Prisma.$senior_citizen_incase_of_emergencyPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of Senior_citizen_incase_of_emergencies.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {senior_citizen_incase_of_emergencyCountArgs} args - Arguments to filter Senior_citizen_incase_of_emergencies to count.
-     * @example
-     * // Count the number of Senior_citizen_incase_of_emergencies
-     * const count = await prisma.senior_citizen_incase_of_emergency.count({
-     *   where: {
-     *     // ... the filter for the Senior_citizen_incase_of_emergencies we want to count
-     *   }
-     * })
-    **/
-    count<T extends senior_citizen_incase_of_emergencyCountArgs>(
-      args?: Subset<T, senior_citizen_incase_of_emergencyCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], Senior_citizen_incase_of_emergencyCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Senior_citizen_incase_of_emergency.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {Senior_citizen_incase_of_emergencyAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends Senior_citizen_incase_of_emergencyAggregateArgs>(args: Subset<T, Senior_citizen_incase_of_emergencyAggregateArgs>): Prisma.PrismaPromise<GetSenior_citizen_incase_of_emergencyAggregateType<T>>
-
-    /**
-     * Group by Senior_citizen_incase_of_emergency.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {senior_citizen_incase_of_emergencyGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends senior_citizen_incase_of_emergencyGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: senior_citizen_incase_of_emergencyGroupByArgs['orderBy'] }
-        : { orderBy?: senior_citizen_incase_of_emergencyGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, senior_citizen_incase_of_emergencyGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSenior_citizen_incase_of_emergencyGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the senior_citizen_incase_of_emergency model
-   */
-  readonly fields: senior_citizen_incase_of_emergencyFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for senior_citizen_incase_of_emergency.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__senior_citizen_incase_of_emergencyClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    senior_citizen_details<T extends senior_citizen_incase_of_emergency$senior_citizen_detailsArgs<ExtArgs> = {}>(args?: Subset<T, senior_citizen_incase_of_emergency$senior_citizen_detailsArgs<ExtArgs>>): Prisma__senior_citizen_detailsClient<$Result.GetResult<Prisma.$senior_citizen_detailsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the senior_citizen_incase_of_emergency model
-   */
-  interface senior_citizen_incase_of_emergencyFieldRefs {
-    readonly recno: FieldRef<"senior_citizen_incase_of_emergency", 'Int'>
-    readonly record_id: FieldRef<"senior_citizen_incase_of_emergency", 'String'>
-    readonly first_name: FieldRef<"senior_citizen_incase_of_emergency", 'String'>
-    readonly middle_name: FieldRef<"senior_citizen_incase_of_emergency", 'String'>
-    readonly last_name: FieldRef<"senior_citizen_incase_of_emergency", 'String'>
-    readonly suffix: FieldRef<"senior_citizen_incase_of_emergency", 'String'>
-    readonly contact_number: FieldRef<"senior_citizen_incase_of_emergency", 'String'>
-    readonly email: FieldRef<"senior_citizen_incase_of_emergency", 'String'>
-    readonly relationship_to_senior: FieldRef<"senior_citizen_incase_of_emergency", 'String'>
-    readonly created_at: FieldRef<"senior_citizen_incase_of_emergency", 'DateTime'>
-    readonly updated_at: FieldRef<"senior_citizen_incase_of_emergency", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * senior_citizen_incase_of_emergency findUnique
-   */
-  export type senior_citizen_incase_of_emergencyFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the senior_citizen_incase_of_emergency
-     */
-    select?: senior_citizen_incase_of_emergencySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the senior_citizen_incase_of_emergency
-     */
-    omit?: senior_citizen_incase_of_emergencyOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: senior_citizen_incase_of_emergencyInclude<ExtArgs> | null
-    /**
-     * Filter, which senior_citizen_incase_of_emergency to fetch.
-     */
-    where: senior_citizen_incase_of_emergencyWhereUniqueInput
-  }
-
-  /**
-   * senior_citizen_incase_of_emergency findUniqueOrThrow
-   */
-  export type senior_citizen_incase_of_emergencyFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the senior_citizen_incase_of_emergency
-     */
-    select?: senior_citizen_incase_of_emergencySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the senior_citizen_incase_of_emergency
-     */
-    omit?: senior_citizen_incase_of_emergencyOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: senior_citizen_incase_of_emergencyInclude<ExtArgs> | null
-    /**
-     * Filter, which senior_citizen_incase_of_emergency to fetch.
-     */
-    where: senior_citizen_incase_of_emergencyWhereUniqueInput
-  }
-
-  /**
-   * senior_citizen_incase_of_emergency findFirst
-   */
-  export type senior_citizen_incase_of_emergencyFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the senior_citizen_incase_of_emergency
-     */
-    select?: senior_citizen_incase_of_emergencySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the senior_citizen_incase_of_emergency
-     */
-    omit?: senior_citizen_incase_of_emergencyOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: senior_citizen_incase_of_emergencyInclude<ExtArgs> | null
-    /**
-     * Filter, which senior_citizen_incase_of_emergency to fetch.
-     */
-    where?: senior_citizen_incase_of_emergencyWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of senior_citizen_incase_of_emergencies to fetch.
-     */
-    orderBy?: senior_citizen_incase_of_emergencyOrderByWithRelationInput | senior_citizen_incase_of_emergencyOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for senior_citizen_incase_of_emergencies.
-     */
-    cursor?: senior_citizen_incase_of_emergencyWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` senior_citizen_incase_of_emergencies from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` senior_citizen_incase_of_emergencies.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of senior_citizen_incase_of_emergencies.
-     */
-    distinct?: Senior_citizen_incase_of_emergencyScalarFieldEnum | Senior_citizen_incase_of_emergencyScalarFieldEnum[]
-  }
-
-  /**
-   * senior_citizen_incase_of_emergency findFirstOrThrow
-   */
-  export type senior_citizen_incase_of_emergencyFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the senior_citizen_incase_of_emergency
-     */
-    select?: senior_citizen_incase_of_emergencySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the senior_citizen_incase_of_emergency
-     */
-    omit?: senior_citizen_incase_of_emergencyOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: senior_citizen_incase_of_emergencyInclude<ExtArgs> | null
-    /**
-     * Filter, which senior_citizen_incase_of_emergency to fetch.
-     */
-    where?: senior_citizen_incase_of_emergencyWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of senior_citizen_incase_of_emergencies to fetch.
-     */
-    orderBy?: senior_citizen_incase_of_emergencyOrderByWithRelationInput | senior_citizen_incase_of_emergencyOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for senior_citizen_incase_of_emergencies.
-     */
-    cursor?: senior_citizen_incase_of_emergencyWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` senior_citizen_incase_of_emergencies from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` senior_citizen_incase_of_emergencies.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of senior_citizen_incase_of_emergencies.
-     */
-    distinct?: Senior_citizen_incase_of_emergencyScalarFieldEnum | Senior_citizen_incase_of_emergencyScalarFieldEnum[]
-  }
-
-  /**
-   * senior_citizen_incase_of_emergency findMany
-   */
-  export type senior_citizen_incase_of_emergencyFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the senior_citizen_incase_of_emergency
-     */
-    select?: senior_citizen_incase_of_emergencySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the senior_citizen_incase_of_emergency
-     */
-    omit?: senior_citizen_incase_of_emergencyOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: senior_citizen_incase_of_emergencyInclude<ExtArgs> | null
-    /**
-     * Filter, which senior_citizen_incase_of_emergencies to fetch.
-     */
-    where?: senior_citizen_incase_of_emergencyWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of senior_citizen_incase_of_emergencies to fetch.
-     */
-    orderBy?: senior_citizen_incase_of_emergencyOrderByWithRelationInput | senior_citizen_incase_of_emergencyOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing senior_citizen_incase_of_emergencies.
-     */
-    cursor?: senior_citizen_incase_of_emergencyWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` senior_citizen_incase_of_emergencies from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` senior_citizen_incase_of_emergencies.
-     */
-    skip?: number
-    distinct?: Senior_citizen_incase_of_emergencyScalarFieldEnum | Senior_citizen_incase_of_emergencyScalarFieldEnum[]
-  }
-
-  /**
-   * senior_citizen_incase_of_emergency create
-   */
-  export type senior_citizen_incase_of_emergencyCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the senior_citizen_incase_of_emergency
-     */
-    select?: senior_citizen_incase_of_emergencySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the senior_citizen_incase_of_emergency
-     */
-    omit?: senior_citizen_incase_of_emergencyOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: senior_citizen_incase_of_emergencyInclude<ExtArgs> | null
-    /**
-     * The data needed to create a senior_citizen_incase_of_emergency.
-     */
-    data: XOR<senior_citizen_incase_of_emergencyCreateInput, senior_citizen_incase_of_emergencyUncheckedCreateInput>
-  }
-
-  /**
-   * senior_citizen_incase_of_emergency createMany
-   */
-  export type senior_citizen_incase_of_emergencyCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many senior_citizen_incase_of_emergencies.
-     */
-    data: senior_citizen_incase_of_emergencyCreateManyInput | senior_citizen_incase_of_emergencyCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * senior_citizen_incase_of_emergency update
-   */
-  export type senior_citizen_incase_of_emergencyUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the senior_citizen_incase_of_emergency
-     */
-    select?: senior_citizen_incase_of_emergencySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the senior_citizen_incase_of_emergency
-     */
-    omit?: senior_citizen_incase_of_emergencyOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: senior_citizen_incase_of_emergencyInclude<ExtArgs> | null
-    /**
-     * The data needed to update a senior_citizen_incase_of_emergency.
-     */
-    data: XOR<senior_citizen_incase_of_emergencyUpdateInput, senior_citizen_incase_of_emergencyUncheckedUpdateInput>
-    /**
-     * Choose, which senior_citizen_incase_of_emergency to update.
-     */
-    where: senior_citizen_incase_of_emergencyWhereUniqueInput
-  }
-
-  /**
-   * senior_citizen_incase_of_emergency updateMany
-   */
-  export type senior_citizen_incase_of_emergencyUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update senior_citizen_incase_of_emergencies.
-     */
-    data: XOR<senior_citizen_incase_of_emergencyUpdateManyMutationInput, senior_citizen_incase_of_emergencyUncheckedUpdateManyInput>
-    /**
-     * Filter which senior_citizen_incase_of_emergencies to update
-     */
-    where?: senior_citizen_incase_of_emergencyWhereInput
-    /**
-     * Limit how many senior_citizen_incase_of_emergencies to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * senior_citizen_incase_of_emergency upsert
-   */
-  export type senior_citizen_incase_of_emergencyUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the senior_citizen_incase_of_emergency
-     */
-    select?: senior_citizen_incase_of_emergencySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the senior_citizen_incase_of_emergency
-     */
-    omit?: senior_citizen_incase_of_emergencyOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: senior_citizen_incase_of_emergencyInclude<ExtArgs> | null
-    /**
-     * The filter to search for the senior_citizen_incase_of_emergency to update in case it exists.
-     */
-    where: senior_citizen_incase_of_emergencyWhereUniqueInput
-    /**
-     * In case the senior_citizen_incase_of_emergency found by the `where` argument doesn't exist, create a new senior_citizen_incase_of_emergency with this data.
-     */
-    create: XOR<senior_citizen_incase_of_emergencyCreateInput, senior_citizen_incase_of_emergencyUncheckedCreateInput>
-    /**
-     * In case the senior_citizen_incase_of_emergency was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<senior_citizen_incase_of_emergencyUpdateInput, senior_citizen_incase_of_emergencyUncheckedUpdateInput>
-  }
-
-  /**
-   * senior_citizen_incase_of_emergency delete
-   */
-  export type senior_citizen_incase_of_emergencyDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the senior_citizen_incase_of_emergency
-     */
-    select?: senior_citizen_incase_of_emergencySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the senior_citizen_incase_of_emergency
-     */
-    omit?: senior_citizen_incase_of_emergencyOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: senior_citizen_incase_of_emergencyInclude<ExtArgs> | null
-    /**
-     * Filter which senior_citizen_incase_of_emergency to delete.
-     */
-    where: senior_citizen_incase_of_emergencyWhereUniqueInput
-  }
-
-  /**
-   * senior_citizen_incase_of_emergency deleteMany
-   */
-  export type senior_citizen_incase_of_emergencyDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which senior_citizen_incase_of_emergencies to delete
-     */
-    where?: senior_citizen_incase_of_emergencyWhereInput
-    /**
-     * Limit how many senior_citizen_incase_of_emergencies to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * senior_citizen_incase_of_emergency.senior_citizen_details
-   */
-  export type senior_citizen_incase_of_emergency$senior_citizen_detailsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the senior_citizen_details
-     */
-    select?: senior_citizen_detailsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the senior_citizen_details
-     */
-    omit?: senior_citizen_detailsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: senior_citizen_detailsInclude<ExtArgs> | null
-    where?: senior_citizen_detailsWhereInput
-  }
-
-  /**
-   * senior_citizen_incase_of_emergency without action
-   */
-  export type senior_citizen_incase_of_emergencyDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the senior_citizen_incase_of_emergency
-     */
-    select?: senior_citizen_incase_of_emergencySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the senior_citizen_incase_of_emergency
-     */
-    omit?: senior_citizen_incase_of_emergencyOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: senior_citizen_incase_of_emergencyInclude<ExtArgs> | null
-  }
-
-
-  /**
    * Enums
    */
 
@@ -4353,6 +3184,9 @@ export namespace Prisma {
     place_of_birth: 'place_of_birth',
     civil_status: 'civil_status',
     contact_number: 'contact_number',
+    emergency_contact_name: 'emergency_contact_name',
+    emergency_contact_number: 'emergency_contact_number',
+    emergency_relationship: 'emergency_relationship',
     email: 'email',
     created_at: 'created_at',
     updated_at: 'updated_at',
@@ -4367,31 +3201,13 @@ export namespace Prisma {
     record_id: 'record_id',
     profile_picture: 'profile_picture',
     electronic_signature: 'electronic_signature',
-    left_thumbprint: 'left_thumbprint',
-    right_thumbprint: 'right_thumbprint',
+    thumbprint: 'thumbprint',
     remarks: 'remarks',
     created_at: 'created_at',
     updated_at: 'updated_at'
   };
 
   export type Client_credential_assetsScalarFieldEnum = (typeof Client_credential_assetsScalarFieldEnum)[keyof typeof Client_credential_assetsScalarFieldEnum]
-
-
-  export const Senior_citizen_incase_of_emergencyScalarFieldEnum: {
-    recno: 'recno',
-    record_id: 'record_id',
-    first_name: 'first_name',
-    middle_name: 'middle_name',
-    last_name: 'last_name',
-    suffix: 'suffix',
-    contact_number: 'contact_number',
-    email: 'email',
-    relationship_to_senior: 'relationship_to_senior',
-    created_at: 'created_at',
-    updated_at: 'updated_at'
-  };
-
-  export type Senior_citizen_incase_of_emergencyScalarFieldEnum = (typeof Senior_citizen_incase_of_emergencyScalarFieldEnum)[keyof typeof Senior_citizen_incase_of_emergencyScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -4420,6 +3236,9 @@ export namespace Prisma {
     full_address: 'full_address',
     place_of_birth: 'place_of_birth',
     contact_number: 'contact_number',
+    emergency_contact_name: 'emergency_contact_name',
+    emergency_contact_number: 'emergency_contact_number',
+    emergency_relationship: 'emergency_relationship',
     email: 'email'
   };
 
@@ -4430,26 +3249,11 @@ export namespace Prisma {
     record_id: 'record_id',
     profile_picture: 'profile_picture',
     electronic_signature: 'electronic_signature',
-    left_thumbprint: 'left_thumbprint',
-    right_thumbprint: 'right_thumbprint',
+    thumbprint: 'thumbprint',
     remarks: 'remarks'
   };
 
   export type client_credential_assetsOrderByRelevanceFieldEnum = (typeof client_credential_assetsOrderByRelevanceFieldEnum)[keyof typeof client_credential_assetsOrderByRelevanceFieldEnum]
-
-
-  export const senior_citizen_incase_of_emergencyOrderByRelevanceFieldEnum: {
-    record_id: 'record_id',
-    first_name: 'first_name',
-    middle_name: 'middle_name',
-    last_name: 'last_name',
-    suffix: 'suffix',
-    contact_number: 'contact_number',
-    email: 'email',
-    relationship_to_senior: 'relationship_to_senior'
-  };
-
-  export type senior_citizen_incase_of_emergencyOrderByRelevanceFieldEnum = (typeof senior_citizen_incase_of_emergencyOrderByRelevanceFieldEnum)[keyof typeof senior_citizen_incase_of_emergencyOrderByRelevanceFieldEnum]
 
 
   /**
@@ -4520,12 +3324,14 @@ export namespace Prisma {
     place_of_birth?: StringNullableFilter<"senior_citizen_details"> | string | null
     civil_status?: EnumCIVIL_STATUS_ENUMNullableFilter<"senior_citizen_details"> | $Enums.CIVIL_STATUS_ENUM | null
     contact_number?: StringNullableFilter<"senior_citizen_details"> | string | null
+    emergency_contact_name?: StringNullableFilter<"senior_citizen_details"> | string | null
+    emergency_contact_number?: StringNullableFilter<"senior_citizen_details"> | string | null
+    emergency_relationship?: StringNullableFilter<"senior_citizen_details"> | string | null
     email?: StringNullableFilter<"senior_citizen_details"> | string | null
     created_at?: DateTimeFilter<"senior_citizen_details"> | Date | string
     updated_at?: DateTimeFilter<"senior_citizen_details"> | Date | string
     date_of_issuance?: DateTimeFilter<"senior_citizen_details"> | Date | string
     client_credential_assets?: XOR<Client_credential_assetsNullableScalarRelationFilter, client_credential_assetsWhereInput> | null
-    senior_citizen_incase_of_emergency?: Senior_citizen_incase_of_emergencyListRelationFilter
   }
 
   export type senior_citizen_detailsOrderByWithRelationInput = {
@@ -4543,12 +3349,14 @@ export namespace Prisma {
     place_of_birth?: SortOrderInput | SortOrder
     civil_status?: SortOrderInput | SortOrder
     contact_number?: SortOrderInput | SortOrder
+    emergency_contact_name?: SortOrderInput | SortOrder
+    emergency_contact_number?: SortOrderInput | SortOrder
+    emergency_relationship?: SortOrderInput | SortOrder
     email?: SortOrderInput | SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
     date_of_issuance?: SortOrder
     client_credential_assets?: client_credential_assetsOrderByWithRelationInput
-    senior_citizen_incase_of_emergency?: senior_citizen_incase_of_emergencyOrderByRelationAggregateInput
     _relevance?: senior_citizen_detailsOrderByRelevanceInput
   }
 
@@ -4570,12 +3378,14 @@ export namespace Prisma {
     place_of_birth?: StringNullableFilter<"senior_citizen_details"> | string | null
     civil_status?: EnumCIVIL_STATUS_ENUMNullableFilter<"senior_citizen_details"> | $Enums.CIVIL_STATUS_ENUM | null
     contact_number?: StringNullableFilter<"senior_citizen_details"> | string | null
+    emergency_contact_name?: StringNullableFilter<"senior_citizen_details"> | string | null
+    emergency_contact_number?: StringNullableFilter<"senior_citizen_details"> | string | null
+    emergency_relationship?: StringNullableFilter<"senior_citizen_details"> | string | null
     email?: StringNullableFilter<"senior_citizen_details"> | string | null
     created_at?: DateTimeFilter<"senior_citizen_details"> | Date | string
     updated_at?: DateTimeFilter<"senior_citizen_details"> | Date | string
     date_of_issuance?: DateTimeFilter<"senior_citizen_details"> | Date | string
     client_credential_assets?: XOR<Client_credential_assetsNullableScalarRelationFilter, client_credential_assetsWhereInput> | null
-    senior_citizen_incase_of_emergency?: Senior_citizen_incase_of_emergencyListRelationFilter
   }, "recno" | "record_id" | "id_number">
 
   export type senior_citizen_detailsOrderByWithAggregationInput = {
@@ -4593,6 +3403,9 @@ export namespace Prisma {
     place_of_birth?: SortOrderInput | SortOrder
     civil_status?: SortOrderInput | SortOrder
     contact_number?: SortOrderInput | SortOrder
+    emergency_contact_name?: SortOrderInput | SortOrder
+    emergency_contact_number?: SortOrderInput | SortOrder
+    emergency_relationship?: SortOrderInput | SortOrder
     email?: SortOrderInput | SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -4622,6 +3435,9 @@ export namespace Prisma {
     place_of_birth?: StringNullableWithAggregatesFilter<"senior_citizen_details"> | string | null
     civil_status?: EnumCIVIL_STATUS_ENUMNullableWithAggregatesFilter<"senior_citizen_details"> | $Enums.CIVIL_STATUS_ENUM | null
     contact_number?: StringNullableWithAggregatesFilter<"senior_citizen_details"> | string | null
+    emergency_contact_name?: StringNullableWithAggregatesFilter<"senior_citizen_details"> | string | null
+    emergency_contact_number?: StringNullableWithAggregatesFilter<"senior_citizen_details"> | string | null
+    emergency_relationship?: StringNullableWithAggregatesFilter<"senior_citizen_details"> | string | null
     email?: StringNullableWithAggregatesFilter<"senior_citizen_details"> | string | null
     created_at?: DateTimeWithAggregatesFilter<"senior_citizen_details"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"senior_citizen_details"> | Date | string
@@ -4635,9 +3451,8 @@ export namespace Prisma {
     recno?: IntFilter<"client_credential_assets"> | number
     record_id?: StringFilter<"client_credential_assets"> | string
     profile_picture?: StringFilter<"client_credential_assets"> | string
-    electronic_signature?: StringFilter<"client_credential_assets"> | string
-    left_thumbprint?: StringNullableFilter<"client_credential_assets"> | string | null
-    right_thumbprint?: StringNullableFilter<"client_credential_assets"> | string | null
+    electronic_signature?: StringNullableFilter<"client_credential_assets"> | string | null
+    thumbprint?: StringNullableFilter<"client_credential_assets"> | string | null
     remarks?: StringNullableFilter<"client_credential_assets"> | string | null
     created_at?: DateTimeFilter<"client_credential_assets"> | Date | string
     updated_at?: DateTimeFilter<"client_credential_assets"> | Date | string
@@ -4648,9 +3463,8 @@ export namespace Prisma {
     recno?: SortOrder
     record_id?: SortOrder
     profile_picture?: SortOrder
-    electronic_signature?: SortOrder
-    left_thumbprint?: SortOrderInput | SortOrder
-    right_thumbprint?: SortOrderInput | SortOrder
+    electronic_signature?: SortOrderInput | SortOrder
+    thumbprint?: SortOrderInput | SortOrder
     remarks?: SortOrderInput | SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -4665,9 +3479,8 @@ export namespace Prisma {
     OR?: client_credential_assetsWhereInput[]
     NOT?: client_credential_assetsWhereInput | client_credential_assetsWhereInput[]
     profile_picture?: StringFilter<"client_credential_assets"> | string
-    electronic_signature?: StringFilter<"client_credential_assets"> | string
-    left_thumbprint?: StringNullableFilter<"client_credential_assets"> | string | null
-    right_thumbprint?: StringNullableFilter<"client_credential_assets"> | string | null
+    electronic_signature?: StringNullableFilter<"client_credential_assets"> | string | null
+    thumbprint?: StringNullableFilter<"client_credential_assets"> | string | null
     remarks?: StringNullableFilter<"client_credential_assets"> | string | null
     created_at?: DateTimeFilter<"client_credential_assets"> | Date | string
     updated_at?: DateTimeFilter<"client_credential_assets"> | Date | string
@@ -4678,9 +3491,8 @@ export namespace Prisma {
     recno?: SortOrder
     record_id?: SortOrder
     profile_picture?: SortOrder
-    electronic_signature?: SortOrder
-    left_thumbprint?: SortOrderInput | SortOrder
-    right_thumbprint?: SortOrderInput | SortOrder
+    electronic_signature?: SortOrderInput | SortOrder
+    thumbprint?: SortOrderInput | SortOrder
     remarks?: SortOrderInput | SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -4698,100 +3510,11 @@ export namespace Prisma {
     recno?: IntWithAggregatesFilter<"client_credential_assets"> | number
     record_id?: StringWithAggregatesFilter<"client_credential_assets"> | string
     profile_picture?: StringWithAggregatesFilter<"client_credential_assets"> | string
-    electronic_signature?: StringWithAggregatesFilter<"client_credential_assets"> | string
-    left_thumbprint?: StringNullableWithAggregatesFilter<"client_credential_assets"> | string | null
-    right_thumbprint?: StringNullableWithAggregatesFilter<"client_credential_assets"> | string | null
+    electronic_signature?: StringNullableWithAggregatesFilter<"client_credential_assets"> | string | null
+    thumbprint?: StringNullableWithAggregatesFilter<"client_credential_assets"> | string | null
     remarks?: StringNullableWithAggregatesFilter<"client_credential_assets"> | string | null
     created_at?: DateTimeWithAggregatesFilter<"client_credential_assets"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"client_credential_assets"> | Date | string
-  }
-
-  export type senior_citizen_incase_of_emergencyWhereInput = {
-    AND?: senior_citizen_incase_of_emergencyWhereInput | senior_citizen_incase_of_emergencyWhereInput[]
-    OR?: senior_citizen_incase_of_emergencyWhereInput[]
-    NOT?: senior_citizen_incase_of_emergencyWhereInput | senior_citizen_incase_of_emergencyWhereInput[]
-    recno?: IntFilter<"senior_citizen_incase_of_emergency"> | number
-    record_id?: StringFilter<"senior_citizen_incase_of_emergency"> | string
-    first_name?: StringFilter<"senior_citizen_incase_of_emergency"> | string
-    middle_name?: StringNullableFilter<"senior_citizen_incase_of_emergency"> | string | null
-    last_name?: StringFilter<"senior_citizen_incase_of_emergency"> | string
-    suffix?: StringNullableFilter<"senior_citizen_incase_of_emergency"> | string | null
-    contact_number?: StringNullableFilter<"senior_citizen_incase_of_emergency"> | string | null
-    email?: StringNullableFilter<"senior_citizen_incase_of_emergency"> | string | null
-    relationship_to_senior?: StringNullableFilter<"senior_citizen_incase_of_emergency"> | string | null
-    created_at?: DateTimeFilter<"senior_citizen_incase_of_emergency"> | Date | string
-    updated_at?: DateTimeFilter<"senior_citizen_incase_of_emergency"> | Date | string
-    senior_citizen_details?: XOR<Senior_citizen_detailsNullableScalarRelationFilter, senior_citizen_detailsWhereInput> | null
-  }
-
-  export type senior_citizen_incase_of_emergencyOrderByWithRelationInput = {
-    recno?: SortOrder
-    record_id?: SortOrder
-    first_name?: SortOrder
-    middle_name?: SortOrderInput | SortOrder
-    last_name?: SortOrder
-    suffix?: SortOrderInput | SortOrder
-    contact_number?: SortOrderInput | SortOrder
-    email?: SortOrderInput | SortOrder
-    relationship_to_senior?: SortOrderInput | SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-    senior_citizen_details?: senior_citizen_detailsOrderByWithRelationInput
-    _relevance?: senior_citizen_incase_of_emergencyOrderByRelevanceInput
-  }
-
-  export type senior_citizen_incase_of_emergencyWhereUniqueInput = Prisma.AtLeast<{
-    recno?: number
-    AND?: senior_citizen_incase_of_emergencyWhereInput | senior_citizen_incase_of_emergencyWhereInput[]
-    OR?: senior_citizen_incase_of_emergencyWhereInput[]
-    NOT?: senior_citizen_incase_of_emergencyWhereInput | senior_citizen_incase_of_emergencyWhereInput[]
-    record_id?: StringFilter<"senior_citizen_incase_of_emergency"> | string
-    first_name?: StringFilter<"senior_citizen_incase_of_emergency"> | string
-    middle_name?: StringNullableFilter<"senior_citizen_incase_of_emergency"> | string | null
-    last_name?: StringFilter<"senior_citizen_incase_of_emergency"> | string
-    suffix?: StringNullableFilter<"senior_citizen_incase_of_emergency"> | string | null
-    contact_number?: StringNullableFilter<"senior_citizen_incase_of_emergency"> | string | null
-    email?: StringNullableFilter<"senior_citizen_incase_of_emergency"> | string | null
-    relationship_to_senior?: StringNullableFilter<"senior_citizen_incase_of_emergency"> | string | null
-    created_at?: DateTimeFilter<"senior_citizen_incase_of_emergency"> | Date | string
-    updated_at?: DateTimeFilter<"senior_citizen_incase_of_emergency"> | Date | string
-    senior_citizen_details?: XOR<Senior_citizen_detailsNullableScalarRelationFilter, senior_citizen_detailsWhereInput> | null
-  }, "recno">
-
-  export type senior_citizen_incase_of_emergencyOrderByWithAggregationInput = {
-    recno?: SortOrder
-    record_id?: SortOrder
-    first_name?: SortOrder
-    middle_name?: SortOrderInput | SortOrder
-    last_name?: SortOrder
-    suffix?: SortOrderInput | SortOrder
-    contact_number?: SortOrderInput | SortOrder
-    email?: SortOrderInput | SortOrder
-    relationship_to_senior?: SortOrderInput | SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-    _count?: senior_citizen_incase_of_emergencyCountOrderByAggregateInput
-    _avg?: senior_citizen_incase_of_emergencyAvgOrderByAggregateInput
-    _max?: senior_citizen_incase_of_emergencyMaxOrderByAggregateInput
-    _min?: senior_citizen_incase_of_emergencyMinOrderByAggregateInput
-    _sum?: senior_citizen_incase_of_emergencySumOrderByAggregateInput
-  }
-
-  export type senior_citizen_incase_of_emergencyScalarWhereWithAggregatesInput = {
-    AND?: senior_citizen_incase_of_emergencyScalarWhereWithAggregatesInput | senior_citizen_incase_of_emergencyScalarWhereWithAggregatesInput[]
-    OR?: senior_citizen_incase_of_emergencyScalarWhereWithAggregatesInput[]
-    NOT?: senior_citizen_incase_of_emergencyScalarWhereWithAggregatesInput | senior_citizen_incase_of_emergencyScalarWhereWithAggregatesInput[]
-    recno?: IntWithAggregatesFilter<"senior_citizen_incase_of_emergency"> | number
-    record_id?: StringWithAggregatesFilter<"senior_citizen_incase_of_emergency"> | string
-    first_name?: StringWithAggregatesFilter<"senior_citizen_incase_of_emergency"> | string
-    middle_name?: StringNullableWithAggregatesFilter<"senior_citizen_incase_of_emergency"> | string | null
-    last_name?: StringWithAggregatesFilter<"senior_citizen_incase_of_emergency"> | string
-    suffix?: StringNullableWithAggregatesFilter<"senior_citizen_incase_of_emergency"> | string | null
-    contact_number?: StringNullableWithAggregatesFilter<"senior_citizen_incase_of_emergency"> | string | null
-    email?: StringNullableWithAggregatesFilter<"senior_citizen_incase_of_emergency"> | string | null
-    relationship_to_senior?: StringNullableWithAggregatesFilter<"senior_citizen_incase_of_emergency"> | string | null
-    created_at?: DateTimeWithAggregatesFilter<"senior_citizen_incase_of_emergency"> | Date | string
-    updated_at?: DateTimeWithAggregatesFilter<"senior_citizen_incase_of_emergency"> | Date | string
   }
 
   export type senior_citizen_detailsCreateInput = {
@@ -4808,12 +3531,14 @@ export namespace Prisma {
     place_of_birth?: string | null
     civil_status?: $Enums.CIVIL_STATUS_ENUM | null
     contact_number?: string | null
+    emergency_contact_name?: string | null
+    emergency_contact_number?: string | null
+    emergency_relationship?: string | null
     email?: string | null
     created_at?: Date | string
     updated_at?: Date | string
     date_of_issuance: Date | string
     client_credential_assets?: client_credential_assetsCreateNestedOneWithoutSenior_citizen_detailsInput
-    senior_citizen_incase_of_emergency?: senior_citizen_incase_of_emergencyCreateNestedManyWithoutSenior_citizen_detailsInput
   }
 
   export type senior_citizen_detailsUncheckedCreateInput = {
@@ -4831,12 +3556,14 @@ export namespace Prisma {
     place_of_birth?: string | null
     civil_status?: $Enums.CIVIL_STATUS_ENUM | null
     contact_number?: string | null
+    emergency_contact_name?: string | null
+    emergency_contact_number?: string | null
+    emergency_relationship?: string | null
     email?: string | null
     created_at?: Date | string
     updated_at?: Date | string
     date_of_issuance: Date | string
     client_credential_assets?: client_credential_assetsUncheckedCreateNestedOneWithoutSenior_citizen_detailsInput
-    senior_citizen_incase_of_emergency?: senior_citizen_incase_of_emergencyUncheckedCreateNestedManyWithoutSenior_citizen_detailsInput
   }
 
   export type senior_citizen_detailsUpdateInput = {
@@ -4853,12 +3580,14 @@ export namespace Prisma {
     place_of_birth?: NullableStringFieldUpdateOperationsInput | string | null
     civil_status?: NullableEnumCIVIL_STATUS_ENUMFieldUpdateOperationsInput | $Enums.CIVIL_STATUS_ENUM | null
     contact_number?: NullableStringFieldUpdateOperationsInput | string | null
+    emergency_contact_name?: NullableStringFieldUpdateOperationsInput | string | null
+    emergency_contact_number?: NullableStringFieldUpdateOperationsInput | string | null
+    emergency_relationship?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     date_of_issuance?: DateTimeFieldUpdateOperationsInput | Date | string
     client_credential_assets?: client_credential_assetsUpdateOneWithoutSenior_citizen_detailsNestedInput
-    senior_citizen_incase_of_emergency?: senior_citizen_incase_of_emergencyUpdateManyWithoutSenior_citizen_detailsNestedInput
   }
 
   export type senior_citizen_detailsUncheckedUpdateInput = {
@@ -4876,12 +3605,14 @@ export namespace Prisma {
     place_of_birth?: NullableStringFieldUpdateOperationsInput | string | null
     civil_status?: NullableEnumCIVIL_STATUS_ENUMFieldUpdateOperationsInput | $Enums.CIVIL_STATUS_ENUM | null
     contact_number?: NullableStringFieldUpdateOperationsInput | string | null
+    emergency_contact_name?: NullableStringFieldUpdateOperationsInput | string | null
+    emergency_contact_number?: NullableStringFieldUpdateOperationsInput | string | null
+    emergency_relationship?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     date_of_issuance?: DateTimeFieldUpdateOperationsInput | Date | string
     client_credential_assets?: client_credential_assetsUncheckedUpdateOneWithoutSenior_citizen_detailsNestedInput
-    senior_citizen_incase_of_emergency?: senior_citizen_incase_of_emergencyUncheckedUpdateManyWithoutSenior_citizen_detailsNestedInput
   }
 
   export type senior_citizen_detailsCreateManyInput = {
@@ -4899,6 +3630,9 @@ export namespace Prisma {
     place_of_birth?: string | null
     civil_status?: $Enums.CIVIL_STATUS_ENUM | null
     contact_number?: string | null
+    emergency_contact_name?: string | null
+    emergency_contact_number?: string | null
+    emergency_relationship?: string | null
     email?: string | null
     created_at?: Date | string
     updated_at?: Date | string
@@ -4919,6 +3653,9 @@ export namespace Prisma {
     place_of_birth?: NullableStringFieldUpdateOperationsInput | string | null
     civil_status?: NullableEnumCIVIL_STATUS_ENUMFieldUpdateOperationsInput | $Enums.CIVIL_STATUS_ENUM | null
     contact_number?: NullableStringFieldUpdateOperationsInput | string | null
+    emergency_contact_name?: NullableStringFieldUpdateOperationsInput | string | null
+    emergency_contact_number?: NullableStringFieldUpdateOperationsInput | string | null
+    emergency_relationship?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -4940,6 +3677,9 @@ export namespace Prisma {
     place_of_birth?: NullableStringFieldUpdateOperationsInput | string | null
     civil_status?: NullableEnumCIVIL_STATUS_ENUMFieldUpdateOperationsInput | $Enums.CIVIL_STATUS_ENUM | null
     contact_number?: NullableStringFieldUpdateOperationsInput | string | null
+    emergency_contact_name?: NullableStringFieldUpdateOperationsInput | string | null
+    emergency_contact_number?: NullableStringFieldUpdateOperationsInput | string | null
+    emergency_relationship?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -4948,9 +3688,8 @@ export namespace Prisma {
 
   export type client_credential_assetsCreateInput = {
     profile_picture: string
-    electronic_signature: string
-    left_thumbprint?: string | null
-    right_thumbprint?: string | null
+    electronic_signature?: string | null
+    thumbprint?: string | null
     remarks?: string | null
     created_at?: Date | string
     updated_at?: Date | string
@@ -4961,9 +3700,8 @@ export namespace Prisma {
     recno?: number
     record_id?: string
     profile_picture: string
-    electronic_signature: string
-    left_thumbprint?: string | null
-    right_thumbprint?: string | null
+    electronic_signature?: string | null
+    thumbprint?: string | null
     remarks?: string | null
     created_at?: Date | string
     updated_at?: Date | string
@@ -4971,9 +3709,8 @@ export namespace Prisma {
 
   export type client_credential_assetsUpdateInput = {
     profile_picture?: StringFieldUpdateOperationsInput | string
-    electronic_signature?: StringFieldUpdateOperationsInput | string
-    left_thumbprint?: NullableStringFieldUpdateOperationsInput | string | null
-    right_thumbprint?: NullableStringFieldUpdateOperationsInput | string | null
+    electronic_signature?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbprint?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -4984,9 +3721,8 @@ export namespace Prisma {
     recno?: IntFieldUpdateOperationsInput | number
     record_id?: StringFieldUpdateOperationsInput | string
     profile_picture?: StringFieldUpdateOperationsInput | string
-    electronic_signature?: StringFieldUpdateOperationsInput | string
-    left_thumbprint?: NullableStringFieldUpdateOperationsInput | string | null
-    right_thumbprint?: NullableStringFieldUpdateOperationsInput | string | null
+    electronic_signature?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbprint?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -4996,9 +3732,8 @@ export namespace Prisma {
     recno?: number
     record_id?: string
     profile_picture: string
-    electronic_signature: string
-    left_thumbprint?: string | null
-    right_thumbprint?: string | null
+    electronic_signature?: string | null
+    thumbprint?: string | null
     remarks?: string | null
     created_at?: Date | string
     updated_at?: Date | string
@@ -5006,9 +3741,8 @@ export namespace Prisma {
 
   export type client_credential_assetsUpdateManyMutationInput = {
     profile_picture?: StringFieldUpdateOperationsInput | string
-    electronic_signature?: StringFieldUpdateOperationsInput | string
-    left_thumbprint?: NullableStringFieldUpdateOperationsInput | string | null
-    right_thumbprint?: NullableStringFieldUpdateOperationsInput | string | null
+    electronic_signature?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbprint?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -5018,104 +3752,9 @@ export namespace Prisma {
     recno?: IntFieldUpdateOperationsInput | number
     record_id?: StringFieldUpdateOperationsInput | string
     profile_picture?: StringFieldUpdateOperationsInput | string
-    electronic_signature?: StringFieldUpdateOperationsInput | string
-    left_thumbprint?: NullableStringFieldUpdateOperationsInput | string | null
-    right_thumbprint?: NullableStringFieldUpdateOperationsInput | string | null
+    electronic_signature?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbprint?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type senior_citizen_incase_of_emergencyCreateInput = {
-    first_name: string
-    middle_name?: string | null
-    last_name: string
-    suffix?: string | null
-    contact_number?: string | null
-    email?: string | null
-    relationship_to_senior?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
-    senior_citizen_details?: senior_citizen_detailsCreateNestedOneWithoutSenior_citizen_incase_of_emergencyInput
-  }
-
-  export type senior_citizen_incase_of_emergencyUncheckedCreateInput = {
-    recno?: number
-    record_id?: string
-    first_name: string
-    middle_name?: string | null
-    last_name: string
-    suffix?: string | null
-    contact_number?: string | null
-    email?: string | null
-    relationship_to_senior?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
-  }
-
-  export type senior_citizen_incase_of_emergencyUpdateInput = {
-    first_name?: StringFieldUpdateOperationsInput | string
-    middle_name?: NullableStringFieldUpdateOperationsInput | string | null
-    last_name?: StringFieldUpdateOperationsInput | string
-    suffix?: NullableStringFieldUpdateOperationsInput | string | null
-    contact_number?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    relationship_to_senior?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    senior_citizen_details?: senior_citizen_detailsUpdateOneWithoutSenior_citizen_incase_of_emergencyNestedInput
-  }
-
-  export type senior_citizen_incase_of_emergencyUncheckedUpdateInput = {
-    recno?: IntFieldUpdateOperationsInput | number
-    record_id?: StringFieldUpdateOperationsInput | string
-    first_name?: StringFieldUpdateOperationsInput | string
-    middle_name?: NullableStringFieldUpdateOperationsInput | string | null
-    last_name?: StringFieldUpdateOperationsInput | string
-    suffix?: NullableStringFieldUpdateOperationsInput | string | null
-    contact_number?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    relationship_to_senior?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type senior_citizen_incase_of_emergencyCreateManyInput = {
-    recno?: number
-    record_id?: string
-    first_name: string
-    middle_name?: string | null
-    last_name: string
-    suffix?: string | null
-    contact_number?: string | null
-    email?: string | null
-    relationship_to_senior?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
-  }
-
-  export type senior_citizen_incase_of_emergencyUpdateManyMutationInput = {
-    first_name?: StringFieldUpdateOperationsInput | string
-    middle_name?: NullableStringFieldUpdateOperationsInput | string | null
-    last_name?: StringFieldUpdateOperationsInput | string
-    suffix?: NullableStringFieldUpdateOperationsInput | string | null
-    contact_number?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    relationship_to_senior?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type senior_citizen_incase_of_emergencyUncheckedUpdateManyInput = {
-    recno?: IntFieldUpdateOperationsInput | number
-    record_id?: StringFieldUpdateOperationsInput | string
-    first_name?: StringFieldUpdateOperationsInput | string
-    middle_name?: NullableStringFieldUpdateOperationsInput | string | null
-    last_name?: StringFieldUpdateOperationsInput | string
-    suffix?: NullableStringFieldUpdateOperationsInput | string | null
-    contact_number?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    relationship_to_senior?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5191,19 +3830,9 @@ export namespace Prisma {
     isNot?: client_credential_assetsWhereInput | null
   }
 
-  export type Senior_citizen_incase_of_emergencyListRelationFilter = {
-    every?: senior_citizen_incase_of_emergencyWhereInput
-    some?: senior_citizen_incase_of_emergencyWhereInput
-    none?: senior_citizen_incase_of_emergencyWhereInput
-  }
-
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
-  }
-
-  export type senior_citizen_incase_of_emergencyOrderByRelationAggregateInput = {
-    _count?: SortOrder
   }
 
   export type senior_citizen_detailsOrderByRelevanceInput = {
@@ -5227,6 +3856,9 @@ export namespace Prisma {
     place_of_birth?: SortOrder
     civil_status?: SortOrder
     contact_number?: SortOrder
+    emergency_contact_name?: SortOrder
+    emergency_contact_number?: SortOrder
+    emergency_relationship?: SortOrder
     email?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -5253,6 +3885,9 @@ export namespace Prisma {
     place_of_birth?: SortOrder
     civil_status?: SortOrder
     contact_number?: SortOrder
+    emergency_contact_name?: SortOrder
+    emergency_contact_number?: SortOrder
+    emergency_relationship?: SortOrder
     email?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -5274,6 +3909,9 @@ export namespace Prisma {
     place_of_birth?: SortOrder
     civil_status?: SortOrder
     contact_number?: SortOrder
+    emergency_contact_name?: SortOrder
+    emergency_contact_number?: SortOrder
+    emergency_relationship?: SortOrder
     email?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -5387,8 +4025,7 @@ export namespace Prisma {
     record_id?: SortOrder
     profile_picture?: SortOrder
     electronic_signature?: SortOrder
-    left_thumbprint?: SortOrder
-    right_thumbprint?: SortOrder
+    thumbprint?: SortOrder
     remarks?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -5403,8 +4040,7 @@ export namespace Prisma {
     record_id?: SortOrder
     profile_picture?: SortOrder
     electronic_signature?: SortOrder
-    left_thumbprint?: SortOrder
-    right_thumbprint?: SortOrder
+    thumbprint?: SortOrder
     remarks?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -5415,8 +4051,7 @@ export namespace Prisma {
     record_id?: SortOrder
     profile_picture?: SortOrder
     electronic_signature?: SortOrder
-    left_thumbprint?: SortOrder
-    right_thumbprint?: SortOrder
+    thumbprint?: SortOrder
     remarks?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
@@ -5426,86 +4061,16 @@ export namespace Prisma {
     recno?: SortOrder
   }
 
-  export type senior_citizen_incase_of_emergencyOrderByRelevanceInput = {
-    fields: senior_citizen_incase_of_emergencyOrderByRelevanceFieldEnum | senior_citizen_incase_of_emergencyOrderByRelevanceFieldEnum[]
-    sort: SortOrder
-    search: string
-  }
-
-  export type senior_citizen_incase_of_emergencyCountOrderByAggregateInput = {
-    recno?: SortOrder
-    record_id?: SortOrder
-    first_name?: SortOrder
-    middle_name?: SortOrder
-    last_name?: SortOrder
-    suffix?: SortOrder
-    contact_number?: SortOrder
-    email?: SortOrder
-    relationship_to_senior?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-  }
-
-  export type senior_citizen_incase_of_emergencyAvgOrderByAggregateInput = {
-    recno?: SortOrder
-  }
-
-  export type senior_citizen_incase_of_emergencyMaxOrderByAggregateInput = {
-    recno?: SortOrder
-    record_id?: SortOrder
-    first_name?: SortOrder
-    middle_name?: SortOrder
-    last_name?: SortOrder
-    suffix?: SortOrder
-    contact_number?: SortOrder
-    email?: SortOrder
-    relationship_to_senior?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-  }
-
-  export type senior_citizen_incase_of_emergencyMinOrderByAggregateInput = {
-    recno?: SortOrder
-    record_id?: SortOrder
-    first_name?: SortOrder
-    middle_name?: SortOrder
-    last_name?: SortOrder
-    suffix?: SortOrder
-    contact_number?: SortOrder
-    email?: SortOrder
-    relationship_to_senior?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-  }
-
-  export type senior_citizen_incase_of_emergencySumOrderByAggregateInput = {
-    recno?: SortOrder
-  }
-
   export type client_credential_assetsCreateNestedOneWithoutSenior_citizen_detailsInput = {
     create?: XOR<client_credential_assetsCreateWithoutSenior_citizen_detailsInput, client_credential_assetsUncheckedCreateWithoutSenior_citizen_detailsInput>
     connectOrCreate?: client_credential_assetsCreateOrConnectWithoutSenior_citizen_detailsInput
     connect?: client_credential_assetsWhereUniqueInput
   }
 
-  export type senior_citizen_incase_of_emergencyCreateNestedManyWithoutSenior_citizen_detailsInput = {
-    create?: XOR<senior_citizen_incase_of_emergencyCreateWithoutSenior_citizen_detailsInput, senior_citizen_incase_of_emergencyUncheckedCreateWithoutSenior_citizen_detailsInput> | senior_citizen_incase_of_emergencyCreateWithoutSenior_citizen_detailsInput[] | senior_citizen_incase_of_emergencyUncheckedCreateWithoutSenior_citizen_detailsInput[]
-    connectOrCreate?: senior_citizen_incase_of_emergencyCreateOrConnectWithoutSenior_citizen_detailsInput | senior_citizen_incase_of_emergencyCreateOrConnectWithoutSenior_citizen_detailsInput[]
-    createMany?: senior_citizen_incase_of_emergencyCreateManySenior_citizen_detailsInputEnvelope
-    connect?: senior_citizen_incase_of_emergencyWhereUniqueInput | senior_citizen_incase_of_emergencyWhereUniqueInput[]
-  }
-
   export type client_credential_assetsUncheckedCreateNestedOneWithoutSenior_citizen_detailsInput = {
     create?: XOR<client_credential_assetsCreateWithoutSenior_citizen_detailsInput, client_credential_assetsUncheckedCreateWithoutSenior_citizen_detailsInput>
     connectOrCreate?: client_credential_assetsCreateOrConnectWithoutSenior_citizen_detailsInput
     connect?: client_credential_assetsWhereUniqueInput
-  }
-
-  export type senior_citizen_incase_of_emergencyUncheckedCreateNestedManyWithoutSenior_citizen_detailsInput = {
-    create?: XOR<senior_citizen_incase_of_emergencyCreateWithoutSenior_citizen_detailsInput, senior_citizen_incase_of_emergencyUncheckedCreateWithoutSenior_citizen_detailsInput> | senior_citizen_incase_of_emergencyCreateWithoutSenior_citizen_detailsInput[] | senior_citizen_incase_of_emergencyUncheckedCreateWithoutSenior_citizen_detailsInput[]
-    connectOrCreate?: senior_citizen_incase_of_emergencyCreateOrConnectWithoutSenior_citizen_detailsInput | senior_citizen_incase_of_emergencyCreateOrConnectWithoutSenior_citizen_detailsInput[]
-    createMany?: senior_citizen_incase_of_emergencyCreateManySenior_citizen_detailsInputEnvelope
-    connect?: senior_citizen_incase_of_emergencyWhereUniqueInput | senior_citizen_incase_of_emergencyWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -5546,20 +4111,6 @@ export namespace Prisma {
     update?: XOR<XOR<client_credential_assetsUpdateToOneWithWhereWithoutSenior_citizen_detailsInput, client_credential_assetsUpdateWithoutSenior_citizen_detailsInput>, client_credential_assetsUncheckedUpdateWithoutSenior_citizen_detailsInput>
   }
 
-  export type senior_citizen_incase_of_emergencyUpdateManyWithoutSenior_citizen_detailsNestedInput = {
-    create?: XOR<senior_citizen_incase_of_emergencyCreateWithoutSenior_citizen_detailsInput, senior_citizen_incase_of_emergencyUncheckedCreateWithoutSenior_citizen_detailsInput> | senior_citizen_incase_of_emergencyCreateWithoutSenior_citizen_detailsInput[] | senior_citizen_incase_of_emergencyUncheckedCreateWithoutSenior_citizen_detailsInput[]
-    connectOrCreate?: senior_citizen_incase_of_emergencyCreateOrConnectWithoutSenior_citizen_detailsInput | senior_citizen_incase_of_emergencyCreateOrConnectWithoutSenior_citizen_detailsInput[]
-    upsert?: senior_citizen_incase_of_emergencyUpsertWithWhereUniqueWithoutSenior_citizen_detailsInput | senior_citizen_incase_of_emergencyUpsertWithWhereUniqueWithoutSenior_citizen_detailsInput[]
-    createMany?: senior_citizen_incase_of_emergencyCreateManySenior_citizen_detailsInputEnvelope
-    set?: senior_citizen_incase_of_emergencyWhereUniqueInput | senior_citizen_incase_of_emergencyWhereUniqueInput[]
-    disconnect?: senior_citizen_incase_of_emergencyWhereUniqueInput | senior_citizen_incase_of_emergencyWhereUniqueInput[]
-    delete?: senior_citizen_incase_of_emergencyWhereUniqueInput | senior_citizen_incase_of_emergencyWhereUniqueInput[]
-    connect?: senior_citizen_incase_of_emergencyWhereUniqueInput | senior_citizen_incase_of_emergencyWhereUniqueInput[]
-    update?: senior_citizen_incase_of_emergencyUpdateWithWhereUniqueWithoutSenior_citizen_detailsInput | senior_citizen_incase_of_emergencyUpdateWithWhereUniqueWithoutSenior_citizen_detailsInput[]
-    updateMany?: senior_citizen_incase_of_emergencyUpdateManyWithWhereWithoutSenior_citizen_detailsInput | senior_citizen_incase_of_emergencyUpdateManyWithWhereWithoutSenior_citizen_detailsInput[]
-    deleteMany?: senior_citizen_incase_of_emergencyScalarWhereInput | senior_citizen_incase_of_emergencyScalarWhereInput[]
-  }
-
   export type client_credential_assetsUncheckedUpdateOneWithoutSenior_citizen_detailsNestedInput = {
     create?: XOR<client_credential_assetsCreateWithoutSenior_citizen_detailsInput, client_credential_assetsUncheckedCreateWithoutSenior_citizen_detailsInput>
     connectOrCreate?: client_credential_assetsCreateOrConnectWithoutSenior_citizen_detailsInput
@@ -5568,20 +4119,6 @@ export namespace Prisma {
     delete?: client_credential_assetsWhereInput | boolean
     connect?: client_credential_assetsWhereUniqueInput
     update?: XOR<XOR<client_credential_assetsUpdateToOneWithWhereWithoutSenior_citizen_detailsInput, client_credential_assetsUpdateWithoutSenior_citizen_detailsInput>, client_credential_assetsUncheckedUpdateWithoutSenior_citizen_detailsInput>
-  }
-
-  export type senior_citizen_incase_of_emergencyUncheckedUpdateManyWithoutSenior_citizen_detailsNestedInput = {
-    create?: XOR<senior_citizen_incase_of_emergencyCreateWithoutSenior_citizen_detailsInput, senior_citizen_incase_of_emergencyUncheckedCreateWithoutSenior_citizen_detailsInput> | senior_citizen_incase_of_emergencyCreateWithoutSenior_citizen_detailsInput[] | senior_citizen_incase_of_emergencyUncheckedCreateWithoutSenior_citizen_detailsInput[]
-    connectOrCreate?: senior_citizen_incase_of_emergencyCreateOrConnectWithoutSenior_citizen_detailsInput | senior_citizen_incase_of_emergencyCreateOrConnectWithoutSenior_citizen_detailsInput[]
-    upsert?: senior_citizen_incase_of_emergencyUpsertWithWhereUniqueWithoutSenior_citizen_detailsInput | senior_citizen_incase_of_emergencyUpsertWithWhereUniqueWithoutSenior_citizen_detailsInput[]
-    createMany?: senior_citizen_incase_of_emergencyCreateManySenior_citizen_detailsInputEnvelope
-    set?: senior_citizen_incase_of_emergencyWhereUniqueInput | senior_citizen_incase_of_emergencyWhereUniqueInput[]
-    disconnect?: senior_citizen_incase_of_emergencyWhereUniqueInput | senior_citizen_incase_of_emergencyWhereUniqueInput[]
-    delete?: senior_citizen_incase_of_emergencyWhereUniqueInput | senior_citizen_incase_of_emergencyWhereUniqueInput[]
-    connect?: senior_citizen_incase_of_emergencyWhereUniqueInput | senior_citizen_incase_of_emergencyWhereUniqueInput[]
-    update?: senior_citizen_incase_of_emergencyUpdateWithWhereUniqueWithoutSenior_citizen_detailsInput | senior_citizen_incase_of_emergencyUpdateWithWhereUniqueWithoutSenior_citizen_detailsInput[]
-    updateMany?: senior_citizen_incase_of_emergencyUpdateManyWithWhereWithoutSenior_citizen_detailsInput | senior_citizen_incase_of_emergencyUpdateManyWithWhereWithoutSenior_citizen_detailsInput[]
-    deleteMany?: senior_citizen_incase_of_emergencyScalarWhereInput | senior_citizen_incase_of_emergencyScalarWhereInput[]
   }
 
   export type senior_citizen_detailsCreateNestedOneWithoutClient_credential_assetsInput = {
@@ -5598,22 +4135,6 @@ export namespace Prisma {
     delete?: senior_citizen_detailsWhereInput | boolean
     connect?: senior_citizen_detailsWhereUniqueInput
     update?: XOR<XOR<senior_citizen_detailsUpdateToOneWithWhereWithoutClient_credential_assetsInput, senior_citizen_detailsUpdateWithoutClient_credential_assetsInput>, senior_citizen_detailsUncheckedUpdateWithoutClient_credential_assetsInput>
-  }
-
-  export type senior_citizen_detailsCreateNestedOneWithoutSenior_citizen_incase_of_emergencyInput = {
-    create?: XOR<senior_citizen_detailsCreateWithoutSenior_citizen_incase_of_emergencyInput, senior_citizen_detailsUncheckedCreateWithoutSenior_citizen_incase_of_emergencyInput>
-    connectOrCreate?: senior_citizen_detailsCreateOrConnectWithoutSenior_citizen_incase_of_emergencyInput
-    connect?: senior_citizen_detailsWhereUniqueInput
-  }
-
-  export type senior_citizen_detailsUpdateOneWithoutSenior_citizen_incase_of_emergencyNestedInput = {
-    create?: XOR<senior_citizen_detailsCreateWithoutSenior_citizen_incase_of_emergencyInput, senior_citizen_detailsUncheckedCreateWithoutSenior_citizen_incase_of_emergencyInput>
-    connectOrCreate?: senior_citizen_detailsCreateOrConnectWithoutSenior_citizen_incase_of_emergencyInput
-    upsert?: senior_citizen_detailsUpsertWithoutSenior_citizen_incase_of_emergencyInput
-    disconnect?: senior_citizen_detailsWhereInput | boolean
-    delete?: senior_citizen_detailsWhereInput | boolean
-    connect?: senior_citizen_detailsWhereUniqueInput
-    update?: XOR<XOR<senior_citizen_detailsUpdateToOneWithWhereWithoutSenior_citizen_incase_of_emergencyInput, senior_citizen_detailsUpdateWithoutSenior_citizen_incase_of_emergencyInput>, senior_citizen_detailsUncheckedUpdateWithoutSenior_citizen_incase_of_emergencyInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -5792,9 +4313,8 @@ export namespace Prisma {
 
   export type client_credential_assetsCreateWithoutSenior_citizen_detailsInput = {
     profile_picture: string
-    electronic_signature: string
-    left_thumbprint?: string | null
-    right_thumbprint?: string | null
+    electronic_signature?: string | null
+    thumbprint?: string | null
     remarks?: string | null
     created_at?: Date | string
     updated_at?: Date | string
@@ -5803,9 +4323,8 @@ export namespace Prisma {
   export type client_credential_assetsUncheckedCreateWithoutSenior_citizen_detailsInput = {
     recno?: number
     profile_picture: string
-    electronic_signature: string
-    left_thumbprint?: string | null
-    right_thumbprint?: string | null
+    electronic_signature?: string | null
+    thumbprint?: string | null
     remarks?: string | null
     created_at?: Date | string
     updated_at?: Date | string
@@ -5814,41 +4333,6 @@ export namespace Prisma {
   export type client_credential_assetsCreateOrConnectWithoutSenior_citizen_detailsInput = {
     where: client_credential_assetsWhereUniqueInput
     create: XOR<client_credential_assetsCreateWithoutSenior_citizen_detailsInput, client_credential_assetsUncheckedCreateWithoutSenior_citizen_detailsInput>
-  }
-
-  export type senior_citizen_incase_of_emergencyCreateWithoutSenior_citizen_detailsInput = {
-    first_name: string
-    middle_name?: string | null
-    last_name: string
-    suffix?: string | null
-    contact_number?: string | null
-    email?: string | null
-    relationship_to_senior?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
-  }
-
-  export type senior_citizen_incase_of_emergencyUncheckedCreateWithoutSenior_citizen_detailsInput = {
-    recno?: number
-    first_name: string
-    middle_name?: string | null
-    last_name: string
-    suffix?: string | null
-    contact_number?: string | null
-    email?: string | null
-    relationship_to_senior?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
-  }
-
-  export type senior_citizen_incase_of_emergencyCreateOrConnectWithoutSenior_citizen_detailsInput = {
-    where: senior_citizen_incase_of_emergencyWhereUniqueInput
-    create: XOR<senior_citizen_incase_of_emergencyCreateWithoutSenior_citizen_detailsInput, senior_citizen_incase_of_emergencyUncheckedCreateWithoutSenior_citizen_detailsInput>
-  }
-
-  export type senior_citizen_incase_of_emergencyCreateManySenior_citizen_detailsInputEnvelope = {
-    data: senior_citizen_incase_of_emergencyCreateManySenior_citizen_detailsInput | senior_citizen_incase_of_emergencyCreateManySenior_citizen_detailsInput[]
-    skipDuplicates?: boolean
   }
 
   export type client_credential_assetsUpsertWithoutSenior_citizen_detailsInput = {
@@ -5864,9 +4348,8 @@ export namespace Prisma {
 
   export type client_credential_assetsUpdateWithoutSenior_citizen_detailsInput = {
     profile_picture?: StringFieldUpdateOperationsInput | string
-    electronic_signature?: StringFieldUpdateOperationsInput | string
-    left_thumbprint?: NullableStringFieldUpdateOperationsInput | string | null
-    right_thumbprint?: NullableStringFieldUpdateOperationsInput | string | null
+    electronic_signature?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbprint?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -5875,45 +4358,11 @@ export namespace Prisma {
   export type client_credential_assetsUncheckedUpdateWithoutSenior_citizen_detailsInput = {
     recno?: IntFieldUpdateOperationsInput | number
     profile_picture?: StringFieldUpdateOperationsInput | string
-    electronic_signature?: StringFieldUpdateOperationsInput | string
-    left_thumbprint?: NullableStringFieldUpdateOperationsInput | string | null
-    right_thumbprint?: NullableStringFieldUpdateOperationsInput | string | null
+    electronic_signature?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbprint?: NullableStringFieldUpdateOperationsInput | string | null
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type senior_citizen_incase_of_emergencyUpsertWithWhereUniqueWithoutSenior_citizen_detailsInput = {
-    where: senior_citizen_incase_of_emergencyWhereUniqueInput
-    update: XOR<senior_citizen_incase_of_emergencyUpdateWithoutSenior_citizen_detailsInput, senior_citizen_incase_of_emergencyUncheckedUpdateWithoutSenior_citizen_detailsInput>
-    create: XOR<senior_citizen_incase_of_emergencyCreateWithoutSenior_citizen_detailsInput, senior_citizen_incase_of_emergencyUncheckedCreateWithoutSenior_citizen_detailsInput>
-  }
-
-  export type senior_citizen_incase_of_emergencyUpdateWithWhereUniqueWithoutSenior_citizen_detailsInput = {
-    where: senior_citizen_incase_of_emergencyWhereUniqueInput
-    data: XOR<senior_citizen_incase_of_emergencyUpdateWithoutSenior_citizen_detailsInput, senior_citizen_incase_of_emergencyUncheckedUpdateWithoutSenior_citizen_detailsInput>
-  }
-
-  export type senior_citizen_incase_of_emergencyUpdateManyWithWhereWithoutSenior_citizen_detailsInput = {
-    where: senior_citizen_incase_of_emergencyScalarWhereInput
-    data: XOR<senior_citizen_incase_of_emergencyUpdateManyMutationInput, senior_citizen_incase_of_emergencyUncheckedUpdateManyWithoutSenior_citizen_detailsInput>
-  }
-
-  export type senior_citizen_incase_of_emergencyScalarWhereInput = {
-    AND?: senior_citizen_incase_of_emergencyScalarWhereInput | senior_citizen_incase_of_emergencyScalarWhereInput[]
-    OR?: senior_citizen_incase_of_emergencyScalarWhereInput[]
-    NOT?: senior_citizen_incase_of_emergencyScalarWhereInput | senior_citizen_incase_of_emergencyScalarWhereInput[]
-    recno?: IntFilter<"senior_citizen_incase_of_emergency"> | number
-    record_id?: StringFilter<"senior_citizen_incase_of_emergency"> | string
-    first_name?: StringFilter<"senior_citizen_incase_of_emergency"> | string
-    middle_name?: StringNullableFilter<"senior_citizen_incase_of_emergency"> | string | null
-    last_name?: StringFilter<"senior_citizen_incase_of_emergency"> | string
-    suffix?: StringNullableFilter<"senior_citizen_incase_of_emergency"> | string | null
-    contact_number?: StringNullableFilter<"senior_citizen_incase_of_emergency"> | string | null
-    email?: StringNullableFilter<"senior_citizen_incase_of_emergency"> | string | null
-    relationship_to_senior?: StringNullableFilter<"senior_citizen_incase_of_emergency"> | string | null
-    created_at?: DateTimeFilter<"senior_citizen_incase_of_emergency"> | Date | string
-    updated_at?: DateTimeFilter<"senior_citizen_incase_of_emergency"> | Date | string
   }
 
   export type senior_citizen_detailsCreateWithoutClient_credential_assetsInput = {
@@ -5930,11 +4379,13 @@ export namespace Prisma {
     place_of_birth?: string | null
     civil_status?: $Enums.CIVIL_STATUS_ENUM | null
     contact_number?: string | null
+    emergency_contact_name?: string | null
+    emergency_contact_number?: string | null
+    emergency_relationship?: string | null
     email?: string | null
     created_at?: Date | string
     updated_at?: Date | string
     date_of_issuance: Date | string
-    senior_citizen_incase_of_emergency?: senior_citizen_incase_of_emergencyCreateNestedManyWithoutSenior_citizen_detailsInput
   }
 
   export type senior_citizen_detailsUncheckedCreateWithoutClient_credential_assetsInput = {
@@ -5952,11 +4403,13 @@ export namespace Prisma {
     place_of_birth?: string | null
     civil_status?: $Enums.CIVIL_STATUS_ENUM | null
     contact_number?: string | null
+    emergency_contact_name?: string | null
+    emergency_contact_number?: string | null
+    emergency_relationship?: string | null
     email?: string | null
     created_at?: Date | string
     updated_at?: Date | string
     date_of_issuance: Date | string
-    senior_citizen_incase_of_emergency?: senior_citizen_incase_of_emergencyUncheckedCreateNestedManyWithoutSenior_citizen_detailsInput
   }
 
   export type senior_citizen_detailsCreateOrConnectWithoutClient_credential_assetsInput = {
@@ -5989,11 +4442,13 @@ export namespace Prisma {
     place_of_birth?: NullableStringFieldUpdateOperationsInput | string | null
     civil_status?: NullableEnumCIVIL_STATUS_ENUMFieldUpdateOperationsInput | $Enums.CIVIL_STATUS_ENUM | null
     contact_number?: NullableStringFieldUpdateOperationsInput | string | null
+    emergency_contact_name?: NullableStringFieldUpdateOperationsInput | string | null
+    emergency_contact_number?: NullableStringFieldUpdateOperationsInput | string | null
+    emergency_relationship?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     date_of_issuance?: DateTimeFieldUpdateOperationsInput | Date | string
-    senior_citizen_incase_of_emergency?: senior_citizen_incase_of_emergencyUpdateManyWithoutSenior_citizen_detailsNestedInput
   }
 
   export type senior_citizen_detailsUncheckedUpdateWithoutClient_credential_assetsInput = {
@@ -6011,164 +4466,13 @@ export namespace Prisma {
     place_of_birth?: NullableStringFieldUpdateOperationsInput | string | null
     civil_status?: NullableEnumCIVIL_STATUS_ENUMFieldUpdateOperationsInput | $Enums.CIVIL_STATUS_ENUM | null
     contact_number?: NullableStringFieldUpdateOperationsInput | string | null
+    emergency_contact_name?: NullableStringFieldUpdateOperationsInput | string | null
+    emergency_contact_number?: NullableStringFieldUpdateOperationsInput | string | null
+    emergency_relationship?: NullableStringFieldUpdateOperationsInput | string | null
     email?: NullableStringFieldUpdateOperationsInput | string | null
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     date_of_issuance?: DateTimeFieldUpdateOperationsInput | Date | string
-    senior_citizen_incase_of_emergency?: senior_citizen_incase_of_emergencyUncheckedUpdateManyWithoutSenior_citizen_detailsNestedInput
-  }
-
-  export type senior_citizen_detailsCreateWithoutSenior_citizen_incase_of_emergencyInput = {
-    record_id?: string
-    id_number: string
-    first_name: string
-    middle_name?: string | null
-    last_name: string
-    suffix?: string | null
-    age_upon_release: number
-    full_address: string
-    sex_at_birth?: $Enums.SEX_AT_BIRTH_ENUM | null
-    date_of_birth: Date | string
-    place_of_birth?: string | null
-    civil_status?: $Enums.CIVIL_STATUS_ENUM | null
-    contact_number?: string | null
-    email?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
-    date_of_issuance: Date | string
-    client_credential_assets?: client_credential_assetsCreateNestedOneWithoutSenior_citizen_detailsInput
-  }
-
-  export type senior_citizen_detailsUncheckedCreateWithoutSenior_citizen_incase_of_emergencyInput = {
-    recno?: number
-    record_id?: string
-    id_number: string
-    first_name: string
-    middle_name?: string | null
-    last_name: string
-    suffix?: string | null
-    age_upon_release: number
-    full_address: string
-    sex_at_birth?: $Enums.SEX_AT_BIRTH_ENUM | null
-    date_of_birth: Date | string
-    place_of_birth?: string | null
-    civil_status?: $Enums.CIVIL_STATUS_ENUM | null
-    contact_number?: string | null
-    email?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
-    date_of_issuance: Date | string
-    client_credential_assets?: client_credential_assetsUncheckedCreateNestedOneWithoutSenior_citizen_detailsInput
-  }
-
-  export type senior_citizen_detailsCreateOrConnectWithoutSenior_citizen_incase_of_emergencyInput = {
-    where: senior_citizen_detailsWhereUniqueInput
-    create: XOR<senior_citizen_detailsCreateWithoutSenior_citizen_incase_of_emergencyInput, senior_citizen_detailsUncheckedCreateWithoutSenior_citizen_incase_of_emergencyInput>
-  }
-
-  export type senior_citizen_detailsUpsertWithoutSenior_citizen_incase_of_emergencyInput = {
-    update: XOR<senior_citizen_detailsUpdateWithoutSenior_citizen_incase_of_emergencyInput, senior_citizen_detailsUncheckedUpdateWithoutSenior_citizen_incase_of_emergencyInput>
-    create: XOR<senior_citizen_detailsCreateWithoutSenior_citizen_incase_of_emergencyInput, senior_citizen_detailsUncheckedCreateWithoutSenior_citizen_incase_of_emergencyInput>
-    where?: senior_citizen_detailsWhereInput
-  }
-
-  export type senior_citizen_detailsUpdateToOneWithWhereWithoutSenior_citizen_incase_of_emergencyInput = {
-    where?: senior_citizen_detailsWhereInput
-    data: XOR<senior_citizen_detailsUpdateWithoutSenior_citizen_incase_of_emergencyInput, senior_citizen_detailsUncheckedUpdateWithoutSenior_citizen_incase_of_emergencyInput>
-  }
-
-  export type senior_citizen_detailsUpdateWithoutSenior_citizen_incase_of_emergencyInput = {
-    record_id?: StringFieldUpdateOperationsInput | string
-    id_number?: StringFieldUpdateOperationsInput | string
-    first_name?: StringFieldUpdateOperationsInput | string
-    middle_name?: NullableStringFieldUpdateOperationsInput | string | null
-    last_name?: StringFieldUpdateOperationsInput | string
-    suffix?: NullableStringFieldUpdateOperationsInput | string | null
-    age_upon_release?: IntFieldUpdateOperationsInput | number
-    full_address?: StringFieldUpdateOperationsInput | string
-    sex_at_birth?: NullableEnumSEX_AT_BIRTH_ENUMFieldUpdateOperationsInput | $Enums.SEX_AT_BIRTH_ENUM | null
-    date_of_birth?: DateTimeFieldUpdateOperationsInput | Date | string
-    place_of_birth?: NullableStringFieldUpdateOperationsInput | string | null
-    civil_status?: NullableEnumCIVIL_STATUS_ENUMFieldUpdateOperationsInput | $Enums.CIVIL_STATUS_ENUM | null
-    contact_number?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    date_of_issuance?: DateTimeFieldUpdateOperationsInput | Date | string
-    client_credential_assets?: client_credential_assetsUpdateOneWithoutSenior_citizen_detailsNestedInput
-  }
-
-  export type senior_citizen_detailsUncheckedUpdateWithoutSenior_citizen_incase_of_emergencyInput = {
-    recno?: IntFieldUpdateOperationsInput | number
-    record_id?: StringFieldUpdateOperationsInput | string
-    id_number?: StringFieldUpdateOperationsInput | string
-    first_name?: StringFieldUpdateOperationsInput | string
-    middle_name?: NullableStringFieldUpdateOperationsInput | string | null
-    last_name?: StringFieldUpdateOperationsInput | string
-    suffix?: NullableStringFieldUpdateOperationsInput | string | null
-    age_upon_release?: IntFieldUpdateOperationsInput | number
-    full_address?: StringFieldUpdateOperationsInput | string
-    sex_at_birth?: NullableEnumSEX_AT_BIRTH_ENUMFieldUpdateOperationsInput | $Enums.SEX_AT_BIRTH_ENUM | null
-    date_of_birth?: DateTimeFieldUpdateOperationsInput | Date | string
-    place_of_birth?: NullableStringFieldUpdateOperationsInput | string | null
-    civil_status?: NullableEnumCIVIL_STATUS_ENUMFieldUpdateOperationsInput | $Enums.CIVIL_STATUS_ENUM | null
-    contact_number?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    date_of_issuance?: DateTimeFieldUpdateOperationsInput | Date | string
-    client_credential_assets?: client_credential_assetsUncheckedUpdateOneWithoutSenior_citizen_detailsNestedInput
-  }
-
-  export type senior_citizen_incase_of_emergencyCreateManySenior_citizen_detailsInput = {
-    recno?: number
-    first_name: string
-    middle_name?: string | null
-    last_name: string
-    suffix?: string | null
-    contact_number?: string | null
-    email?: string | null
-    relationship_to_senior?: string | null
-    created_at?: Date | string
-    updated_at?: Date | string
-  }
-
-  export type senior_citizen_incase_of_emergencyUpdateWithoutSenior_citizen_detailsInput = {
-    first_name?: StringFieldUpdateOperationsInput | string
-    middle_name?: NullableStringFieldUpdateOperationsInput | string | null
-    last_name?: StringFieldUpdateOperationsInput | string
-    suffix?: NullableStringFieldUpdateOperationsInput | string | null
-    contact_number?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    relationship_to_senior?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type senior_citizen_incase_of_emergencyUncheckedUpdateWithoutSenior_citizen_detailsInput = {
-    recno?: IntFieldUpdateOperationsInput | number
-    first_name?: StringFieldUpdateOperationsInput | string
-    middle_name?: NullableStringFieldUpdateOperationsInput | string | null
-    last_name?: StringFieldUpdateOperationsInput | string
-    suffix?: NullableStringFieldUpdateOperationsInput | string | null
-    contact_number?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    relationship_to_senior?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type senior_citizen_incase_of_emergencyUncheckedUpdateManyWithoutSenior_citizen_detailsInput = {
-    recno?: IntFieldUpdateOperationsInput | number
-    first_name?: StringFieldUpdateOperationsInput | string
-    middle_name?: NullableStringFieldUpdateOperationsInput | string | null
-    last_name?: StringFieldUpdateOperationsInput | string
-    suffix?: NullableStringFieldUpdateOperationsInput | string | null
-    contact_number?: NullableStringFieldUpdateOperationsInput | string | null
-    email?: NullableStringFieldUpdateOperationsInput | string | null
-    relationship_to_senior?: NullableStringFieldUpdateOperationsInput | string | null
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

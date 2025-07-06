@@ -1,5 +1,9 @@
+import fs from 'fs/promises';
+import path from 'path';
+
 import { Request, Response } from "express";
 import { SeniorCitizenModel } from "../models/senior-citizen.model";
+
 /**
  * Controller to handle the registration of senior citizen information.
  * It processes the incoming request, validates the data, and interacts with the model to insert the data into the database.
@@ -29,22 +33,6 @@ export const register = async (req: Request, res: Response) => {
     }
 };
 
-export const addEmergencyContact = async (req: Request, res: Response) => {
-    try {
-        const data = req.body;
-        const result = await SeniorCitizenModel.addEmergencyContact(data);
-        res.status(201).json({
-            message: "Emergency contact added successfully",
-            data: result,
-        });
-    } catch (error) {
-        console.error("Error adding emergency contact:", error);
-        res.status(500).json({
-            message: "An error occurred while adding emergency contact",
-            error: error instanceof Error ? error.message : String(error),
-        });
-    }
-};
 
 export const getAllSeniorCitizenInfo = async (req: Request, res: Response) => {
     try {
@@ -62,6 +50,7 @@ export const getAllSeniorCitizenInfo = async (req: Request, res: Response) => {
     }
 };
 
+
 export const getSeniorCitizenById = async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
@@ -71,9 +60,31 @@ export const getSeniorCitizenById = async (req: Request, res: Response) => {
                 message: "Senior citizen not found",
             });
         }
+
+        const signaturePath = path.join(__dirname, '../../uploads/signature', `S_${result?.id_number}.jpg`);
+        const thumbprintPath = path.join(__dirname, '../../uploads/thumbprint', `T_${result?.id_number}.jpg`);
+
+
+        const electronic_signature = (await fileExists(signaturePath))
+            ? `uploads/signature/S_${result?.id_number}.jpg`
+            : null;
+
+        const thumbprint = (await fileExists(thumbprintPath))
+            ? `uploads/thumbprint/T_${result?.id_number}.jpg`
+            : null;
+
+
         res.status(200).json({
             message: "Senior citizen information retrieved successfully",
-            data: result,
+            data: trimObjectValues({
+                ...result,
+                full_name: `${result?.last_name} ${result?.suffix || ''}, ${result?.first_name} ${result?.middle_name?.[0] || ''}.`,
+                client_credential_assets: result?.client_credential_assets ?? {
+                    profile_picture: `uploads/photo/P_${result?.id_number}.jpg`,
+                    electronic_signature,
+                    thumbprint
+                }
+            })
         });
     } catch (error) {
         res.status(500).json({
@@ -82,3 +93,22 @@ export const getSeniorCitizenById = async (req: Request, res: Response) => {
         });
     }
 };
+
+const fileExists = async (filePath: string) => {
+    try {
+        await fs.access(filePath);
+        return true;
+    } catch {
+        return false;
+    }
+};
+
+const trimObjectValues = (obj: any) =>
+    Object.fromEntries(
+        Object.entries(obj).map(([key, value]) => [
+            key,
+            typeof value === 'string'
+                ? value.replace(/\s+/g, ' ').replace(/\s+,/g, ',').trim()
+                : value
+        ])
+    );

@@ -15,51 +15,38 @@ datasource db {
 }
 
 model senior_citizen_details {
-  recno                              Int                                  @id @default(autoincrement())
-  record_id                          String                               @unique @default(uuid())
-  id_number                          String                               @unique
-  first_name                         String
-  middle_name                        String?
-  last_name                          String
-  suffix                             String?
-  age_upon_release                   Int
-  full_address                       String
-  sex_at_birth                       SEX_AT_BIRTH_ENUM?
-  date_of_birth                      DateTime                             @db.Date
-  place_of_birth                     String?
-  civil_status                       CIVIL_STATUS_ENUM?
-  contact_number                     String?
-  email                              String?
-  created_at                         DateTime                             @default(now())
-  updated_at                         DateTime                             @default(now()) @updatedAt @db.Timestamp(6)
-  client_credential_assets           client_credential_assets?
-  date_of_issuance                   DateTime                             @db.Date
-  senior_citizen_incase_of_emergency senior_citizen_incase_of_emergency[]
+  recno                    Int                @id @default(autoincrement())
+  record_id                String             @unique @default(uuid())
+  id_number                String             @unique
+  first_name               String
+  middle_name              String?
+  last_name                String
+  suffix                   String?
+  age_upon_release         Int
+  full_address             String
+  sex_at_birth             SEX_AT_BIRTH_ENUM?
+  date_of_birth            DateTime           @db.Date
+  place_of_birth           String?
+  civil_status             CIVIL_STATUS_ENUM?
+  contact_number           String?
+  emergency_contact_name   String?
+  emergency_contact_number String?
+  emergency_relationship   String?
+  email                    String?
+  created_at               DateTime           @default(now())
+  updated_at               DateTime           @default(now()) @updatedAt @db.Timestamp(6)
+
+  client_credential_assets client_credential_assets?
+  date_of_issuance         DateTime                  @db.Date
 }
 
 model client_credential_assets {
   recno                  Int                     @id @default(autoincrement())
   record_id              String                  @unique @default(uuid())
   profile_picture        String
-  electronic_signature   String
-  left_thumbprint        String?
-  right_thumbprint       String?
+  electronic_signature   String?
+  thumbprint             String?
   remarks                String?
-  created_at             DateTime                @default(now())
-  updated_at             DateTime                @updatedAt
-  senior_citizen_details senior_citizen_details? @relation(fields: [record_id], references: [record_id], onDelete: Cascade)
-}
-
-model senior_citizen_incase_of_emergency {
-  recno                  Int                     @id @default(autoincrement())
-  record_id              String                  @default(uuid())
-  first_name             String
-  middle_name            String?
-  last_name              String
-  suffix                 String?
-  contact_number         String?
-  email                  String?
-  relationship_to_senior String?
   created_at             DateTime                @default(now())
   updated_at             DateTime                @updatedAt
   senior_citizen_details senior_citizen_details? @relation(fields: [record_id], references: [record_id], onDelete: Cascade)
