@@ -1,18 +1,29 @@
-# 1) Use the official Node 22 Alpine image (tiny, production-ready)
-FROM node:22-alpine
-
-# 2) Create app directory
+# ── STAGE 1: build & generate ───────────────────────────────────────
+FROM node:22-alpine AS builder
 WORKDIR /usr/src/app
 
-# 3) Copy package files & install deps
+# 1) Install all deps (including devDeps so we have prisma CLI)
 COPY package*.json ./
-RUN npm ci --only=production
+RUN npm ci                                   
 
-# 4) Bundle app source
+# 2) Copy your code & schema, then generate the Prisma Client
 COPY . .
+RUN npx prisma generate      # ← generate Prisma Client 
 
-# 5) Expose the port your app runs on
+# 3) Remove devDependencies (prisma CLI remains global)
+RUN npm prune --production   # ← slim down to prod deps 
+
+
+# ── STAGE 2: runtime image ──────────────────────────────────────────
+FROM node:22-alpine
+WORKDIR /usr/src/app
+
+# 4) Install Prisma CLI globally so you can run Prisma commands at runtime
+RUN npm install -g prisma    # ← global Prisma CLI :contentReference[oaicite:2]{index=2}
+
+# 5) Copy in your production dependencies and built client
+COPY --from=builder /usr/src/app/node_modules ./node_modules
+COPY --from=builder /usr/src/app ./
+
 EXPOSE 3000
-
-# 6) Default command
 CMD ["npm", "start"]
