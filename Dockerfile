@@ -1,27 +1,26 @@
-# ── STAGE 1: build & generate ───────────────────────────────────────
 FROM node:22-alpine AS builder
 WORKDIR /usr/src/app
 
-# 1) Install all deps (including devDeps so we have prisma CLI)
+# 1) Copy package manifests and install deps
 COPY package*.json ./
-RUN npm ci                                   
+RUN npm ci
 
-# 2) Copy your code & schema, then generate the Prisma Client
+# 2) Copy your Prisma schema (and only that) & generate client
+COPY prisma ./prisma
+RUN npx prisma generate
+
+# 3) Copy the rest of your source
 COPY . .
-RUN npx prisma generate      # ← generate Prisma Client 
 
-# 3) Remove devDependencies (prisma CLI remains global)
-RUN npm prune --production   # ← slim down to prod deps 
+# 4) Build / prune / etc if needed
+# RUN npm run build
+# RUN npm prune --production
 
-
-# ── STAGE 2: runtime image ──────────────────────────────────────────
+# ─── Runtime stage ───
 FROM node:22-alpine
 WORKDIR /usr/src/app
 
-# 4) Install Prisma CLI globally so you can run Prisma commands at runtime
-RUN npm install -g prisma    # ← global Prisma CLI :contentReference[oaicite:2]{index=2}
-
-# 5) Copy in your production dependencies and built client
+# 5) Bring in generated client & dependencies
 COPY --from=builder /usr/src/app/node_modules ./node_modules
 COPY --from=builder /usr/src/app ./
 
