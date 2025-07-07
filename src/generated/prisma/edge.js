@@ -190,7 +190,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "D:\\Repositories\\senior-id-api\\src\\generated\\prisma",
+      "value": "C:\\Users\\USER\\senior-id-api\\src\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -204,7 +204,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "D:\\Repositories\\senior-id-api\\prisma\\schema.prisma",
+    "sourceFilePath": "C:\\Users\\USER\\senior-id-api\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -218,7 +218,6 @@ const config = {
     "db"
   ],
   "activeProvider": "mysql",
-  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
