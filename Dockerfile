@@ -1,28 +1,41 @@
-FROM node:22-alpine AS builder
-WORKDIR /usr/src/app
+# Step 1: Use Node.js 22 as the base image
+FROM node:22 AS build
 
-# 1) Copy package manifests and install deps
+# Step 2: Set the working directory inside the container
+WORKDIR /app
+
+# Step 3: Copy package.json and package-lock.json (or npm-shrinkwrap.json)
 COPY package*.json ./
-RUN npm ci
 
-# 2) Copy your Prisma schema (and only that) & generate client
-COPY prisma ./prisma
-RUN npx prisma generate
+# Step 4: Install dependencies (including Prisma)
+RUN npm install
 
-# 3) Copy the rest of your source
-COPY . .
+# Step 5: Run prisma generate to create Prisma client
+RUN npm run postinstall
 
-# 4) Build / prune / etc if needed
-# RUN npm run build
-# RUN npm prune --production
+# Step 6: Install TypeScript globally and build the app
+RUN npm install -g typescript
+RUN npx tsc
 
-# ─── Runtime stage ───
-FROM node:22-alpine
-WORKDIR /usr/src/app
+# Step 7: Create a production image
+FROM node:22 AS production
 
-# 5) Bring in generated client & dependencies
-COPY --from=builder /usr/src/app/node_modules ./node_modules
-COPY --from=builder /usr/src/app ./
+# Step 8: Set the working directory inside the container for production
+WORKDIR /app
 
+# Step 9: Copy only the compiled files and Prisma client
+COPY --from=build /app/dist /app/dist
+COPY --from=build /app/node_modules /app/node_modules
+COPY --from=build /app/prisma /app/prisma
+
+# Step 10: Copy package.json and package-lock.json for production dependencies
+COPY package*.json ./
+
+# Step 11: Install only the production dependencies
+RUN npm install --production
+
+# Step 12: Expose port 3000 for the app
 EXPOSE 3000
-CMD ["npm", "start"]
+
+# Step 13: Run the application
+CMD ["node", "dist/index.js"]
