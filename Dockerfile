@@ -20,22 +20,26 @@ RUN npx tsc
 # Step 7: Create a production image
 FROM node:22 AS production
 
-# Step 8: Set the working directory inside the container for production
+# Set working directory for production
 WORKDIR /app
 
-# Step 9: Copy only the compiled files and Prisma client
+# Copy built files from the build stage
 COPY --from=build /app/dist /app/dist
+
+# Copy node_modules from build stage
 COPY --from=build /app/node_modules /app/node_modules
+
+# Copy prisma directory to the production image
 COPY --from=build /app/prisma /app/prisma
 
-# Step 10: Copy package.json and package-lock.json for production dependencies
+# Copy package.json and package-lock.json
 COPY package*.json ./
 
-# Step 11: Install only the production dependencies
+# Install only production dependencies
 RUN npm install --production
 
-# Step 12: Expose port 3000 for the app
+# Expose the port the app will run on
 EXPOSE 3000
 
-# Step 13: Run the application
+# Start the app
 CMD ["node", "dist/index.js"]
