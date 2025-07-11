@@ -1,8 +1,31 @@
-import fs from 'fs/promises';
-import path from 'path';
-
 import { Request, Response } from "express";
 import { SeniorCitizenModel } from "../models/senior-citizen.model";
+import { getClientCredentialAssets } from "../modules/assets-extractor.module";
+import { trimObjectValues } from "../utils/object-trimmer";
+import { mySQLPool } from "../config/global.config";
+
+// 1) Define your row shape exactly as your columns:
+export interface SeniorCitizenRow {
+    recno: number;
+    first_name: string;
+    middle_name: string | null;
+    last_name: string;
+    suffix: string | null;
+    date_of_birth: Date; // or Date if you transform it later
+    place_of_birth: string | null;
+    civil_status: string | null;
+    contact_number: string | null;
+    email: string | null;
+    age_upon_release: number;
+    record_id: string;
+    sex_at_birth: string | null;
+    full_address: string;
+    id_number: string;
+    date_of_issuance: Date; // or Date
+    emergency_contact_name: string | null;
+    emergency_contact_number: string | null;
+    emergency_relationship: string | null;
+}
 
 /**
  * Controller to handle the registration of senior citizen information.
@@ -33,13 +56,38 @@ export const register = async (req: Request, res: Response) => {
     }
 };
 
-
 export const getAllSeniorCitizenInfo = async (req: Request, res: Response) => {
     try {
         const result = await SeniorCitizenModel.getAllSeniorCitizenInfo();
+
+        if (!result || result.length === 0) {
+            res.status(404).json({ message: "No senior citizens found" });
+            return;
+        }
+
+        // run all the async maps in parallel and wait for them
+        const data = await Promise.all(
+            result.map(async (el) => {
+                // pull out all three URLs (or null)
+                const client_credential_assets = await getClientCredentialAssets(el.id_number);
+
+                // build full_name (no extra spaces if no suffix)
+                const full_name = [
+                    el.last_name + (el.suffix ? ` ${el.suffix}` : ""),
+                    el.first_name + (el.middle_name ? ` ${el.middle_name[0]}.` : ""),
+                ].join(", ");
+
+                return trimObjectValues({
+                    ...el,
+                    client_credential_assets,
+                    full_name,
+                });
+            })
+        );
+
         res.status(200).json({
             message: "All senior citizen information retrieved successfully",
-            data: result,
+            data: data,
         });
     } catch (error) {
         console.error("Error retrieving senior citizen info:", error);
@@ -50,41 +98,34 @@ export const getAllSeniorCitizenInfo = async (req: Request, res: Response) => {
     }
 };
 
-
 export const getSeniorCitizenById = async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
         const result = await SeniorCitizenModel.getSeniorCitizenById(id);
         if (!result) {
-            res.status(404).json({
-                message: "Senior citizen not found",
-            });
+            res.status(404).json({ message: "Senior citizen not found" });
+            return;
         }
 
-        const signaturePath = path.join(__dirname, '../../uploads/signature', `S_${result?.id_number}.jpg`);
-        const thumbprintPath = path.join(__dirname, '../../uploads/thumbprint', `T_${result?.id_number}.jpg`);
+        // pull out all three URLs (or null)
+        const client_credential_assets = await getClientCredentialAssets(result.id_number);
 
+        // build full_name (no extra spaces if no suffix)
+        const full_name = [
+            result.last_name + (result.suffix ? " " + result.suffix : ""),
+            result.first_name + (result.middle_name ? " " + result.middle_name[0] + "." : ""),
+        ].join(", ");
 
-        const electronic_signature = (await fileExists(signaturePath))
-            ? `uploads/signature/S_${result?.id_number}.jpg`
-            : null;
-
-        const thumbprint = (await fileExists(thumbprintPath))
-            ? `uploads/thumbprint/T_${result?.id_number}.jpg`
-            : null;
-
+        await insertSeniorCitizenToRemoteDBforQR(result);
 
         res.status(200).json({
             message: "Senior citizen information retrieved successfully",
             data: trimObjectValues({
                 ...result,
-                full_name: `${result?.last_name} ${result?.suffix || ''}, ${result?.first_name} ${result?.middle_name?.[0] || ''}.`,
-                client_credential_assets: result?.client_credential_assets ?? {
-                    profile_picture: `uploads/photo/P_${result?.id_number}.jpg`,
-                    electronic_signature,
-                    thumbprint
-                }
-            })
+                full_name,
+                client_credential_assets:
+                    result.client_credential_assets ?? client_credential_assets,
+            }),
         });
     } catch (error) {
         res.status(500).json({
@@ -94,21 +135,81 @@ export const getSeniorCitizenById = async (req: Request, res: Response) => {
     }
 };
 
-const fileExists = async (filePath: string) => {
-    try {
-        await fs.access(filePath);
-        return true;
-    } catch {
-        return false;
-    }
-};
+/**
+ * Inserts one SeniorCitizenRow into the Remote DB to QR Verification.
+ */
+export async function insertSeniorCitizenToRemoteDBforQR(row: SeniorCitizenRow): Promise<void> {
+    /**
+     * Insert or update a senior citizen record based on record_id.
+     * @param row The SeniorCitizenRow object to insert or update
+     */
+    const sql = `
+    INSERT INTO tbl_senior_citizens (
+        recno,
+        first_name,
+        middle_name,
+        last_name,
+        suffix,
+        date_of_birth,
+        place_of_birth,
+        civil_status,
+        contact_number,
+        email,
+        age_upon_release,
+        record_id,
+        sex_at_birth,
+        full_address,
+        id_number,
+        date_of_issuance,
+        emergency_contact_name,
+        emergency_contact_number,
+        emergency_relationship
+    )
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    ON DUPLICATE KEY UPDATE
+        recno = VALUES(recno),
+        first_name = VALUES(first_name),
+        middle_name = VALUES(middle_name),
+        last_name = VALUES(last_name),
+        suffix = VALUES(suffix),
+        date_of_birth = VALUES(date_of_birth),
+        place_of_birth = VALUES(place_of_birth),
+        civil_status = VALUES(civil_status),
+        contact_number = VALUES(contact_number),
+        email = VALUES(email),
+        age_upon_release = VALUES(age_upon_release),
+        sex_at_birth = VALUES(sex_at_birth),
+        full_address = VALUES(full_address),
+        id_number = VALUES(id_number),
+        date_of_issuance = VALUES(date_of_issuance),
+        emergency_contact_name = VALUES(emergency_contact_name),
+        emergency_contact_number = VALUES(emergency_contact_number),
+        emergency_relationship = VALUES(emergency_relationship)
+    `;
 
-const trimObjectValues = (obj: any) =>
-    Object.fromEntries(
-        Object.entries(obj).map(([key, value]) => [
-            key,
-            typeof value === 'string'
-                ? value.replace(/\s+/g, ' ').replace(/\s+,/g, ',').trim()
-                : value
-        ])
-    );
+    const params = [
+        row.recno,
+        row.first_name,
+        row.middle_name,
+        row.last_name,
+        row.suffix,
+        row.date_of_birth.toISOString().slice(0, 10),
+        row.place_of_birth,
+        row.civil_status,
+        row.contact_number,
+        row.email,
+        row.age_upon_release,
+        row.record_id,
+        row.sex_at_birth,
+        row.full_address,
+        row.id_number,
+        row.date_of_issuance.toISOString().slice(0, 10),
+        row.emergency_contact_name,
+        row.emergency_contact_number,
+        row.emergency_relationship,
+    ];
+
+    const [result] = await mySQLPool.execute(sql, params);
+
+    console.log(result);
+}

@@ -3,13 +3,15 @@ import { Prisma, senior_citizen_details, client_credential_assets } from "../gen
 
 type SeniorCitizenWithRelations = Prisma.senior_citizen_detailsGetPayload<{
     include: {
-        client_credential_assets: true,
-    }
+        client_credential_assets: true;
+    };
 }>;
 
 export class SeniorCitizenModel {
     // Method to insert senior citizen information into the database
-    static async insertSeniorCitizenInfo(data: any | senior_citizen_details): Promise<senior_citizen_details> {
+    static async insertSeniorCitizenInfo(
+        data: any | senior_citizen_details
+    ): Promise<senior_citizen_details> {
         return await prismaDatabase.senior_citizen_details.create({
             data: {
                 first_name: data.first_name,
@@ -41,18 +43,22 @@ export class SeniorCitizenModel {
         });
     }
 
-
     // Method to get all senior citizen information
     static async getAllSeniorCitizenInfo(): Promise<SeniorCitizenWithRelations[] | null> {
         return await prismaDatabase.senior_citizen_details.findMany({
             include: {
                 client_credential_assets: true,
             },
+            orderBy: {
+                date_of_issuance: "desc",
+            },
         });
     }
 
     // Method to get senior citizen information by record ID
-    static async getSeniorCitizenById(recordId: string): Promise<SeniorCitizenWithRelations | null> {
+    static async getSeniorCitizenById(
+        recordId: string
+    ): Promise<SeniorCitizenWithRelations | null> {
         return await prismaDatabase.senior_citizen_details.findUnique({
             where: { record_id: recordId },
             include: {
