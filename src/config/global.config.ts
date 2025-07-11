@@ -1,4 +1,6 @@
-import { PrismaClient } from "../generated/prisma";
+export * from ".prisma/client";
+import { PrismaClient } from "@prisma/client";
+
 import mysql from "mysql2/promise";
 
 export default new PrismaClient();
