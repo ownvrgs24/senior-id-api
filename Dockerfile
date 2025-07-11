@@ -38,6 +38,9 @@ COPY package*.json ./
 # Install only production dependencies
 RUN npm install --production
 
+# Run prisma generate during the Docker build to ensure the client is created
+RUN npx prisma generate --schema=./prisma/schema.prisma
+
 # Expose the port the app will run on
 EXPOSE 3000
 
