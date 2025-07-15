@@ -1,5 +1,5 @@
 import prismaDatabase from "../config/global.config";
-import { Prisma, senior_citizen_details, client_credential_assets } from "../generated/prisma";
+import { Prisma, senior_citizen_details, client_credential_assets } from "@prisma/client";
 
 type SeniorCitizenWithRelations = Prisma.senior_citizen_detailsGetPayload<{
     include: {
@@ -21,7 +21,7 @@ export class SeniorCitizenModel {
                 date_of_birth: new Date(data.date_of_birth), // Ensure date is in Date format
                 place_of_birth: data.place_of_birth,
                 full_address: data.full_address, // Add required full_address property
-                civil_status: data.civil_status,
+                civil_status: data.civil_status || null,
                 contact_number: data.contact_number,
                 email: data.email || null, // Handle optional email
                 age_upon_release: data.age_upon_release, // Ensure age is an integer

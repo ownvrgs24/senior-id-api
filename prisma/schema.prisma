@@ -15,9 +15,9 @@ datasource db {
 }
 
 model senior_citizen_details {
-  recno                    Int                @id @default(autoincrement())
-  record_id                String             @unique @default(uuid())
-  id_number                String             @unique
+  recno                    Int                       @id @default(autoincrement())
+  record_id                String                    @unique @default(uuid())
+  id_number                String                    @unique
   first_name               String
   middle_name              String?
   last_name                String
@@ -25,7 +25,8 @@ model senior_citizen_details {
   age_upon_release         Int
   full_address             String
   sex_at_birth             SEX_AT_BIRTH_ENUM?
-  date_of_birth            DateTime           @db.Date
+  date_of_birth            DateTime                  @db.Date
+  date_of_issuance         DateTime                  @db.Date
   place_of_birth           String?
   civil_status             String?
   contact_number           String?
@@ -33,11 +34,9 @@ model senior_citizen_details {
   emergency_contact_number String?
   emergency_relationship   String?
   email                    String?
-  created_at               DateTime           @default(now())
-  updated_at               DateTime           @default(now()) @updatedAt @db.Timestamp(6)
-
+  created_at               DateTime                  @default(now())
+  updated_at               DateTime                  @default(now()) @updatedAt @db.Timestamp(6)
   client_credential_assets client_credential_assets?
-  date_of_issuance         DateTime                  @db.Date
 }
 
 model client_credential_assets {
@@ -71,15 +70,6 @@ enum SEX_AT_BIRTH_ENUM {
   FEMALE
   MALE
   OTHER
-}
-
-enum CIVIL_STATUS_ENUM {
-  SINGLE
-  MARRIED
-  WIDOWED
-  SEPARATED
-  DIVORCED
-  ANNULLED
 }
 
 enum ROLES {
