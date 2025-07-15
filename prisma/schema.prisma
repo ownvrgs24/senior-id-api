@@ -27,7 +27,7 @@ model senior_citizen_details {
   sex_at_birth             SEX_AT_BIRTH_ENUM?
   date_of_birth            DateTime           @db.Date
   place_of_birth           String?
-  civil_status             CIVIL_STATUS_ENUM?
+  civil_status             String?
   contact_number           String?
   emergency_contact_name   String?
   emergency_contact_number String?
