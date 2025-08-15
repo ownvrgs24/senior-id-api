@@ -9,7 +9,7 @@ import {
 const router = Router();
 
 router.post("/register", register);
-router.get("/all", getAllSeniorCitizenInfo);
+router.get("/all/:current_page/:page_size", getAllSeniorCitizenInfo);
 router.get("/:id", getSeniorCitizenById);
 
 export default router;

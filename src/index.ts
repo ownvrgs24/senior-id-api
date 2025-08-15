@@ -8,7 +8,7 @@ dotenv.config();
 
 // Check if the PORT environment variable is set
 if (!process.env.PORT) {
-    process.exit(1);
+  process.exit(1);
 }
 
 // Parse the PORT environment variable
@@ -18,10 +18,11 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors({ origin: true, credentials: true }));
+
 app.use("/uploads", express.static("uploads"));
 
 app.use("/api", router);
 
 app.listen(PORT, () => {
-    console.log(`Server is up and running at: http://localhost:${PORT}/api`);
+  console.log(`Server is up and running at: http://localhost:${PORT}/api`);
 });
