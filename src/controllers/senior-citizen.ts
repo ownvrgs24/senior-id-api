@@ -134,7 +134,7 @@ export const getSeniorCitizenById = async (req: Request, res: Response) => {
     const full_name = [
       result.last_name + (result.suffix ? " " + result.suffix : ""),
       result.first_name +
-        (result.middle_name ? " " + result.middle_name[0] + "." : ""),
+      (result.middle_name ? " " + result.middle_name[0] + "." : ""),
     ].join(", ");
 
     await insertSeniorCitizenToRemoteDBforQR(result);

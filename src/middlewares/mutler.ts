@@ -7,5 +7,5 @@ import multer from "multer";
 
 export const multerConfig = multer({
     storage: multer.memoryStorage(),
-    limits: { fileSize: 1024 * 1024 * 25 }, // 25 MB
+    limits: { fileSize: 1024 * 1024 * 5 }, // 5 MB
 });
