@@ -2,7 +2,6 @@ import prismaDatabase from "../config/global.config";
 import {
   Prisma,
   senior_citizen_details,
-  client_credential_assets,
 } from "@prisma/client";
 
 type SeniorCitizenWithRelations = Prisma.senior_citizen_detailsGetPayload<{
@@ -52,7 +51,7 @@ export class SeniorCitizenModel {
         skip: offset,
         take: safeSize,
         include: { client_credential_assets: true },
-        orderBy: { date_of_issuance: "desc" },
+        orderBy: { created_at: "desc" },
       }),
       prismaDatabase.senior_citizen_details.count(),
     ]);
@@ -71,4 +70,8 @@ export class SeniorCitizenModel {
       },
     });
   }
+
+  // Searching senior citizen information by name, id, 
 }
+
+
