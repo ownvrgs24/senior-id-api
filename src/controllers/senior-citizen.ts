@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import e, { Request, Response } from "express";
 import { SeniorCitizenModel } from "../models/senior-citizen";
 import { getClientCredentialAssets } from "../modules/assets-extractor";
 import { trimObjectValues } from "../utils/object-trimmer";
@@ -105,7 +105,6 @@ export const getAllSeniorCitizenInfo = async (req: Request, res: Response) => {
       },
     });
   } catch (error) {
-    console.error("Error retrieving senior citizen info:", error);
     res.status(500).json({
       message: "An error occurred while retrieving senior citizen information",
       error: error instanceof Error ? error.message : String(error),
@@ -142,8 +141,10 @@ export const getSeniorCitizenById = async (req: Request, res: Response) => {
       }),
     });
 
-    // Insert or update the senior citizen record in the remote DB for QR verification  
-    await insertSeniorCitizenToRemoteDBforQR(result);
+    // Check if http://localhost:7000/api is the server then don't insert
+    if (!process.env.DEV) {
+      await insertSeniorCitizenToRemoteDBforQR(result);
+    }
 
   } catch (error) {
     res.status(500).json({
@@ -178,6 +179,83 @@ export async function updateSeniorCitizen(req: Request, res: Response) {
   }
 };
 
+export async function markAsPrinted(req: Request, res: Response) {
+  const { id } = req.params;
+  try {
+    const result = await SeniorCitizenModel.markAsPrinted(id);
+    if (!result) {
+      res.status(404).json({ message: "Senior citizen not found" });
+      return;
+    }
+
+    res.status(200).json({
+      message: "Senior citizen marked as printed successfully",
+      data: trimObjectValues(result),
+    });
+  } catch (error) {
+    res.status(500).json({
+      message:
+        "An error occurred while marking senior citizen as printed",
+      error: error instanceof Error ? error.message : String(error),
+    });
+  }
+}
+
+export async function searchSeniorCitizens(req: Request, res: Response) {
+  try {
+    const searchTerm = req.query.searchTerm as string || '';
+
+    // Handle pagination parameters
+    const pageRaw = (req.query.page ?? "1") as string;
+    const sizeRaw = (req.query.pageSize ?? "50") as string;
+
+    const page = Math.max(parseInt(pageRaw, 10) || 1, 1);
+    const pageSize = Math.min(Math.max(parseInt(sizeRaw, 10) || 25, 1), 500);
+
+    // Get search results with pagination
+    const { result: rows, count: total } = await SeniorCitizenModel.searchSeniorCitizens(searchTerm, page, pageSize);
+
+    // build the enriched page rows
+    const data = await Promise.all(
+      rows.map(async (el) => {
+        const client_credential_assets = await getClientCredentialAssets(
+          el.id_number
+        );
+        const full_name = [
+          el.last_name + (el.suffix ? ` ${el.suffix}` : ""),
+          el.first_name + (el.middle_name ? ` ${el.middle_name[0]}.` : ""),
+        ].join(", ");
+
+        return trimObjectValues({
+          ...el,
+          client_credential_assets,
+          full_name,
+        });
+      })
+    );
+
+    // Calculate pagination metadata
+    const totalPages = total === 0 ? 0 : Math.ceil(total / pageSize);
+
+    res.status(200).json({
+      message: "Senior citizens retrieved successfully",
+      data,
+      meta: {
+        total,
+        page,
+        pageSize,
+        totalPages,
+        hasPrev: page > 1,
+        hasNext: totalPages > 0 && page < totalPages,
+      }
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "An error occurred while searching for senior citizens",
+      error: error instanceof Error ? error.message : String(error),
+    });
+  }
+}
 
 /**
  * Inserts one SeniorCitizenRow into the Remote DB to QR Verification.

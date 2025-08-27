@@ -78,6 +78,50 @@ export class SeniorCitizenModel {
       data: updatedData,
     });
   }
+
+  static async markAsPrinted(id: string) {
+    return await prismaDatabase.senior_citizen_details.update({
+      where: { record_id: id },
+      data: {
+        is_printed: true,
+        date_printed: new Date(),
+      },
+    });
+  }
+
+  static async searchSeniorCitizens(
+    searchTerm: string,
+    page: number = 1,
+    pageSize: number = 25
+  ): Promise<{ result: SeniorCitizenWithRelations[]; count: number }> {
+    const safePage = Math.max(1, page | 0);
+    const safeSize = Math.max(1, pageSize | 0);
+    const offset = (safePage - 1) * safeSize;
+
+    const whereCondition = {
+      OR: [
+        { first_name: { contains: searchTerm } },
+        { middle_name: { contains: searchTerm } },
+        { last_name: { contains: searchTerm } },
+        { id_number: { contains: searchTerm } },
+      ],
+    };
+
+    const [result, count] = await Promise.all([
+      prismaDatabase.senior_citizen_details.findMany({
+        where: whereCondition,
+        skip: offset,
+        take: safeSize,
+        include: {
+          client_credential_assets: true,
+        },
+        orderBy: { date_of_issuance: "desc" },
+      }),
+      prismaDatabase.senior_citizen_details.count({
+        where: whereCondition,
+      }),
+    ]);
+
+    return { result, count };
+  }
 }
-
-
