@@ -52,7 +52,7 @@ export class SeniorCitizenModel {
         skip: offset,
         take: safeSize,
         include: { client_credential_assets: true },
-        orderBy: { date_of_issuance: "asc" },
+        orderBy: { date_of_issuance: "desc" },
       }),
       prismaDatabase.senior_citizen_details.count(),
     ]);
