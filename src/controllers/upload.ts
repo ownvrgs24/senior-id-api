@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { handleUpload } from "../modules/uploading";
 import { isStrictJpg } from "../utils/file-checker";
+import fs from "fs";
 
 export const handleSeniorCitizenPhotoUpload = async (
   req: Request,
@@ -102,6 +103,33 @@ export const handleSeniorCitizenThumbprintUpload = async (
   } catch (error) {
     res.status(500).json({
       message: "An error occurred while uploading the electronic signature",
+      error: error instanceof Error ? error.message : String(error),
+    });
+  }
+};
+
+export const deleteFileFromServer = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    const { filePath } = req.body;
+
+    if (!filePath) {
+      res.status(400).json({ message: "File path is required" });
+    }
+
+    res.status(200).json({
+      message: "File deleted successfully",
+    });
+    // const { filePath } = req.body;
+    // await fs.promises.unlink(filePath);
+    // res.status(200).json({
+    //   message: "File deleted successfully",
+    // });
+  } catch (error) {
+    res.status(500).json({
+      message: "An error occurred while deleting the file",
       error: error instanceof Error ? error.message : String(error),
     });
   }

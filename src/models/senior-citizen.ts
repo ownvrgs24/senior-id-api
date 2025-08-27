@@ -11,6 +11,7 @@ type SeniorCitizenWithRelations = Prisma.senior_citizen_detailsGetPayload<{
 }>;
 
 export class SeniorCitizenModel {
+
   // Method to insert senior citizen information into the database
   static async insertSeniorCitizenInfo(
     data: any | senior_citizen_details
@@ -51,7 +52,7 @@ export class SeniorCitizenModel {
         skip: offset,
         take: safeSize,
         include: { client_credential_assets: true },
-        orderBy: { created_at: "desc" },
+        orderBy: { date_of_issuance: "asc" },
       }),
       prismaDatabase.senior_citizen_details.count(),
     ]);
@@ -71,7 +72,12 @@ export class SeniorCitizenModel {
     });
   }
 
-  // Searching senior citizen information by name, id, 
+  static async updateSeniorCitizen(id: string, updatedData: any) {
+    return await prismaDatabase.senior_citizen_details.update({
+      where: { record_id: id },
+      data: updatedData,
+    });
+  }
 }
 
 

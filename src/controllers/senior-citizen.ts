@@ -3,6 +3,7 @@ import { SeniorCitizenModel } from "../models/senior-citizen";
 import { getClientCredentialAssets } from "../modules/assets-extractor";
 import { trimObjectValues } from "../utils/object-trimmer";
 import { mySQLPool } from "../config/global.config";
+import { fileExists } from "../utils/file-checker";
 
 // 1) Define your row shape exactly as your columns:
 export interface SeniorCitizenRow {
@@ -59,15 +60,11 @@ export const register = async (req: Request, res: Response) => {
 export const getAllSeniorCitizenInfo = async (req: Request, res: Response) => {
   try {
     // accept either route params or query params
-    const pageRaw = (req.params.current_page ??
-      req.query.page ??
-      "1") as string;
-    const sizeRaw = (req.params.page_size ??
-      req.query.pageSize ??
-      "25") as string;
+    const pageRaw = (req.params.current_page ?? req.query.page ?? "1") as string;
+    const sizeRaw = (req.params.page_size ?? req.query.pageSize ?? "50") as string;
 
     const page = Math.max(parseInt(pageRaw, 10) || 1, 1);
-    const pageSize = Math.min(Math.max(parseInt(sizeRaw, 10) || 25, 1), 100);
+    const pageSize = Math.min(Math.max(parseInt(sizeRaw, 10) || 25, 1), 500);
 
     // ⬇️ your model should return { result: SeniorCitizenWithRelations[]; count: number }
     const { result: rows, count: total } =
@@ -125,11 +122,6 @@ export const getSeniorCitizenById = async (req: Request, res: Response) => {
       return;
     }
 
-    // pull out all three URLs (or null)
-    const client_credential_assets = await getClientCredentialAssets(
-      result.id_number
-    );
-
     // build full_name (no extra spaces if no suffix)
     const full_name = [
       result.last_name + (result.suffix ? " " + result.suffix : ""),
@@ -137,17 +129,22 @@ export const getSeniorCitizenById = async (req: Request, res: Response) => {
       (result.middle_name ? " " + result.middle_name[0] + "." : ""),
     ].join(", ");
 
-    await insertSeniorCitizenToRemoteDBforQR(result);
-
     res.status(200).json({
       message: "Senior citizen information retrieved successfully",
       data: trimObjectValues({
         ...result,
         full_name,
-        client_credential_assets:
-          result.client_credential_assets ?? client_credential_assets,
+        client_credential_assets: {
+          electronic_signature: await fileExists(`uploads/signature/S_${result.id_number}.jpg`) ? `uploads/signature/S_${result.id_number}.jpg` : null,
+          thumbprint: await fileExists(`uploads/thumbprint/T_${result.id_number}.jpg`) ? `uploads/thumbprint/T_${result.id_number}.jpg` : null,
+          profile_picture: await fileExists(`uploads/photo/P_${result.id_number}.jpg`) ? `uploads/photo/P_${result.id_number}.jpg` : null
+        }
       }),
     });
+
+    // Insert or update the senior citizen record in the remote DB for QR verification  
+    await insertSeniorCitizenToRemoteDBforQR(result);
+
   } catch (error) {
     res.status(500).json({
       message:
@@ -156,6 +153,31 @@ export const getSeniorCitizenById = async (req: Request, res: Response) => {
     });
   }
 };
+
+export async function updateSeniorCitizen(req: Request, res: Response) {
+  const { id } = req.params;
+  const updatedData = req.body;
+
+  try {
+    const result = await SeniorCitizenModel.updateSeniorCitizen(id, updatedData);
+    if (!result) {
+      res.status(404).json({ message: "Senior citizen not found" });
+      return;
+    }
+
+    res.status(200).json({
+      message: "Senior citizen information updated successfully",
+      data: trimObjectValues(result),
+    });
+  } catch (error) {
+    res.status(500).json({
+      message:
+        "An error occurred while updating senior citizen information",
+      error: error instanceof Error ? error.message : String(error),
+    });
+  }
+};
+
 
 /**
  * Inserts one SeniorCitizenRow into the Remote DB to QR Verification.
@@ -237,3 +259,5 @@ export async function insertSeniorCitizenToRemoteDBforQR(
 
   console.log(result);
 }
+
+

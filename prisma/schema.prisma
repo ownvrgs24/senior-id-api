@@ -27,6 +27,8 @@ model senior_citizen_details {
   sex_at_birth             SEX_AT_BIRTH_ENUM?
   date_of_birth            DateTime                  @db.Date
   date_of_issuance         DateTime                  @db.Date
+  is_printed               Boolean                   @default(false)
+  date_printed             DateTime?                 @db.Date
   place_of_birth           String?
   civil_status             String?
   contact_number           String?
