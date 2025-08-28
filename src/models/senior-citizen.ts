@@ -73,9 +73,15 @@ export class SeniorCitizenModel {
   }
 
   static async updateSeniorCitizen(id: string, updatedData: any) {
+    const data = {
+      ...updatedData,
+      date_of_birth: new Date(updatedData.date_of_birth),
+      date_of_issuance: new Date(updatedData.date_of_issuance),
+    };
+
     return await prismaDatabase.senior_citizen_details.update({
       where: { record_id: id },
-      data: updatedData,
+      data: data,
     });
   }
 

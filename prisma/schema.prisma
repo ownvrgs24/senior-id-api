@@ -25,10 +25,10 @@ model senior_citizen_details {
   age_upon_release         Int
   full_address             String
   sex_at_birth             SEX_AT_BIRTH_ENUM?
-  date_of_birth            DateTime                  @db.Date
-  date_of_issuance         DateTime                  @db.Date
+  date_of_birth            DateTime
+  date_of_issuance         DateTime
   is_printed               Boolean                   @default(false)
-  date_printed             DateTime?                 @db.Date
+  date_printed             DateTime?
   place_of_birth           String?
   civil_status             String?
   contact_number           String?
