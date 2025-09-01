@@ -95,6 +95,46 @@ export class SeniorCitizenModel {
     });
   }
 
+  static async filterByDateIssued(
+    date: Date,
+    page: number = 1,
+    pageSize: number = 25
+  ): Promise<{ result: SeniorCitizenWithRelations[]; count: number }> {
+    const safePage = Math.max(1, page | 0);
+    const safeSize = Math.max(1, pageSize | 0);
+    const offset = (safePage - 1) * safeSize;
+
+    const startOfDay = new Date(date);
+    startOfDay.setHours(0, 0, 0, 0);
+
+    const endOfDay = new Date(date);
+    endOfDay.setHours(23, 59, 59, 999);
+
+    const whereCondition = {
+      date_of_issuance: {
+        gte: startOfDay,
+        lte: endOfDay,
+      },
+    };
+
+    const [result, count] = await prismaDatabase.$transaction([
+      prismaDatabase.senior_citizen_details.findMany({
+        where: whereCondition,
+        skip: offset,
+        take: safeSize,
+        include: {
+          client_credential_assets: true,
+        },
+        orderBy: { date_of_issuance: "desc" },
+      }),
+      prismaDatabase.senior_citizen_details.count({
+        where: whereCondition,
+      }),
+    ]);
+
+    return { result, count };
+  }
+
   static async searchSeniorCitizens(
     searchTerm: string,
     page: number = 1,

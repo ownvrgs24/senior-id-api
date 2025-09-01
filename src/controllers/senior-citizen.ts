@@ -180,7 +180,7 @@ export async function updateSeniorCitizen(req: Request, res: Response) {
 };
 
 export async function markAsPrinted(req: Request, res: Response) {
-  const { id } = req.params;
+  const { id } = req.body;
   try {
     const result = await SeniorCitizenModel.markAsPrinted(id);
     if (!result) {
@@ -252,6 +252,71 @@ export async function searchSeniorCitizens(req: Request, res: Response) {
   } catch (error) {
     res.status(500).json({
       message: "An error occurred while searching for senior citizens",
+      error: error instanceof Error ? error.message : String(error),
+    });
+  }
+}
+
+export async function filterByDateIssued(req: Request, res: Response) {
+  try {
+    // Get date from query params
+    const date = req.query.date as string;
+
+    if (!date) {
+      res.status(400).json({
+        message: "Date parameter is required"
+      });
+    }
+
+    // Handle pagination parameters
+    const pageRaw = (req.query.page ?? "1") as string;
+    const sizeRaw = (req.query.pageSize ?? "50") as string;
+
+    const page = Math.max(parseInt(pageRaw, 10) || 1, 1);
+    const pageSize = Math.min(Math.max(parseInt(sizeRaw, 10) || 25, 1), 500);
+
+    // Get filtered results with pagination
+    const { result: rows, count: total } = await SeniorCitizenModel.filterByDateIssued(
+      new Date(date),
+      page,
+      pageSize
+    );
+
+    // Build the enriched page rows
+    const data = await Promise.all(
+      rows.map(async (el) => {
+        const client_credential_assets = await getClientCredentialAssets(el.id_number);
+        const full_name = [
+          el.last_name + (el.suffix ? ` ${el.suffix}` : ""),
+          el.first_name + (el.middle_name ? ` ${el.middle_name[0]}.` : ""),
+        ].join(", ");
+
+        return trimObjectValues({
+          ...el,
+          client_credential_assets,
+          full_name,
+        });
+      })
+    );
+
+    // Calculate pagination metadata
+    const totalPages = total === 0 ? 0 : Math.ceil(total / pageSize);
+
+    res.status(200).json({
+      message: "Senior citizens retrieved successfully",
+      data,
+      meta: {
+        total,
+        page,
+        pageSize,
+        totalPages,
+        hasPrev: page > 1,
+        hasNext: totalPages > 0 && page < totalPages,
+      }
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "An error occurred while searching for senior citizens by date",
       error: error instanceof Error ? error.message : String(error),
     });
   }

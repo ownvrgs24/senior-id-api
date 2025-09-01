@@ -29,6 +29,7 @@ model senior_citizen_details {
   date_of_issuance         DateTime
   is_printed               Boolean                   @default(false)
   date_printed             DateTime?
+  for_expedite             Boolean                   @default(false)
   place_of_birth           String?
   civil_status             String?
   contact_number           String?
