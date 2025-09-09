@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 import { handleUpload } from "../modules/uploading";
 import { isStrictJpg } from "../utils/file-checker";
 import fs from "fs";
+import { parse } from "fast-csv";
+import { SeniorCitizenModel } from "../models/senior-citizen";
 
 export const handleSeniorCitizenPhotoUpload = async (
   req: Request,
@@ -122,11 +124,6 @@ export const deleteFileFromServer = async (
     res.status(200).json({
       message: "File deleted successfully",
     });
-    // const { filePath } = req.body;
-    // await fs.promises.unlink(filePath);
-    // res.status(200).json({
-    //   message: "File deleted successfully",
-    // });
   } catch (error) {
     res.status(500).json({
       message: "An error occurred while deleting the file",
@@ -134,3 +131,49 @@ export const deleteFileFromServer = async (
     });
   }
 };
+
+
+export const handleImportCSV = async (
+  req: Request,
+  res: Response
+) => {
+  try {
+    if (!req.file) {
+      res.status(400).json({ message: "No file uploaded" });
+      return;
+    }
+
+    const filePath = req.file.path;
+
+    const csvData: any[] = [];
+
+    fs.createReadStream(filePath)
+      .pipe(parse({ headers: true }))
+      .on("data", (row) => {
+        csvData.push(row);
+      })
+      .on("end", async () => {
+        // Optionally delete the file after processing
+        fs.unlinkSync(filePath);
+        // Process csvData as needed (e.g., insert into database)
+        const result = await SeniorCitizenModel.insertBulkSeniorCitizenInfo(csvData);
+        if (!result) {
+          res.status(500).json({ message: "Failed to import CSV data" });
+          return;
+        }
+        res.status(200).json({ message: "CSV file imported successfully", data: csvData });
+      })
+      .on("error", (error) => {
+        res.status(500).json({
+          message: "An error occurred while processing the CSV file",
+          error: error instanceof Error ? error.message : String(error),
+        });
+      });
+
+  } catch (error) {
+    res.status(500).json({
+      message: "An error occurred while processing the CSV file",
+      error: error instanceof Error ? error.message : String(error),
+    });
+  }
+}

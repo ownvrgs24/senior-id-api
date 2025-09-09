@@ -1,5 +1,6 @@
 import fs from "fs";
 import sharp from "sharp";
+import multer from "multer";
 
 // General function for handling uploads
 export const handleUpload = async (params: {
@@ -36,3 +37,30 @@ export const handleUpload = async (params: {
         );
     }
 };
+
+export const validateCsvFile = (
+    req: Express.Request,
+    file: Express.Multer.File,
+    cb: multer.FileFilterCallback
+) => {
+    if (file.mimetype === "text/csv" || file.mimetype === "application/vnd.ms-excel") {
+        cb(null, true);
+    } else {
+        cb(new Error("Only CSV files are allowed!"));
+    }
+};
+
+export const csvFileStorage = multer.diskStorage({
+    destination: (_req, _file, cb) => {
+        const uploadDir = "uploads/csv";
+        // Check if directory exists, if not, create it
+        if (!fs.existsSync(uploadDir)) {
+            fs.mkdirSync(uploadDir, { recursive: true });
+        }
+        cb(null, uploadDir);
+    },
+    filename: (_req, file, cb) => {
+        const uniqueSuffix = Date.now();
+        cb(null, file.fieldname + "-" + uniqueSuffix + ".csv");
+    },
+});

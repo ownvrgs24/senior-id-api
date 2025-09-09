@@ -1,4 +1,4 @@
-import e, { Request, Response } from "express";
+import { Request, Response } from "express";
 import { SeniorCitizenModel } from "../models/senior-citizen";
 import { getClientCredentialAssets } from "../modules/assets-extractor";
 import { trimObjectValues } from "../utils/object-trimmer";
@@ -402,5 +402,6 @@ export async function insertSeniorCitizenToRemoteDBforQR(
 
   console.log(result);
 }
+
 
 

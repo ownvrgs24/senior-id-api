@@ -15,8 +15,8 @@ if (!process.env.PORT) {
 const PORT = Number.parseInt(process.env.PORT as string, 10);
 
 const app = express();
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(express.urlencoded({ extended: true, type: 'application/x-www-form-urlencoded;charset=utf-8' }));
+app.use(express.json({ type: ['application/json'] }));
 app.use(cors({ origin: true, credentials: true }));
 
 app.use("/uploads", express.static("uploads"));
@@ -26,3 +26,5 @@ app.use("/api", router);
 app.listen(PORT, () => {
   console.log(`Server is up and running at: http://localhost:${PORT}/api`);
 });
+
+

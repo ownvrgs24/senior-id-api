@@ -24,7 +24,7 @@ model senior_citizen_details {
   suffix                   String?
   age_upon_release         Int
   full_address             String
-  sex_at_birth             SEX_AT_BIRTH_ENUM?
+  sex_at_birth             String?
   date_of_birth            DateTime
   date_of_issuance         DateTime
   is_printed               Boolean                   @default(false)
@@ -67,12 +67,6 @@ model user_accounts {
   is_deleted  Boolean  @default(false)
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt
-}
-
-enum SEX_AT_BIRTH_ENUM {
-  FEMALE
-  MALE
-  OTHER
 }
 
 enum ROLES {
