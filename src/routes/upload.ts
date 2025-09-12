@@ -1,14 +1,14 @@
 import { Router } from "express";
-import { multerConfig } from "../middlewares/mutler";
+import { bulkUploadConfig, csvUploadConfig, multerConfig } from "../middlewares/mutler";
 
 import {
   handleImportCSV,
+  handleMultipleFileUpload,
   handleSeniorCitizenPhotoUpload,
   handleSeniorCitizenSignatureUpload,
   handleSeniorCitizenThumbprintUpload,
 } from "../controllers/upload";
-import { csvFileStorage, validateCsvFile } from "../modules/uploading";
-import multer from "multer";
+
 
 const router: Router = Router();
 
@@ -30,11 +30,6 @@ router.post(
   handleSeniorCitizenThumbprintUpload
 );
 
-// CSV upload specific configuration
-const csvUploadConfig = multer({
-  storage: csvFileStorage,
-  fileFilter: validateCsvFile
-});
 
 router.post(
   "/import-csv",
@@ -42,5 +37,6 @@ router.post(
   handleImportCSV
 );
 
+router.post("/bulk-upload", bulkUploadConfig.array("files"), handleMultipleFileUpload);
 
 export default router;

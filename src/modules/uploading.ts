@@ -64,3 +64,33 @@ export const csvFileStorage = multer.diskStorage({
         cb(null, file.fieldname + "-" + uniqueSuffix + ".csv");
     },
 });
+
+
+export const handleMultipleUpload = async (params: {
+    file: Express.Multer.File;
+    type: "photo" | "signature" | "thumbprint"; // Added 'type' to differentiate directories
+}) => {
+    const { file, type } = params;
+    const uploadDirectory = `uploads/${type}`;
+    await fs.promises.mkdir(uploadDirectory, { recursive: true });
+
+    // get the file name without extension
+    const fileName = file.originalname.split('.').slice(0, -1).join('.') + '.jpg';
+
+    // Prefix based on upload type: P_ for photo, S_ for signature, T_ for thumbprint
+    const prefixMap = {
+        'photo': 'P_',
+        'signature': 'S_',
+        'thumbprint': 'T_'
+    };
+
+    // Add prefix to filename for bulk uploads
+    const prefixedFileName = `${prefixMap[type]}${fileName}`;
+    const filePath = `${uploadDirectory}/${prefixedFileName}`;
+
+    // Convert uploaded file to JPG format and save it
+    const jpgBuffer = await sharp(file.buffer).jpeg().toBuffer();
+    await fs.promises.writeFile(filePath, jpgBuffer);
+
+    return filePath;
+}

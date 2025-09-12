@@ -128,6 +128,15 @@ export const getSeniorCitizenById = async (req: Request, res: Response) => {
       (result.middle_name ? " " + result.middle_name[0] + "." : ""),
     ].join(", ");
 
+    // Check if http://localhost:7000/api is the server then don't insert
+    // Do this before sending the response to avoid "headers already sent" error
+    if (!process.env.DEV) {
+      await insertSeniorCitizenToRemoteDBforQR(result)
+        .catch((err) => {
+          console.error("Error inserting senior citizen to remote DB:", err);
+        });
+    }
+
     res.status(200).json({
       message: "Senior citizen information retrieved successfully",
       data: trimObjectValues({
@@ -140,11 +149,6 @@ export const getSeniorCitizenById = async (req: Request, res: Response) => {
         }
       }),
     });
-
-    // Check if http://localhost:7000/api is the server then don't insert
-    if (!process.env.DEV) {
-      await insertSeniorCitizenToRemoteDBforQR(result);
-    }
 
   } catch (error) {
     res.status(500).json({
@@ -370,6 +374,7 @@ export async function insertSeniorCitizenToRemoteDBforQR(
         sex_at_birth = VALUES(sex_at_birth),
         full_address = VALUES(full_address),
         id_number = VALUES(id_number),
+        record_id = VALUES(record_id),
         date_of_issuance = VALUES(date_of_issuance),
         emergency_contact_name = VALUES(emergency_contact_name),
         emergency_contact_number = VALUES(emergency_contact_number),
