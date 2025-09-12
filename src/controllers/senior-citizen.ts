@@ -130,7 +130,8 @@ export const getSeniorCitizenById = async (req: Request, res: Response) => {
 
     // Check if http://localhost:7000/api is the server then don't insert
     // Do this before sending the response to avoid "headers already sent" error
-    if (!process.env.DEV) {
+    const PROD = String(process.env.PROD ?? "").toLowerCase() === "true";
+    if (PROD) {
       await insertSeniorCitizenToRemoteDBforQR(result)
         .catch((err) => {
           console.error("Error inserting senior citizen to remote DB:", err);
