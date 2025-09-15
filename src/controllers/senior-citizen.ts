@@ -111,9 +111,9 @@ export const getAllSeniorCitizenInfo = async (req: Request, res: Response) => {
     });
   }
 };
-
 export const getSeniorCitizenById = async (req: Request, res: Response) => {
   const { id } = req.params;
+
   try {
     const result = await SeniorCitizenModel.getSeniorCitizenById(id);
     if (!result) {
@@ -121,21 +121,27 @@ export const getSeniorCitizenById = async (req: Request, res: Response) => {
       return;
     }
 
-    // build full_name (no extra spaces if no suffix)
+    // Get client credential assets
+    const client_credential_assets = await getClientCredentialAssets(result.id_number);
+
+    // Build full name
     const full_name = [
-      result.last_name + (result.suffix ? " " + result.suffix : ""),
-      result.first_name +
-      (result.middle_name ? " " + result.middle_name[0] + "." : ""),
+      result.last_name + (result.suffix ? ` ${result.suffix}` : ""),
+      result.first_name + (result.middle_name ? ` ${result.middle_name[0]}.` : ""),
     ].join(", ");
 
-    // Check if http://localhost:7000/api is the server then don't insert
-    // Do this before sending the response to avoid "headers already sent" error
+    // Insert to remote DB if in production
     const PROD = String(process.env.PROD ?? "").toLowerCase() === "true";
     if (PROD) {
-      await insertSeniorCitizenToRemoteDBforQR(result)
-        .catch((err) => {
-          console.error("Error inserting senior citizen to remote DB:", err);
+      try {
+        await insertSeniorCitizenToRemoteDBforQR(result);
+      } catch (err) {
+        res.status(500).json({
+          message: "Failed to insert senior citizen to remote DB for QR verification",
+          error: err instanceof Error ? err.message : String(err),
         });
+        return;
+      }
     }
 
     res.status(200).json({
@@ -143,18 +149,13 @@ export const getSeniorCitizenById = async (req: Request, res: Response) => {
       data: trimObjectValues({
         ...result,
         full_name,
-        client_credential_assets: {
-          electronic_signature: await fileExists(`uploads/signature/S_${result.id_number}.jpg`) ? `uploads/signature/S_${result.id_number}.jpg` : null,
-          thumbprint: await fileExists(`uploads/thumbprint/T_${result.id_number}.jpg`) ? `uploads/thumbprint/T_${result.id_number}.jpg` : null,
-          profile_picture: await fileExists(`uploads/photo/P_${result.id_number}.jpg`) ? `uploads/photo/P_${result.id_number}.jpg` : null
-        }
+        client_credential_assets,
       }),
     });
 
   } catch (error) {
     res.status(500).json({
-      message:
-        "An error occurred while retrieving senior citizen information by ID",
+      message: "An error occurred while retrieving senior citizen information by ID",
       error: error instanceof Error ? error.message : String(error),
     });
   }

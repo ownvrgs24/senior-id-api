@@ -37,6 +37,9 @@ router.post(
   handleImportCSV
 );
 
-router.post("/bulk-upload", bulkUploadConfig.array("files"), handleMultipleFileUpload);
+router.post("/import-images",
+  bulkUploadConfig.array("files"),
+  handleMultipleFileUpload
+);
 
 export default router;

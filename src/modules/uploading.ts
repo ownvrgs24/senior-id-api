@@ -67,30 +67,26 @@ export const csvFileStorage = multer.diskStorage({
 
 
 export const handleMultipleUpload = async (params: {
-    file: Express.Multer.File;
+    files: Express.Multer.File[];
     type: "photo" | "signature" | "thumbprint"; // Added 'type' to differentiate directories
 }) => {
-    const { file, type } = params;
+    const { files, type } = params;
     const uploadDirectory = `uploads/${type}`;
     await fs.promises.mkdir(uploadDirectory, { recursive: true });
 
-    // get the file name without extension
-    const fileName = file.originalname.split('.').slice(0, -1).join('.') + '.jpg';
+    const filePaths: string[] = [];
 
-    // Prefix based on upload type: P_ for photo, S_ for signature, T_ for thumbprint
-    const prefixMap = {
-        'photo': 'P_',
-        'signature': 'S_',
-        'thumbprint': 'T_'
-    };
+    for (const file of files) {
+        // get the file name without extension
+        const fileName = file.originalname.split('.').slice(0, -1).join('.') + '.jpg';
+        const filePath = `${uploadDirectory}/${fileName}`;
 
-    // Add prefix to filename for bulk uploads
-    const prefixedFileName = `${prefixMap[type]}${fileName}`;
-    const filePath = `${uploadDirectory}/${prefixedFileName}`;
+        // Convert uploaded file to JPG format and save it
+        const jpgBuffer = await sharp(file.buffer).jpeg().toBuffer();
+        await fs.promises.writeFile(filePath, jpgBuffer);
 
-    // Convert uploaded file to JPG format and save it
-    const jpgBuffer = await sharp(file.buffer).jpeg().toBuffer();
-    await fs.promises.writeFile(filePath, jpgBuffer);
+        filePaths.push(filePath);
+    }
 
-    return filePath;
+    return filePaths;
 }

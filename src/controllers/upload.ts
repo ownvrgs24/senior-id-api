@@ -134,6 +134,15 @@ export const deleteFileFromServer = async (
 
 export const handleImportCSV = async (req: Request, res: Response) => {
   try {
+
+    // Validate if file is CSV based on mimetype
+    if (!req.file || req.file.mimetype !== "text/csv") {
+      res.status(415).json({
+        message: "Only CSV files are accepted.",
+      });
+      return;
+    }
+
     if (!req.file) {
       res.status(400).json({ message: "No file uploaded" });
       return;
@@ -150,21 +159,46 @@ export const handleImportCSV = async (req: Request, res: Response) => {
         ignoreEmpty: true,
         objectMode: true,
       }))
+      .on("error", (error) => {
+        console.error("CSV parsing error:", error);
+        try {
+          fs.unlinkSync(filePath); // Clean up file on error
+        } catch (unlinkError) {
+          console.error("Failed to delete uploaded file:", unlinkError);
+        }
+        res.status(400).json({
+          message: "Invalid CSV file format",
+          error: error.message
+        });
+      })
       .on("data", (data) => {
         records.push(data);
       })
       .on("end", async () => {
-        let result = await SeniorCitizenModel.insertBulkSeniorCitizenInfo(records)
-        res.status(200).json({
-          message: "CSV file imported successfully",
-          importedRecords: result.length,
-          result
-        });
-
-        fs.unlinkSync(filePath); // Delete the file after processing
+        try {
+          let result = await SeniorCitizenModel.insertBulkSeniorCitizenInfo(records);
+          res.status(200).json({
+            message: "CSV file imported successfully",
+            importedRecords: result.length,
+            result
+          });
+        } catch (dbError) {
+          console.error("Database insertion error:", dbError);
+          res.status(500).json({
+            message: "Failed to save data to database",
+            error: dbError instanceof Error ? dbError.message : String(dbError)
+          });
+        } finally {
+          try {
+            fs.unlinkSync(filePath); // Delete the file after processing
+          } catch (unlinkError) {
+            console.error("Failed to delete uploaded file:", unlinkError);
+          }
+        }
       });
 
   } catch (error) {
+    console.error("CSV import error:", error);
     res.status(500).json({
       message: "An error occurred while importing the CSV file",
       error: error instanceof Error ? error.message : String(error),
@@ -174,34 +208,26 @@ export const handleImportCSV = async (req: Request, res: Response) => {
 
 export const handleMultipleFileUpload = async (req: Request, res: Response) => {
   try {
-    const { files, type } = req.body;
 
-    console.log(files, type);
+    const { files } = req;
+    const { type } = req.body;
 
-    res.send(200);
-    return;
-
-    if (!files || Object.keys(files).length === 0) {
-      res.status(400).json({ message: "No files uploaded" });
+    if (!files || (files as Express.Multer.File[]).length === 0) {
+      res.status(400).json({ message: "No file uploaded" });
       return;
     }
 
-    const fileUploadPromises: Promise<string>[] = [];
-    const filesArray = Array.isArray(files) ? files : Object.values(files).flat();
+    const uploadedFilePaths = await handleMultipleUpload({
+      files: files as Express.Multer.File[],
+      type: type || "others",
+    });
 
-    for (const file of filesArray) {
-      const uploadPromise = handleMultipleUpload({
-        file,
-        type,
-      });
-      fileUploadPromises.push(uploadPromise);
-    }
-
-    const filePaths = await Promise.all(fileUploadPromises);
     res.status(200).json({
       message: "Files uploaded successfully",
-      filePaths,
+      filePaths: uploadedFilePaths,
+      count: uploadedFilePaths.length
     });
+
   }
 
   catch (error) {
