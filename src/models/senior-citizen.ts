@@ -162,11 +162,23 @@ export class SeniorCitizenModel {
     const safeSize = Math.max(1, pageSize | 0);
     const offset = (safePage - 1) * safeSize;
 
-    const startOfDay = new Date(date);
-    startOfDay.setHours(0, 0, 0, 0);
+    // Ensure we're working with a proper Date object
+    const searchDate = new Date(date);
 
-    const endOfDay = new Date(date);
-    endOfDay.setHours(23, 59, 59, 999);
+    // Create start and end of day in Philippine Standard Time (UTC+8)
+    const startOfDay = new Date(
+      searchDate.getFullYear(),
+      searchDate.getMonth(),
+      searchDate.getDate(),
+      0, 0, 0, 0
+    );
+
+    const endOfDay = new Date(
+      searchDate.getFullYear(),
+      searchDate.getMonth(),
+      searchDate.getDate(),
+      23, 59, 59, 999
+    );
 
     const whereCondition = {
       date_of_issuance: {
