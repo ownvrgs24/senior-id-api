@@ -5,6 +5,32 @@ import { SeniorCitizenModel } from "../models/senior-citizen";
 import * as fs from "fs";
 import { parse } from "fast-csv";
 
+// Convert date string to GMT+8 (Asia/Manila) timezone
+const convertToManilaTimezone = (dateString: string): Date => {
+  if (!dateString) return new Date();
+
+  // Parse the date string (format: M/D/YYYY)
+  const date = new Date(dateString);
+
+  if (isNaN(date.getTime())) {
+    console.warn(`Invalid date format: ${dateString}`);
+    return new Date();
+  }
+
+  // Create a date adjusted for GMT+8 timezone
+  // The date is parsed as UTC, we need to adjust it to represent the same date in Manila timezone
+  const utcDate = new Date(date.toLocaleString("en-US", { timeZone: "UTC" }));
+  const manilaDate = new Date(
+    date.toLocaleString("en-US", { timeZone: "Asia/Manila" })
+  );
+
+  // Calculate the offset and adjust
+  const offset = utcDate.getTime() - manilaDate.getTime();
+  const adjustedDate = new Date(date.getTime() + offset);
+
+  return adjustedDate;
+};
+
 export const handleSeniorCitizenPhotoUpload = async (
   req: Request,
   res: Response
@@ -110,10 +136,7 @@ export const handleSeniorCitizenThumbprintUpload = async (
   }
 };
 
-export const deleteFileFromServer = async (
-  req: Request,
-  res: Response
-) => {
+export const deleteFileFromServer = async (req: Request, res: Response) => {
   try {
     const { filePath } = req.body;
 
@@ -134,7 +157,6 @@ export const deleteFileFromServer = async (
 
 export const handleImportCSV = async (req: Request, res: Response) => {
   try {
-
     // Validate if file is CSV based on mimetype
     if (!req.file || req.file.mimetype !== "text/csv") {
       res.status(415).json({
@@ -152,13 +174,15 @@ export const handleImportCSV = async (req: Request, res: Response) => {
     const records: any[] = [];
 
     fs.createReadStream(filePath)
-      .pipe(parse({
-        headers: true,
-        encoding: "utf-8",
-        trim: true,
-        ignoreEmpty: true,
-        objectMode: true,
-      }))
+      .pipe(
+        parse({
+          headers: true,
+          encoding: "utf-8",
+          trim: true,
+          ignoreEmpty: true,
+          objectMode: true,
+        })
+      )
       .on("error", (error) => {
         console.error("CSV parsing error:", error);
         try {
@@ -168,7 +192,7 @@ export const handleImportCSV = async (req: Request, res: Response) => {
         }
         res.status(400).json({
           message: "Invalid CSV file format",
-          error: error.message
+          error: error.message,
         });
       })
       .on("data", (data) => {
@@ -176,17 +200,30 @@ export const handleImportCSV = async (req: Request, res: Response) => {
       })
       .on("end", async () => {
         try {
-          let result = await SeniorCitizenModel.insertBulkSeniorCitizenInfo(records);
+          // Convert date fields to Manila timezone before insertion
+          const processedRecords = records.map((record) => ({
+            ...record,
+            date_of_birth: record.date_of_birth
+              ? convertToManilaTimezone(record.date_of_birth)
+              : undefined,
+            date_of_issuance: record.date_of_issuance
+              ? convertToManilaTimezone(record.date_of_issuance)
+              : undefined,
+          }));
+
+          let result = await SeniorCitizenModel.insertBulkSeniorCitizenInfo(
+            processedRecords
+          );
           res.status(200).json({
             message: "CSV file imported successfully",
             importedRecords: result.length,
-            result
+            result,
           });
         } catch (dbError) {
           console.error("Database insertion error:", dbError);
           res.status(500).json({
             message: "Failed to save data to database",
-            error: dbError instanceof Error ? dbError.message : String(dbError)
+            error: dbError instanceof Error ? dbError.message : String(dbError),
           });
         } finally {
           try {
@@ -196,7 +233,6 @@ export const handleImportCSV = async (req: Request, res: Response) => {
           }
         }
       });
-
   } catch (error) {
     console.error("CSV import error:", error);
     res.status(500).json({
@@ -208,7 +244,6 @@ export const handleImportCSV = async (req: Request, res: Response) => {
 
 export const handleMultipleFileUpload = async (req: Request, res: Response) => {
   try {
-
     const { files } = req;
     const { type } = req.body;
 
@@ -225,12 +260,9 @@ export const handleMultipleFileUpload = async (req: Request, res: Response) => {
     res.status(200).json({
       message: "Files uploaded successfully",
       filePaths: uploadedFilePaths,
-      count: uploadedFilePaths.length
+      count: uploadedFilePaths.length,
     });
-
-  }
-
-  catch (error) {
+  } catch (error) {
     res.status(500).json({
       message: "An error occurred while uploading files",
       error: error instanceof Error ? error.message : String(error),
