@@ -335,6 +335,19 @@ export async function insertSeniorCitizenToRemoteDBforQR(
   row: SeniorCitizenRow
 ): Promise<void> {
   /**
+   * Format date with time for database insertion
+   */
+  const formatDateTimeForDB = (date: Date): string => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+  };
+
+  /**
    * Insert or update a senior citizen record based on record_id.
    * @param row The SeniorCitizenRow object to insert or update
    */
@@ -389,7 +402,7 @@ export async function insertSeniorCitizenToRemoteDBforQR(
     row.middle_name,
     row.last_name,
     row.suffix,
-    row.date_of_birth.toISOString().slice(0, 10),
+    formatDateTimeForDB(row.date_of_birth),
     row.place_of_birth,
     row.civil_status,
     row.contact_number,
@@ -399,7 +412,7 @@ export async function insertSeniorCitizenToRemoteDBforQR(
     row.sex_at_birth,
     row.full_address,
     row.id_number,
-    row.date_of_issuance.toISOString().slice(0, 10),
+    formatDateTimeForDB(row.date_of_issuance),
     row.emergency_contact_name,
     row.emergency_contact_number,
     row.emergency_relationship,

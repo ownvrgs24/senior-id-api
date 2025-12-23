@@ -5,11 +5,9 @@ import { SeniorCitizenModel } from "../models/senior-citizen";
 import * as fs from "fs";
 import { parse } from "fast-csv";
 
-// Convert date string to GMT+8 (Asia/Manila) timezone
 const convertToManilaTimezone = (dateString: string): Date => {
   if (!dateString) return new Date();
 
-  // Parse the date string (format: M/D/YYYY)
   const date = new Date(dateString);
 
   if (isNaN(date.getTime())) {
@@ -17,18 +15,8 @@ const convertToManilaTimezone = (dateString: string): Date => {
     return new Date();
   }
 
-  // Create a date adjusted for GMT+8 timezone
-  // The date is parsed as UTC, we need to adjust it to represent the same date in Manila timezone
-  const utcDate = new Date(date.toLocaleString("en-US", { timeZone: "UTC" }));
-  const manilaDate = new Date(
-    date.toLocaleString("en-US", { timeZone: "Asia/Manila" })
-  );
-
-  // Calculate the offset and adjust
-  const offset = utcDate.getTime() - manilaDate.getTime();
-  const adjustedDate = new Date(date.getTime() + offset);
-
-  return adjustedDate;
+  // Add 16 hours to set the time to 4 PM (16:00) in Manila timezone context
+  return new Date(date.getTime() + 16 * 60 * 60 * 1000);
 };
 
 export const handleSeniorCitizenPhotoUpload = async (
@@ -203,12 +191,8 @@ export const handleImportCSV = async (req: Request, res: Response) => {
           // Convert date fields to Manila timezone before insertion
           const processedRecords = records.map((record) => ({
             ...record,
-            date_of_birth: record.date_of_birth
-              ? convertToManilaTimezone(record.date_of_birth)
-              : undefined,
-            date_of_issuance: record.date_of_issuance
-              ? convertToManilaTimezone(record.date_of_issuance)
-              : undefined,
+            date_of_birth: new Date(record.date_of_birth),
+            date_of_issuance: new Date(record.date_of_issuance),
           }));
 
           let result = await SeniorCitizenModel.insertBulkSeniorCitizenInfo(

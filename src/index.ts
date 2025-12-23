@@ -3,6 +3,9 @@ import * as dotenv from "dotenv";
 import cors from "cors";
 import router from "./routes/index";
 
+// Set timezone to Asia/Manila (GMT+8)
+process.env.TZ = "Asia/Manila";
+
 // Load environment variables from .env file
 dotenv.config();
 
