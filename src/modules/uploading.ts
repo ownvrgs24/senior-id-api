@@ -15,7 +15,7 @@ export const handleUpload = async (params: {
         await fs.promises.mkdir(uploadDirectory, { recursive: true });
         // Define the file name based on the type and senior citizen ID
 
-        // Prefix based on upload type: P_ for photo, S_ for signature, T_ for thumbprint
+        // Prefix based on upload type: P_ for photo, S_ for signature, T_ for thumbprint aaa
         const prefixMap = {
             'photo': 'P_',
             'signature': 'S_',
